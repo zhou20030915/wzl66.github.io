@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>zhoulei 的个人博客</title>
+    <link>https://www.wzl66.top</link>
+    <atom:link href="https://www.wzl66.top/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>记录精彩的程序人生</description>
+    <generator>Solo, v4.4.0, https://b3log.org/solo</generator>
+    <lastBuildDate>Sun, 04 Jun 2023 01:17:03 +0800</lastBuildDate>
+    <language>zh-cn</language>
+    <item>
+      <title>VUE快速入门</title>
+      <link>https://www.wzl66.top/articles/2023/06/03/1685722268250.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://www.wzl66.top/articles/2023/06/03/1685722268250.html</guid>
+      <category>待分类</category>
+      <pubDate>Sat, 03 Jun 2023 00:11:22 +0800</pubDate>
+    </item>
+  </channel>
+</rss>
