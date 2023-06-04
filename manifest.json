@@ -3,10 +3,10 @@
     "theme_color": "#1fb5ad",
     "background_color": "#f1f2f7",
     "display": "standalone",
-    "name": "zhoulei 的个人博客",
+    "name": "L的个人博客",
     "start_url": ".",
-    "description": "记录精彩的程序人生",
-    "short_name": "zhoulei 的个人博客",
+    "description": "生活是活给自己看的，你有多大成色，世界才会给你多大脸色",
+    "short_name": "L的个人博客",
     "icons": [
         {
             "sizes": "48x48",

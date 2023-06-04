@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>VUE快速入门 - zhoulei 的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://www.wzl66.top"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.wzl66.top"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="VUE快速入门 - zhoulei 的个人博客"/><meta property="og:site_name" content="zhoulei 的个人博客"/><meta property="og:url"      content="https://www.wzl66.top/articles/2023/06/03/1685722268250.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="VUE快速入门 - zhoulei 的个人博客" href="/opensearch.xml"><link href="https://www.wzl66.top/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://www.wzl66.top/manifest.json">        <link rel="canonical" href="https://www.wzl66.top/articles/2023/06/03/1685722268250.html">        <link rel="stylesheet"
-              href="https://www.wzl66.top/skins/Bubble/css/base.css?1685812515045"/>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>VUE快速入门 - L的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://www.wzl66.top"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.wzl66.top"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="VUE快速入门 - L的个人博客"/><meta property="og:site_name" content="L的个人博客"/><meta property="og:url"      content="https://www.wzl66.top/articles/2023/06/03/1685722268250.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="VUE快速入门 - L的个人博客" href="/opensearch.xml"><link href="https://www.wzl66.top/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://www.wzl66.top/manifest.json">        <link rel="canonical" href="https://www.wzl66.top/articles/2023/06/03/1685722268250.html">        <link rel="stylesheet"
+              href="https://www.wzl66.top/skins/Bubble/css/base.css?1685856661838"/>
+            <link rel="next" title="JAVA多线程" href="https://www.wzl66.top/articles/2023/06/04/1685856943701.html">
     <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
 <body class="fn__flex-column">
 <div id="pjax" class="fn__flex-1">
@@ -11,13 +12,11 @@
     <header class="header header--article">
         <div class="wrapper header__title">
             <h1 class="header__h1 fn__flex-inline">
-                <a href="https://www.wzl66.top" rel="start">zhoulei 的个人博客</a>
+                <a href="https://www.wzl66.top" rel="start">L的个人博客</a>
             </h1>
-            <h2 class="header__desc header__desc--title">记录精彩的程序人生</h2>
+            <h2 class="header__desc header__desc--title">生活是活给自己看的，你有多大成色，世界才会给你多大脸色</h2>
             <div class="header__desc">
                 Open Source, Open Mind, <br/>Open Sight, Open Future!
-
-<!-- 公告栏可使用 HTML、JavaScript，比如可以在此加入第三方统计 js -->
             </div>
             <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
                 <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
@@ -41,10 +40,10 @@
             </svg>
 
             <div class="side__header">
-                <a href="https://www.wzl66.top" rel="start"><img class="side__logo" alt="zhoulei 的个人博客" src="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+                <a href="https://www.wzl66.top" rel="start"><img class="side__logo" alt="L的个人博客" src="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
 
                 <div class="side__meta">
-                    1 文章 <br>
+                    2 文章 <br>
                     <span data-uvstaturl="https://www.wzl66.top">0</span> 浏览
                     
                 </div>
@@ -56,7 +55,7 @@
             <ul class="side__nav">
                 <li>
                     <a href="https://www.wzl66.top" rel="start">
-                            zhoulei 的个人博客
+                            L的个人博客
                     </a>
                 </li>
                 <li>
@@ -77,15 +76,15 @@
             </ul>
         </div>
     </div>
-    <div class="article__top" style="background-image: url(https://b3logfile.com/file/2021/10/solo-fetchupload-7422150114131767124-fa70d63f.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)">
-        <div style="background-image: url(https://b3logfile.com/file/2021/10/solo-fetchupload-7422150114131767124-fa70d63f.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100)"></div>
+    <div class="article__top" style="background-image: url(https://b3logfile.com/bing/20230203.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        <div style="background-image: url(https://b3logfile.com/bing/20230203.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"></div>
         <canvas id="articleTop"></canvas>
     </div>
     <div class="article">
         <div class="ft__center">
             <div class="article__meta">
                 <time>
-                    2023-06-03
+                    2023-06-04
                 </time>
                 /
                     <a rel="tag"
@@ -96,7 +95,7 @@
             </h2>
 <div class="article__share"
      data-title="VUE快速入门"
-     data-blogtitle="zhoulei 的个人博客"
+     data-blogtitle="L的个人博客"
      data-url="https://www.wzl66.top/articles/2023/06/03/1685722268250.html"
      data-avatar="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
     <span class="item" data-type="qqz">
@@ -126,7 +125,8 @@
 </div>        </div>
         <div class="wrapper">
             <section class="vditor-reset articles article__content">
-                <h1 id="toc_h1_0"><strong>Vue快速入门</strong></h1>
+                <p><img src="https://b3logfile.com/bing/20230203.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
+<h1 id="toc_h1_0"><strong>Vue快速入门</strong></h1>
 <p><a href="https://www.bilibili.com/video/BV12J411m7MG/?spm_id_from=333.337.search-card.all.click&amp;vd_source=09d6df3001e540118eb4b675c976f542" target="_blank"><strong>黑马程序员vue前端基础教程-4个小时带你快速入门vuebilibili</strong></a></p>
 <p><strong>【狂神说Java】Vue最新快速上手教程通俗易懂</strong><em><strong>哔哩哔哩</strong></em><strong>bilibili](</strong><a href="https://www.bilibili.com/video/BV18E411a7mC/?spm_id_from=333.337.search-card.all.click&amp;vd_source=09d6df3001e540118eb4b675c976f542" target="_blank">https://www.bilibili.com/video/BV18E411a7mC/?spm_id_from=333.337.search-card.all.click&amp;vd_source=09d6df3001e540118eb4b675c976f542</a>**) **</p>
 <h3 id="toc_h3_1"><strong>Vue介绍</strong></h3>
@@ -927,7 +927,7 @@ npm run dev
     
 </div>
 <script type="text/javascript"
-        src="https://www.wzl66.top/skins/Bubble/js/TweenMax.min.js?1685812515045"
+        src="https://www.wzl66.top/skins/Bubble/js/TweenMax.min.js?1685856661838"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -945,7 +945,7 @@ npm run dev
 
  <br>
         &copy; 2023
-        <a href="https://www.wzl66.top">zhoulei 的个人博客</a>
+        <a href="https://www.wzl66.top">L的个人博客</a>
         
         <span class="footer__heart">❤️</span>
     </div>
@@ -968,10 +968,10 @@ npm run dev
   }
 </script>
 <script type="text/javascript"
-        src="https://www.wzl66.top/skins/Bubble/js/common.min.js?1685812515045"
+        src="https://www.wzl66.top/skins/Bubble/js/common.min.js?1685856661838"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://www.wzl66.top/skins/Bubble/js/circleMagic.min.js?1685812515045"
+        src="https://www.wzl66.top/skins/Bubble/js/circleMagic.min.js?1685856661838"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.js"></script>
@@ -1008,7 +1008,7 @@ npm run dev
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://www.wzl66.top/js/page.min.js?1685812515045', 'soloPageScript')
+    Util.addScript('https://www.wzl66.top/js/page.min.js?1685856661838', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1685722268250",
@@ -1028,4 +1028,4 @@ npm run dev
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 22ms, 2023/06/04 01:17:04 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 36ms, 2023/06/04 13:37:42 -->
