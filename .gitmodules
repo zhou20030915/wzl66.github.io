@@ -1,0 +1,4 @@
+# .gitmodules file
+[submodule "wzl66.github.io"]
+	path = wzl66.github.io
+	url = git@github.com:zhou20030915/wzl66.github.io.git
