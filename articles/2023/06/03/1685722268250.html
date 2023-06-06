@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>VUE快速入门 - L的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://www.wzl66.top"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://www.wzl66.top"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="VUE快速入门 - L的个人博客"/><meta property="og:site_name" content="L的个人博客"/><meta property="og:url"      content="https://www.wzl66.top/articles/2023/06/03/1685722268250.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="VUE快速入门 - L的个人博客" href="/opensearch.xml"><link href="https://www.wzl66.top/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://www.wzl66.top/manifest.json">        <link rel="canonical" href="https://www.wzl66.top/articles/2023/06/03/1685722268250.html">        <link rel="stylesheet"
-              href="https://www.wzl66.top/skins/Bubble/css/base.css?1685856661838"/>
+              href="https://www.wzl66.top/skins/Bubble/css/base.css?1686070386776"/>
             <link rel="next" title="JAVA多线程" href="https://www.wzl66.top/articles/2023/06/04/1685856943701.html">
     <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
 <body class="fn__flex-column">
@@ -84,7 +84,7 @@
         <div class="ft__center">
             <div class="article__meta">
                 <time>
-                    2023-06-04
+                    2023-06-07
                 </time>
                 /
                     <a rel="tag"
@@ -806,6 +806,134 @@ npm run dev
 <li><code>npm install -g moduleName</code><strong>：-g的意思就是将模块安装到全局，具体安装到磁盘哪个位置，我们要使用</strong><code>npm config prefix</code><strong>查看位置</strong></li>
 <li><code>npm install -save moduleName</code><strong>：--save-dev的意思是将模块安装到项目目录下面，并在package文件的devDependencies节点写入依赖，-D为该命令的缩写</strong>## <strong>路由嵌套</strong></li>
 </ul>
+<h3 id="toc_h3_27"><strong>路由配置</strong></h3>
+<pre><code>import Antd from "../components/Antd"
+Vue.use(Router)
+export default new Router({
+mode:"history",//消除url#的
+routes:[
+{
+path:'/Main',
+component:Main
+}, {
+path:'/Antd',
+component:Antd
+}
+]
+})
+</code></pre>
+<h2 id="toc_h2_28"><strong>Ant-design-vue+vue</strong></h2>
+<p><strong><strong>注意：</strong></strong></p>
+<ul>
+<li><strong>版本问题令人头痛</strong><strong><strong>vue2</strong><a href="mailto:****是使用的ant-design-vue@1.X.X" target="_blank">****是使用的ant-design-vue@1.X.X</a></strong></li>
+<li><strong><a href="mailto:ant-design-vue@2.X.X是支持vue3的" target="_blank">ant-design-vue@2.X.X是支持vue3的</a></strong></li>
+</ul>
+<h3 id="toc_h3_29"><strong>准备工作</strong></h3>
+<p><strong>如果网不好可以是用cnpm来下载</strong></p>
+<ul>
+<li><strong>下载ant-design-vue 依赖</strong></li>
+</ul>
+<pre><code>npm install ant-design-vue@1.7.5 --save
+</code></pre>
+<ul>
+<li><strong>在main.js中使用全局导入样式</strong></li>
+</ul>
+<pre><code>import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(Antd);
+</code></pre>
+<ul>
+<li><strong>创建相应的vue文件，可以在官网</strong><a href="https://1x.antdv.com/docs/vue/getting-started-cn/" target="_blank"><strong>快速上手 - Ant Design Vue (antdv.com)</strong></a><strong>上面下载相应的代码导入到vue文件中，</strong></li>
+</ul>
+<p><strong>注意在官网上需要查看版本因为现在大版本是依赖于vue3的如果项目是vue2的话直接导入会有相应的问题</strong></p>
+<h2 id="toc_h2_30"><strong>自定义标签的使用</strong></h2>
+<p><strong>我最开始接触到自定义标签时是在javaScript中导入vue,创建模板，自定义标签名</strong></p>
+<p><strong>在vue工程中也是一样的，区别在于vue工程中要想使用其他的vue文件需要</strong><strong><strong>import</strong>****导入命名可以在该工程里面命名(也就是导入的名称)。</strong></p>
+<p><strong>再在vue的</strong><strong><strong>components中声明</strong></strong></p>
+<p><strong>App.vue文件</strong></p>
+<pre><code>&lt;template&gt;
+ &nbsp;&lt;Antd&gt;&lt;/Antd&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Antd from "./components/Antd.vue"
+export default {
+ &nbsp;name: 'App',
+ &nbsp;components: {
+ &nbsp; &nbsp;Antd
+  },
+}
+&lt;/script&gt;
+&lt;style&gt;
+&lt;/style&gt;
+</code></pre>
+<p><strong>Antd文件(官方导入的layout布局)</strong></p>
+<pre><code>&lt;template&gt;
+ &nbsp;&lt;a-layout id="components-layout-demo-custom-trigger"&gt;
+ &nbsp; &nbsp;&lt;a-layout-sider v-model="collapsed" :trigger="null" collapsible&gt;
+ &nbsp; &nbsp; &nbsp;&lt;div class="logo" /&gt;
+ &nbsp; &nbsp; &nbsp;&lt;a-menu theme="dark" mode="inline" :default-selected-keys="['1']"&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;a-menu-item key="1"&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;a-icon type="user" /&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span&gt;nav 1&lt;/span&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;/a-menu-item&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;a-menu-item key="2"&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;a-icon type="video-camera" /&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span&gt;nav 2&lt;/span&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;/a-menu-item&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;a-menu-item key="3"&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;a-icon type="upload" /&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;span&gt;nav 3&lt;/span&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;/a-menu-item&gt;
+ &nbsp; &nbsp; &nbsp;&lt;/a-menu&gt;
+ &nbsp; &nbsp;&lt;/a-layout-sider&gt;
+ &nbsp; &nbsp;&lt;a-layout&gt;
+ &nbsp; &nbsp; &nbsp;&lt;a-layout-header style="background: #fff; padding: 0"&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;a-icon
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;class="trigger"
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:type="collapsed ? 'menu-unfold' : 'menu-fold'"
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@click="() =&gt; (collapsed = !collapsed)"
+ &nbsp; &nbsp; &nbsp; &nbsp;/&gt;
+ &nbsp; &nbsp; &nbsp;&lt;/a-layout-header&gt;
+ &nbsp; &nbsp; &nbsp;&lt;a-layout-content
+ &nbsp; &nbsp; &nbsp; &nbsp;:style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+ &nbsp; &nbsp; &nbsp;&gt;
+ &nbsp; &nbsp; &nbsp;  Content
+ &nbsp; &nbsp; &nbsp;&lt;/a-layout-content&gt;
+ &nbsp; &nbsp;&lt;/a-layout&gt;
+ &nbsp;&lt;/a-layout&gt;
+&lt;/template&gt;
+&lt;script&gt;
+ &nbsp;export default {
+ &nbsp; &nbsp;name:'Antd',
+ &nbsp; &nbsp;data() {
+ &nbsp; &nbsp; &nbsp;return {
+ &nbsp; &nbsp; &nbsp; &nbsp;collapsed: false,
+ &nbsp; &nbsp;  };
+ &nbsp;  },
+  };
+&lt;/script&gt;
+&lt;style&gt;
+ &nbsp;#components-layout-demo-custom-trigger .trigger {
+ &nbsp; &nbsp;font-size: 18px;
+ &nbsp; &nbsp;line-height: 64px;
+ &nbsp; &nbsp;padding: 0 24px;
+ &nbsp; &nbsp;cursor: pointer;
+ &nbsp; &nbsp;transition: color 0.3s;
+  }
+
+ &nbsp;#components-layout-demo-custom-trigger .trigger:hover {
+ &nbsp; &nbsp;color: #1890ff;
+  }
+
+ &nbsp;#components-layout-demo-custom-trigger .logo {
+ &nbsp; &nbsp;height: 32px;
+ &nbsp; &nbsp;background: rgba(255, 255, 255, 0.2);
+ &nbsp; &nbsp;margin: 16px;
+  }
+&lt;/style&gt;
+
+</code></pre>
                     <div>
                         <hr>
 
@@ -903,6 +1031,18 @@ npm run dev
         <li class="toc__h3">
             <a href="#toc_h3_26">创建工程</a>
         </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_27">路由配置</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_28">Ant-design-vue+vue</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_29">准备工作</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_30">自定义标签的使用</a>
+        </li>
 </ul>        </div>
         <div class="wrapper">
             <div id="gitalk-container"></div>
@@ -927,7 +1067,7 @@ npm run dev
     
 </div>
 <script type="text/javascript"
-        src="https://www.wzl66.top/skins/Bubble/js/TweenMax.min.js?1685856661838"
+        src="https://www.wzl66.top/skins/Bubble/js/TweenMax.min.js?1686070386776"
         charset="utf-8"></script>
 <footer class="footer">
     <div class="wrapper">
@@ -968,10 +1108,10 @@ npm run dev
   }
 </script>
 <script type="text/javascript"
-        src="https://www.wzl66.top/skins/Bubble/js/common.min.js?1685856661838"
+        src="https://www.wzl66.top/skins/Bubble/js/common.min.js?1686070386776"
         charset="utf-8"></script>
 <script type="text/javascript"
-        src="https://www.wzl66.top/skins/Bubble/js/circleMagic.min.js?1685856661838"
+        src="https://www.wzl66.top/skins/Bubble/js/circleMagic.min.js?1686070386776"
         charset="utf-8"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.css"/>
 <script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.js"></script>
@@ -1008,7 +1148,7 @@ npm run dev
     </svg>
 
 <script type="text/javascript">
-    Util.addScript('https://www.wzl66.top/js/page.min.js?1685856661838', 'soloPageScript')
+    Util.addScript('https://www.wzl66.top/js/page.min.js?1686070386776', 'soloPageScript')
     var page = new Page({
         "commentContentCannotEmptyLabel": "评论不能为空",
         "oId": "1685722268250",
@@ -1028,4 +1168,4 @@ npm run dev
 </body>
 </html>
 
-<!-- Generated by Latke (https://github.com/88250/latke) in 36ms, 2023/06/04 13:37:42 -->
+<!-- Generated by Latke (https://github.com/88250/latke) in 51ms, 2023/06/07 00:53:47 -->
