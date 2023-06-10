@@ -6,7 +6,7 @@
     <atom:link href="https://www.wzl66.top/rss.xml" rel="self" type="application/rss+xml"/>
     <description>生活是活给自己看的，你有多大成色，世界才会给你多大脸色</description>
     <generator>Solo, v4.4.0, https://b3log.org/solo</generator>
-    <lastBuildDate>Sat, 10 Jun 2023 16:00:47 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 10 Jun 2023 16:15:40 +0800</lastBuildDate>
     <language>zh-cn</language>
     <item>
       <title>Cookie,Session,Filter</title>
@@ -14,8 +14,8 @@
       <description/>
       <author>zhoulei</author>
       <guid>https://www.wzl66.top/articles/2023/06/10/1686383982630.html</guid>
-      <category>待分类</category>
-      <pubDate>Sat, 10 Jun 2023 15:59:42 +0800</pubDate>
+      <category>javaweb</category>
+      <pubDate>Sat, 10 Jun 2023 16:12:32 +0800</pubDate>
     </item>
     <item>
       <title>反射机制</title>
@@ -23,8 +23,8 @@
       <description/>
       <author>zhoulei</author>
       <guid>https://www.wzl66.top/articles/2023/06/10/1686383841065.html</guid>
-      <category>待分类</category>
-      <pubDate>Sat, 10 Jun 2023 15:57:21 +0800</pubDate>
+      <category>java反射</category>
+      <pubDate>Sat, 10 Jun 2023 16:12:04 +0800</pubDate>
     </item>
     <item>
       <title>mybatis</title>
@@ -32,8 +32,8 @@
       <description/>
       <author>zhoulei</author>
       <guid>https://www.wzl66.top/articles/2023/06/10/1686383786980.html</guid>
-      <category>待分类</category>
-      <pubDate>Sat, 10 Jun 2023 15:56:27 +0800</pubDate>
+      <category>Mybatis</category>
+      <pubDate>Sat, 10 Jun 2023 16:11:42 +0800</pubDate>
     </item>
     <item>
       <title>SpringIOC和AOP机制的学习</title>
@@ -41,17 +41,8 @@
       <description/>
       <author>zhoulei</author>
       <guid>https://www.wzl66.top/articles/2023/06/10/1686383643546.html</guid>
-      <category>待分类</category>
-      <pubDate>Sat, 10 Jun 2023 15:54:03 +0800</pubDate>
-    </item>
-    <item>
-      <title>VUE快速入门</title>
-      <link>https://www.wzl66.top/articles/2023/06/03/1685722268250.html</link>
-      <description/>
-      <author>zhoulei</author>
-      <guid>https://www.wzl66.top/articles/2023/06/03/1685722268250.html</guid>
-      <category>待分类</category>
-      <pubDate>Wed, 07 Jun 2023 00:42:43 +0800</pubDate>
+      <category>Spring</category>
+      <pubDate>Sat, 10 Jun 2023 16:11:04 +0800</pubDate>
     </item>
     <item>
       <title>JAVA多线程</title>
@@ -59,8 +50,18 @@
       <description/>
       <author>zhoulei</author>
       <guid>https://www.wzl66.top/articles/2023/06/04/1685856943701.html</guid>
-      <category>待分类</category>
-      <pubDate>Sun, 04 Jun 2023 13:36:10 +0800</pubDate>
+      <category>多线程</category>
+      <category>java</category>
+      <pubDate>Sat, 10 Jun 2023 16:10:34 +0800</pubDate>
+    </item>
+    <item>
+      <title>VUE快速入门</title>
+      <link>https://www.wzl66.top/articles/2023/06/03/1685722268250.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://www.wzl66.top/articles/2023/06/03/1685722268250.html</guid>
+      <category>Vue</category>
+      <pubDate>Sat, 10 Jun 2023 16:10:11 +0800</pubDate>
     </item>
   </channel>
 </rss>
