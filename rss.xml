@@ -6,8 +6,18 @@
     <atom:link href="https://www.wzl66.top/rss.xml" rel="self" type="application/rss+xml"/>
     <description>生活是活给自己看的，你有多大成色，世界才会给你多大脸色</description>
     <generator>Solo, v4.4.0, https://b3log.org/solo</generator>
-    <lastBuildDate>Sat, 10 Jun 2023 16:20:57 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Jun 2023 14:54:24 +0800</lastBuildDate>
     <language>zh-cn</language>
+    <item>
+      <title>mybatis-plus学习</title>
+      <link>https://www.wzl66.top/articles/2023/06/14/1686725649698.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://www.wzl66.top/articles/2023/06/14/1686725649698.html</guid>
+      <category>代码生成器</category>
+      <category>wrapper</category>
+      <pubDate>Wed, 14 Jun 2023 14:54:09 +0800</pubDate>
+    </item>
     <item>
       <title>Cookie,Session,Filter</title>
       <link>https://www.wzl66.top/articles/2023/06/10/1686383982630.html</link>
