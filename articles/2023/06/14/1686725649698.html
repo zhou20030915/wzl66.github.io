@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>mybatis-plus学习 - L的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://wzl66.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://wzl66.github.io"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="mybatis-plus学习 - L的个人博客"/><meta property="og:site_name" content="L的个人博客"/><meta property="og:url"      content="https://wzl66.github.io/articles/2023/06/14/1686725649698.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="mybatis-plus学习 - L的个人博客" href="/opensearch.xml"><link href="https://wzl66.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://wzl66.github.io/manifest.json">        <link rel="canonical" href="https://wzl66.github.io/articles/2023/06/14/1686725649698.html">        <link rel="stylesheet"
+              href="https://wzl66.github.io/skins/Bubble/css/base.css?1702824557362"/>
+            <link rel="prev" title="Cookie,Session,Filter" href="https://wzl66.github.io/articles/2023/06/10/1686383982630.html">
+            <link rel="next" title="Redis" href="https://wzl66.github.io/articles/2023/08/10/1691653234717.html">
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://wzl66.github.io" rel="start">L的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">生活是活给自己看的，你有多大成色，世界才会给你多大脸色</h2>
+            <div class="header__desc">
+                Open Source, Open Mind, <br/>Open Sight, Open Future!
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
+            </svg>
+        </div>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://wzl66.github.io" rel="start"><img class="side__logo" alt="L的个人博客" src="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    9 文章 <br>
+                    <span data-uvstaturl="https://wzl66.github.io">0</span> 浏览
+                    
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
+                <li>
+                    <a href="https://wzl66.github.io" rel="start">
+                            L的个人博客
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/categories.html">分类</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/tags.html">标签墙</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/links.html">友链</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://wzl66.github.io/rss.xml">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article__top" style="background-image: url(https://b3logfile.com/bing/20220808.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        <div style="background-image: url(https://b3logfile.com/bing/20220808.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2023-06-14
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8">代码生成器</a> &nbsp;
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/wrapper">wrapper</a> &nbsp;
+            </div>
+            <h2 class="article__title">
+                mybatis-plus学习
+            </h2>
+<div class="article__share"
+     data-title="mybatis-plus学习"
+     data-blogtitle="L的个人博客"
+     data-url="https://wzl66.github.io/articles/2023/06/14/1686725649698.html"
+     data-avatar="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <p><img src="https://b3logfile.com/bing/20220808.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
+<h1 id="toc_h1_0"><strong>Mybatis-plus</strong></h1>
+<p><a href="https://baomidou.com/pages/24112f/#%E7%89%B9%E6%80%A7" target="_blank"><strong>简介 | MyBatis-Plus (baomidou.com)</strong></a></p>
+<h2 id="toc_h2_1"><strong>特性</strong></h2>
+<ul>
+<li><strong><strong>损耗小</strong></strong>**：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作**</li>
+<li><strong><strong>强大的 CRUD 操作</strong></strong>**：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求**</li>
+<li><strong><strong>支持 Lambda 形式调用</strong></strong>**：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错**</li>
+<li><strong><strong>支持主键自动生成</strong></strong>**：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题**</li>
+<li><strong><strong>支持 ActiveRecord 模式</strong></strong>**：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作**</li>
+<li><strong><strong>支持自定义全局通用操作</strong></strong>**：支持全局通用方法注入（ Write once, use anywhere ）**</li>
+<li><strong><strong>内置代码生成器</strong></strong>**：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用**</li>
+<li><strong><strong>内置分页插件</strong></strong>**：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询**</li>
+<li><strong><strong>分页插件支持多种数据库</strong></strong>**：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库**</li>
+<li><strong><strong>内置性能分析插件</strong></strong>**：可输出 SQL 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询**</li>
+<li><strong><strong>内置全局拦截插件</strong></strong>**：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作**</li>
+<li><strong><strong>无侵入</strong></strong>**：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑**</li>
+</ul>
+<h2 id="toc_h2_2"><strong>步骤</strong></h2>
+<ul>
+<li><strong>导入mybatis-plus依赖</strong>
+<pre><code>&lt;!--mybatis-plus--&gt;
+&lt;dependency&gt;
+ &nbsp;&lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+ &nbsp;&lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+ &nbsp;&lt;version&gt;3.4.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!--mysql--&gt;
+&lt;dependency&gt;
+ &nbsp;&lt;groupId&gt;mysql&lt;/groupId&gt;
+ &nbsp;&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><strong>写入相应的pojo层和dao层</strong>
+<pre><code>pojo
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.io.Serializable;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class user implements Serializable {
+private Integer id;
+private String name;
+private Integer age;
+private String email;
+}
+
+</code></pre>
+</li>
+</ul>
+<p><strong>dao</strong></p>
+<p><strong>import com.baomidou.mybatisplus.core.mapper.BaseMapper;</strong></p>
+<p><strong>import com.zhoulei.mybatis_plus01.pojo.user;</strong></p>
+<p><strong>import org.apache.ibatis.annotations.Mapper;</strong></p>
+<p><strong>import org.springframework.stereotype.Repository;</strong></p>
+<p><strong>//@Mapper//也可以不在启动类中配置包扫描，在每个Mapper上面配置@Mapper，相当与mapper映射</strong></p>
+<p><strong>@Repository//表示使Dao层</strong></p>
+<p><strong>public interface userMapper extends BaseMapper</strong>**<user>**** {**</user></p>
+<p><strong>}</strong></p>
+<pre><code>
+- 测试
+
+```java
+@SpringBootTest
+class MybatisPlus01ApplicationTests {
+  @Autowired
+  private userMapper userMapper;
+  @Test
+  public void selectAll(){
+// &nbsp; List&lt;T&gt; selectList(@Param(Constants.WRAPPER) Wrapper&lt;T&gt; queryWrapper);
+// &nbsp; &nbsp; &nbsp;  参数类型使一个Wrapper类型，表示是一个条件构造器
+// &nbsp; &nbsp;  下面相当与 select * from user where null;
+ &nbsp; &nbsp;  List&lt;user&gt; users = userMapper.selectList(null);
+ &nbsp; &nbsp; users.forEach(System.out::println);
+  }
+}
+</code></pre>
+<h2 id="toc_h2_3"><strong>配置日志</strong></h2>
+<pre><code> &nbsp;#开启日志
+mybatis-plus:
+  configuration:
+ &nbsp;  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+</code></pre>
+<h2 id="toc_h2_4"><strong>CRUD扩展雪花算法</strong></h2>
+<p><strong>雪花算法</strong></p>
+<p><a href="https://juejin.cn/post/6916882326996090894" target="_blank"><strong>分布式唯一ID解决方案-雪花算法 - 掘金 (juejin.cn)</strong></a></p>
+<pre><code>IdType type() default IdType.NONE;
+</code></pre>
+<pre><code>@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class user implements Serializable {
+ &nbsp; &nbsp;//默认是雪花算法，同时自己也可以改变为自增ID
+ &nbsp; &nbsp;private Integer id;
+ &nbsp; &nbsp;private String name;
+ &nbsp; &nbsp;private Integer age;
+ &nbsp; &nbsp;private String email;
+}
+
+</code></pre>
+<pre><code>public enum IdType {
+ &nbsp; &nbsp;AUTO(0), &nbsp;//数据库id自增
+ &nbsp; &nbsp;NONE(1), &nbsp;//未设置主键
+ &nbsp; &nbsp;INPUT(2), &nbsp;//手动输入
+ &nbsp; &nbsp;ASSIGN_ID(3), //表示程序分配一个数字型主键
+ &nbsp; &nbsp;ASSIGN_UUID(4); //表示程序分配一个 UUID 作为主键
+}
+</code></pre>
+<p><strong>IdType4种值的表示</strong><a href="https://www.cnblogs.com/mark5/p/14268122.html" target="_blank"><strong>MybatisPlus 主键策略（type=IdType.ASSIGN_ID等详解） - 双间 - 博客园 (cnblogs.com)</strong></a></p>
+<pre><code>public enum IdType {
+ &nbsp; &nbsp;AUTO(0), //数据库自增
+ &nbsp; &nbsp;NONE(1), //不管
+ &nbsp; &nbsp;INPUT(2),//手动插入，与不管类似
+
+ &nbsp; &nbsp;/* 以下3种类型、只有当插入对象ID 为空，才自动填充。 */
+ &nbsp; &nbsp;/**
+ &nbsp; &nbsp; * 分配ID (主键类型为number或string）,
+ &nbsp; &nbsp; * 默认实现类 {@link com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator}(雪花算法)
+ &nbsp; &nbsp; */
+ &nbsp; &nbsp;ASSIGN_ID(3),
+ &nbsp; &nbsp;/**
+ &nbsp; &nbsp; * 分配UUID (主键类型为 string)
+ &nbsp; &nbsp; * 默认实现类 {@link com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator}(UUID.replace("-",""))
+ &nbsp; &nbsp; */
+ &nbsp; &nbsp;ASSIGN_UUID(4),
+}
+</code></pre>
+<h2 id="toc_h2_5"><strong>自动填充</strong></h2>
+<p><strong>创建时间，修改时间！这些操作一般都是自动化完成的，我们不希望手动更新！</strong></p>
+<p><strong>阿里巴巴开发手册：所有的数据库表：gmt_create,gmt_modified，几乎所有的表都要配置上！而且</strong></p>
+<p><strong>需要自动化</strong></p>
+<h3 id="toc_h3_6"><strong>方式一：数据库级别(不建议在工作中使用)</strong></h3>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20230612120743130.png?lastModify=1686725573" alt="image-20230612120743130"></p>
+<p><strong>在数据中新增两个字段,并将其默认值为current_timestamp,数据类型为datetime</strong></p>
+<h3 id="toc_h3_7"><strong>方式二:代码级别</strong></h3>
+<p><strong>将表还原,避免数据的级别的自动填入对我们造成影响</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20230612121320557.png?lastModify=1686725573" alt="image-20230612121320557"></p>
+<p><strong>实现:</strong></p>
+<ul>
+<li><strong>需要在实现自动注入的字段上面添加</strong>****@TableField******注解,使用fill属性 **
+<pre><code>public enum FieldFill {
+DEFAULT, //什么都不干
+INSERT, //插入时填充
+UPDATE, //更新时填充
+INSERT_UPDATE; //在插入和更新的填充
+}
+</code></pre>
+</li>
+<li><strong>编写处理类来处理注解</strong>
+<pre><code>@Slf4j
+@Component  //注意一定要将这个类放入到IOC容器中，在识别注解的时候就会利用反射机制运行到这个处理类
+public class MyMetaobjectHandler implements MetaObjectHandler {
+@Override
+public void insertFill(MetaObject metaObject) {
+//* @param fieldName java bean属性名
+//* @param fieldVal java bean属性值
+//* @param metaObject元对象参数
+log.info("start insert ....");
+this.setFieldValByName("createTime",new Date(),metaObject );
+this.setFieldValByName("updateTime",new Date(),metaObject );
+}
+@Override
+public void updateFill(MetaObject metaObject) {
+ log.info("start update ....");
+this.setFieldValByName("updateTime",new Date(),metaObject );
+}
+}
+</code></pre>
+</li>
+<li><strong>测试</strong></li>
+<li><strong>查看数据库,注意字段值的变化.</strong></li>
+</ul>
+<h2 id="toc_h2_8"><strong>乐观锁处理</strong></h2>
+<p><strong>乐观锁:十分乐观,它总是认为自己不会出现问题,所以在执行前不会去加锁,如果出现错误就在次去更新值去测试.</strong></p>
+<p><strong>悲观锁:十分的悲观,它总是认为自己做什么都会出现问题,所以在执行之前都会加上锁.在去操作</strong></p>
+<p><strong>使用乐观锁,一般都会加上一个version字段.</strong></p>
+<p><strong>当要更新一条记录的时候，希望这条记录没有被别人更新</strong></p>
+<p><strong>乐观锁实现方式：</strong></p>
+<blockquote>
+<ul>
+<li><strong>取出记录时，获取当前 version</strong></li>
+<li><strong>更新时，带上这个 version</strong></li>
+<li><strong>执行更新时， set version = newVersion where version = oldVersion</strong></li>
+<li><strong>如果 version 不对，就更新失败</strong></li>
+</ul>
+<p><strong>举例说明:</strong></p>
+<p><strong>线程A要执行的SQL语句</strong></p>
+</blockquote>
+<pre><code>update form user set name="aaa" ,version =version+1 where id='1' and  version =1;
+</code></pre>
+<p><strong>在线程A还没有执行这个SQL语句之前,来了一个线程B同样执行这条SQL语句,会导致在线程A执行时version!=1,SQL语句执行错误.</strong></p>
+<p><strong>在代码中实现乐观锁</strong></p>
+<ul>
+<li><strong>在数据库表中添加version字段,并将其defualt值为1</strong></li>
+<li><strong>在实体类中同步数据库字段,并在version字段上面添加@Version注解</strong>
+<pre><code>@Version //乐观锁version注解
+private Integer version;
+</code></pre>
+</li>
+<li><strong>注册组件</strong>
+<ul>
+<li><strong>spring xml 方式:</strong>
+<pre><code>&lt;bean class="com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor" id="optimisticLockerInnerInterceptor"/&gt;
+&lt;bean id="mybatisPlusInterceptor" class="com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor"&gt;
+&lt;property name="interceptors"&gt;
+&lt;list&gt;
+&lt;ref bean="optimisticLockerInnerInterceptor"/&gt;
+&lt;/list&gt;
+&lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+</li>
+<li><strong>spring boot 注解方式:</strong>
+<pre><code>@Bean
+public MybatisPlusInterceptor mybatisPlusInterceptor() {
+MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+return interceptor;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>测试:</strong></p>
+<p><strong>成功:</strong></p>
+<pre><code>    @Test
+    public void versionTest (){
+        user user= userMapper.selectById(1);
+        System.out.println(user);
+        user.setName("zhou");
+        user.setAge(5);
+        int i = userMapper.updateById(user);
+    }
+</code></pre>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20230612134203575.png?lastModify=1686725573" alt="image-20230612134203575"></p>
+<p><strong>失败:</strong></p>
+<pre><code>    @Test
+    public void versionTest (){
+        user user= userMapper.selectById(1);
+        System.out.println(user);
+        user.setName("zhou");
+        user.setAge(5);
+        user user2= userMapper.selectById(1);
+        user2.setName("zhou");
+        user2.setAge(6);
+       userMapper.updateById(user2);
+       userMapper.updateById(user);
+    }
+</code></pre>
+<h2 id="toc_h2_9"><strong>查询操作与拓展</strong></h2>
+<p><strong>操作：①查询一个ID②查询一组ID</strong></p>
+<pre><code> @Test
+    public void selectById(){
+        //查询一个数据
+        user user =userMapper.selectById(1L);
+        System.out.println(user);
+        //查询多个数据
+        List&lt;user&gt; users = userMapper.selectBatchIds(Arrays.asList(1,2,3));
+        users.forEach(System.out::println);
+    }
+</code></pre>
+<h3 id="toc_h3_10"><strong><strong>按条件查询</strong></strong></h3>
+<p><strong>简单的条件可以使用</strong><strong><strong>万能map</strong>****来实现</strong></p>
+<pre><code>    @Test
+    public void selectBymap(){
+        Map&lt;String,Object&gt; map =new HashMap&lt;&gt;();
+        map.put("name","L");
+        map.put("Id",9);
+        List&lt;user&gt; users = userMapper.selectByMap(map);
+        users.forEach(System.out::println);
+    }
+</code></pre>
+<p><strong>运行查看日志信息</strong></p>
+<p><strong>复杂的添加比如大小于，或者不是查询所有字段的话就要使用Wrapper条件构造器了</strong></p>
+<h3 id="toc_h3_11"><strong>分页查询</strong></h3>
+<p><strong><strong>分页方法：</strong></strong></p>
+<ul>
+<li><strong>使用limit</strong></li>
+<li><strong>使用pagehalper第三方插件</strong></li>
+<li><strong>使用mybaits-plus分页插件</strong></li>
+</ul>
+<p><strong>mybatis-plus分页插件的使用最新版本</strong></p>
+<pre><code>再mybatis-plus的配置类中添加内置插件配置
+  @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.H2));
+        return interceptor;
+    }
+</code></pre>
+<p><strong>老版本使用</strong></p>
+<pre><code>    //分页插件
+    @Bean
+    public PaginationInterceptor paginationInterceptor(){
+        return new PaginationInterceptor();
+    }
+</code></pre>
+<p><strong>然后就可以直接的去测试使用：</strong></p>
+<pre><code>    @Test
+    public  void selectByPages(){
+        Page&lt;user&gt; page =new Page&lt;&gt;(1,5);
+        userMapper.selectPage(page,null);
+        page.getRecords().forEach(System.out::println);
+    }
+</code></pre>
+<h2 id="toc_h2_12"><strong>删除操作及拓展</strong></h2>
+<p><strong>和查找操作一样有三种方式</strong></p>
+<ul>
+<li><strong>通过删除一个ID deleteById();</strong></li>
+<li><strong>通过删除一组ID deleteBatchIds(Arrays.asList(1,2,3,4))</strong></li>
+<li><strong>通过</strong><strong><strong>万能的map</strong>****删除deleteByMap()；</strong></li>
+</ul>
+<h3 id="toc_h3_13"><strong>逻辑删除</strong></h3>
+<blockquote>
+<p><strong>物理删除：在数据库中直接删除掉</strong></p>
+<p><strong>逻辑删除：没有在数据中移除数据，而是通过一个变量让他失效，比如使用deleted =0 = =&gt;deleted=1</strong></p>
+<p><strong>比如回收站里面，我们将自己不需要的文件丢道到回收站里面的操作就是逻辑删除。数据时还可以恢复的</strong></p>
+</blockquote>
+<p><strong><strong>mybatis-plus逻辑删除步骤：</strong></strong></p>
+<ul>
+<li><strong>在数据库中增加一个deleted字段，表示逻辑删除的标识。官网说明</strong>
+<pre><code>说明:
+</code></pre>
+</li>
+</ul>
+<p><strong>只对自动注入的 sql 起效:</strong></p>
+<p><strong>插入: 不作限制</strong></p>
+<p><strong>查找: 追加 where 条件过滤掉已删除数据,如果使用 wrapper.entity 生成的 where 条件也会自动追加该字段</strong></p>
+<p><strong>更新: 追加 where 条件防止更新到已删除数据,如果使用 wrapper.entity 生成的 where 条件也会自动追加该字段</strong></p>
+<p><strong>删除: 转变为 更新</strong></p>
+<p><strong>例如:</strong></p>
+<p><strong>删除: update user set deleted=1 where id = 1 and deleted=0</strong></p>
+<p><strong>查找: select id,name,deleted from user where deleted=0</strong></p>
+<p><strong>字段类型支持说明:</strong></p>
+<p><strong>支持所有数据类型(推荐使用 Integer,Boolean,LocalDateTime)</strong></p>
+<p><strong>如果数据库字段使用datetime,逻辑未删除值和已删除值支持配置为字符串null,另一个值支持配置为函数来获取值如now()</strong></p>
+<p><strong>附录:</strong></p>
+<p><strong>逻辑删除是为了方便数据恢复和保护数据本身价值等等的一种方案，但实际就是删除。</strong></p>
+<p><strong>如果你需要频繁查出来看就不应使用逻辑删除，而是以一个状态去表示。</strong></p>
+<pre><code>![image-20230613121015768](C:%5CUsers%5Cpc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230613121015768.png)
+
+- 在yml文件中配置相关的配置
+
+```yml
+mybatis-plus:
+global-config:
+  db-config:
+    logic-delete-field: flag # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+    logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+    logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+</code></pre>
+<ul>
+<li><strong>再在实体类中同步字段,并在deleted字段上标明逻辑字段的注释</strong>
+<pre><code>@TableLogic //逻辑删除注解
+private Integer deleted;
+</code></pre>
+</li>
+</ul>
+<h2 id="toc_h2_14"><strong>性能分析插件</strong></h2>
+<p><strong>我们会经常遇到一些慢sql .mp提供了一个性能分析插件，当超过这个时间之后就会停止运行</strong></p>
+<p><strong>mybatis-plus3.1.0以上建议使用第三方来分析</strong></p>
+<h2 id="toc_h2_15"><strong>条件构造器</strong></h2>
+<p><strong>我们使用一些的复杂SQL就可以只用这个来替代</strong></p>
+<pre><code>@SpringBootTest
+public class WrapperTest {
+    @Autowired
+    private userMapper userMapper;
+    @Test
+    public void test01(){
+        QueryWrapper&lt;user&gt; wrapper =new QueryWrapper&lt;&gt;();
+        //注意：字段名并不是写你实体类里面的字段名称，而是写数据库里面的字段名称。
+        wrapper.isNotNull("create_time");
+        List&lt;user&gt; users = userMapper.selectList(wrapper);
+        users.forEach(System.out::println);
+    }
+    @Test
+    public void test02(){
+        QueryWrapper&lt;user&gt; wrapper =new QueryWrapper&lt;&gt;();
+        wrapper.like("name","L")
+                .ge("age",6)
+                .isNotNull("email");
+        List&lt;user&gt; users = userMapper.selectList(wrapper);
+    }
+    @Test
+    public void test03(){
+        QueryWrapper&lt;user&gt; wrapper =new QueryWrapper&lt;&gt;();
+        wrapper
+                .notLike("name","z")
+                .likeRight("email","t"); //相当于是t%
+        List&lt;Map&lt;String, Object&gt;&gt; maps = userMapper.selectMaps(wrapper);
+        maps.forEach(System.out::println);
+    }
+       @Test
+    //条件子查询
+    public void test04(){
+        QueryWrapper&lt;user&gt; wrapper =new QueryWrapper&lt;&gt;();
+        wrapper.inSql("id","select id from user where id&gt;3");
+        List&lt;Object&gt; objects = userMapper.selectObjs(wrapper);
+        objects.forEach(System.out::println);
+ }
+}
+</code></pre>
+<p><strong>注意test03()的查询结果是</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20230613140626073.png?lastModify=1686725573" alt="image-20230613140626073"></p>
+<h2 id="toc_h2_16"><strong>代码自动生成器（重点）</strong></h2>
+<p><strong>导入依赖</strong></p>
+<pre><code> &lt;!--mybatis-plus 依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;3.4.3.4&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--mysql--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+            &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-plus-generator&lt;/artifactId&gt;
+            &lt;version&gt;3.5.1&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--freemarker 依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.freemarker&lt;/groupId&gt;
+            &lt;artifactId&gt;freemarker&lt;/artifactId&gt;
+            &lt;version&gt;2.3.31&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p><strong>方法实体类</strong></p>
+<p><strong><strong>方法一：将所有的配置提前全部写好</strong></strong></p>
+<pre><code>package com.zhoulei.mybatis_plus01;
+
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.IFill;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
+import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.baomidou.mybatisplus.generator.fill.Column;
+import com.baomidou.mybatisplus.generator.fill.Property;
+
+import java.sql.Types;
+import java.util.Collections;
+
+import static com.baomidou.mybatisplus.generator.config.GlobalConfig.*;
+
+public class Autobuild {
+    public static void main(String[] args) {
+        String outurl="/mybatis_plus01";
+        System.out.println((System.getProperty("user.dir")+outurl+"/src/main/java"));
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/mybatis_plus?useSSL=false&amp;serverTimezone=GMT%2B8",
+                "root",
+                "123456"
+                )
+                //配置全局变量
+            .globalConfig((Builder builder) -&gt; {
+                builder.author("zl") // 设置作者
+                        .enableSwagger() // 开启 swagger 模式
+                        .disableOpenDir() //禁止打开windows资源管理器
+                        .dateType(DateType.ONLY_DATE)//日期类型
+                        .fileOverride()//开启覆盖之前生成的文件
+//                        .fileOverride()//覆盖已经生成的文件
+                        .outputDir(System.getProperty("user.dir")+outurl+"/src/main/java"); // 指定输出目录 将生成的代码就会生成到指定的路径下面
+            })
+                //包配置
+            .packageConfig((PackageConfig.Builder builder) -&gt; {
+                builder.parent("com.zhoulei.mybatis_plus01") // 设置父包名,在那个包下面生成代码
+                        .moduleName("blog") // 设置父包模块名
+                        .entity("pojo") //配置pojo包 实体类包的名称
+                        .mapper("mapper") //mapper dao 层的名称
+                        .controller("controller") //配置controller层名称
+                        .service("service")//配置servicec层的名称
+                        .serviceImpl("serviceImpl")
+                        .xml("mapper")
+                        .pathInfo(Collections.singletonMap(OutputFile.mapperXml, System.getProperty("user.dir")+outurl+"/src/main/resources/mapper")); // 设置mapperXml生成路径
+            })
+          //策略设置
+            .strategyConfig((StrategyConfig.Builder builder) -&gt; {
+                builder.addInclude("user") // 设置需要映射数据库的表名，这个需要的参数是一 Set&lt;String&gt; include;可以是多个表
+                        .addTablePrefix("t_", "c_") // 设置过滤表前缀
+                        .entityBuilder() //它用于配置实体类的构建器 EntityBuilder,从而定制实体类的生成策略
+                        .enableLombok()//lombok生成
+                        .logicDeleteColumnName("deleted") //设置逻辑删除的字段名
+                        .versionColumnName("version")//设置乐观锁的字段名
+                        .addTableFills(new Column("create_time", FieldFill.INSERT) )//添加自动填充，比如插入时间
+                        .addTableFills(new Property("updateTime",FieldFill.UPDATE))//添加自动填充，比如更新时间
+                //两种方式一个是通过数据库的表名创建，另一个是通过实体类属性来创建
+//                 .addTableFills(new Property("createTime", FieldFill.INSERT) )//添加自动填充，比如插入时间
+//                  .addTableFills(new Column("update_time",FieldFill.UPDATE))//添加自动填充，比如更新时间
+                      .idType(IdType.ASSIGN_ID)
+                         .mapperBuilder()
+                        .superClass(BaseMapper.class)
+                        .enableBaseResultMap()//基础map映射
+                        .enableBaseColumnList()//基础行列表映射
+                        .formatMapperFileName("%sMapper")
+                        .enableMapperAnnotation()
+                        .formatXmlFileName("%sMapper")
+                        .serviceBuilder()
+                        .formatServiceFileName("%sService")
+                        .formatServiceImplFileName("%sServiceImpl")
+                        .controllerBuilder()
+                        .formatFileName("%sController")
+                        .enableRestStyle();
+                ;
+            }).templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+            .execute();
+
+
+    }
+}
+</code></pre>
+<p><strong><strong>//方法二：使用交互式</strong></strong></p>
+<pre><code>package com.zhoulei.mybatis_plus01;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.baomidou.mybatisplus.generator.fill.Column;
+import com.baomidou.mybatisplus.generator.fill.Property;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+@SpringBootTest
+public class UserGenerator {
+    public static void main(String[] args) {
+        String property = System.getProperty("user.dir");//获取目录路径
+        String database = getDatabase(); //数据库名称；
+        String username= getUsername();//数据库用户名
+        String password=getPassword();//数据库密码
+        String outurl=getOuturl();//输出路径
+        String author=getAuthor();//获取作者
+        List &lt;String&gt; tables= getTables();//表名集合
+        String mapperXml =getMapperXML();//mapperXml生成路径
+        String prefix = gettablePrefix();//表的前缀名
+        String parent =getParent();//父包名
+        String moduelName=getmoduelName();//模块名
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/"+database+"?useSSL=false&amp;serverTimezone=GMT%2B8",
+                username,
+                password
+        )
+                //配置全局变量
+                .globalConfig((GlobalConfig.Builder builder) -&gt; {
+                    builder.author(author) // 设置作者
+                            .enableSwagger() // 开启 swagger 模式
+                            .disableOpenDir() //禁止打开windows资源管理器
+                            .dateType(DateType.ONLY_DATE)//日期类型
+                            .fileOverride()//开启覆盖之前生成的文件
+//                        .fileOverride()//覆盖已经生成的文件
+                            .outputDir(property+outurl+"/src/main/java"); // 指定输出目录 将生成的代码就会生成到指定的路径下面
+                })
+                //包配置
+                .packageConfig((PackageConfig.Builder builder) -&gt; {
+                    builder.parent(parent) // 设置父包名,在那个包下面生成代码
+                            .moduleName(moduelName) // 设置父包模块名
+                            .entity("pojo") //配置pojo包 实体类包的名称
+                            .mapper("mapper") //mapper dao 层的名称
+                            .controller("controller") //配置controller层名称
+                            .service("service")//配置servicec层的名称
+                            .serviceImpl("serviceImpl")
+                            .xml("mapper")
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, System.getProperty("user.dir")+outurl+"/src/main/"+mapperXml)); // 设置mapperXml生成路径
+                })
+                //策略设置
+                .strategyConfig((StrategyConfig.Builder builder) -&gt; {
+                    builder.addInclude(tables) // 设置需要映射数据库的表名，这个需要的参数是一 Set&lt;String&gt; include;可以是多个表
+                            .addTablePrefix(prefix) // 设置过滤表前缀
+                            .entityBuilder() //它用于配置实体类的构建器 EntityBuilder,从而定制实体类的生成策略
+                            .enableLombok()//lombok生成
+                            .logicDeleteColumnName("deleted") //设置逻辑删除的字段名
+                            .versionColumnName("version")//设置乐观锁的字段名
+                            .addTableFills(new Column("create_time", FieldFill.INSERT) )//添加自动填充，比如插入时间
+                            .addTableFills(new Property("updateTime",FieldFill.UPDATE))//添加自动填充，比如更新时间
+                            //两种方式一个是通过数据库的表名创建，另一个是通过实体类属性来创建
+//                 .addTableFills(new Property("createTime", FieldFill.INSERT) )//添加自动填充，比如插入时间
+//                  .addTableFills(new Column("update_time",FieldFill.UPDATE))//添加自动填充，比如更新时间
+                            .idType(IdType.ASSIGN_ID)
+                            .mapperBuilder()
+                            .superClass(BaseMapper.class)
+                            .enableBaseResultMap()//基础map映射
+                            .enableBaseColumnList()//基础行列表映射
+                            .formatMapperFileName("%sMapper")
+                            .enableMapperAnnotation()
+                            .formatXmlFileName("%sMapper")
+                            .serviceBuilder()
+                            .formatServiceFileName("%sService")
+                            .formatServiceImplFileName("%sServiceImpl")
+                            .controllerBuilder()
+                            .formatFileName("%sController")
+                            .enableRestStyle();
+                    ;
+                }).templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+                .execute();
+
+
+    }
+
+    //输入数据库名称
+    public static String getDatabase() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("输入数据库名称");
+        return sc.next();
+    }
+
+    //输入数据库用户名
+    public static String getUsername() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("输入数据库用户名");
+        return sc.next();
+    }
+
+    //输入数据库密码
+    public static String getPassword() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("输入数据库密码");
+        return sc.next();
+    }
+
+    //输入输出路径
+    public static String getOuturl() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入生成文件输入路径,建议输入项目根目录到src目录的距离");
+        System.out.println("例如我当前总项目叫【project】那么我输入【/hy-generator】那么我输出路径为为【/hy-generator/src/main/java】");
+        String outurl = sc.next();
+        if (outurl.trim().equals("")) {
+            outurl = "/";
+        }
+        return outurl;
+    }
+
+    //输入作者
+    public static String getAuthor() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("输入作者");
+        return sc.next();
+    }
+
+    //输入表名
+    public static List &lt;String&gt; getTables() {
+        Scanner sc = new Scanner(System.in);
+        List&lt;String&gt; tables = new ArrayList&lt;&gt;();
+        System.out.println("你可以输入一个或这是多个表名，但是要以','分隔开,并且以'$'标识结束");
+        while (sc.hasNext()) {
+            String table = sc.next();
+            if(table.equals("$")){
+                return tables;
+            }
+            String[] split = table.split(",");
+            for (int i = 0; i &lt; split.length; i++) {
+                tables.add(split[i]);
+            }
+        }
+        return tables;
+    }
+    //输入mapperXml生成路径
+    public static String getMapperXML() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("mapperXml生成路径");
+        System.out.println("比如是在/src/main/java/resources/mapper,就输入/resources/mapper");
+        return sc.next();
+    }
+    //表前缀输入
+    private static String gettablePrefix() {
+        System.out.println("请输入表前缀");
+        System.out.println("例如我数据库表叫【t_admin】那么我输入【t_】那么我的实体类名为【Admin】");
+        Scanner scanner = new Scanner(System.in);
+        String tablePrefix = scanner.next();
+        System.out.println("你输入的表前缀是：" + tablePrefix);
+        return tablePrefix;
+    }
+    //输入父包名
+    private static String getParent() {
+        System.out.println("请输入父包名");
+        System.out.println("例如我的父包名是com.zl.mybatis_plus01，那写service,dao,controller层都会生成在该报下");
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
+    }
+    //输入moduelName名
+    private static String getmoduelName() {
+        System.out.println("请输入moduelName");
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
+    }
+}
+</code></pre>
+<p><img src="https://b3logfile.com/file/2023/06/FicusTree.png-EcYQfdB.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="FicusTree.png.png"></p>
+                    <div>
+                        <hr>
+
+标题：mybatis-plus学习<br>
+作者：<a href="https://wzl66.github.io" target="_blank">zhoulei</a><br>
+地址：<a href="https://wzl66.github.io/articles/2023/06/14/1686725649698.html" target="_blank">https://wzl66.github.io/articles/2023/06/14/1686725649698.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">Mybatis-plus</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">特性</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_2">步骤</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_3">配置日志</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_4">CRUD扩展雪花算法</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">自动填充</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_6">方式一：数据库级别(不建议在工作中使用)</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_7">方式二:代码级别</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_8">乐观锁处理</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_9">查询操作与拓展</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_10">按条件查询</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_11">分页查询</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_12">删除操作及拓展</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_13">逻辑删除</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_14">性能分析插件</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_15">条件构造器</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_16">代码自动生成器（重点）</a>
+        </li>
+</ul>        </div>
+        <div class="wrapper">
+            <div id="gitalk-container"></div>
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="zhoulei" data-postId="1686725649698"></div>
+            <div id="b3logsolocomments"></div>
+        </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/TweenMax.min.js?1702824557362"
+        charset="utf-8"></script>
+<footer class="footer">
+    <div class="wrapper">
+            <a href="https://ld246.com/member/zhoulei"
+       title="https://ld246.com/member/zhoulei"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+
+ <br>
+        &copy; 2023
+        <a href="https://wzl66.github.io">L的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+    </div>
+</footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://wzl66.github.io",
+    staticServePath: "https://wzl66.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.4.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1686725649698",
+  }
+</script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/common.min.js?1702824557362"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/circleMagic.min.js?1702824557362"
+        charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+    <svg viewBox="0 0 32 32" width="100%" height="100%" class="side__top side__top--toc">
+        <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+    </svg>
+
+<script type="text/javascript">
+    Util.addScript('https://wzl66.github.io/js/page.min.js?1702824557362', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1686725649698",
+        "blogHost": "https://wzl66.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1686725649698', '<h3>相关阅读</h3>');
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 101ms, 2023/12/17 22:49:44 -->

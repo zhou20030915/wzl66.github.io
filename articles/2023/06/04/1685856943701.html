@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>JAVA多线程 - L的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://wzl66.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://wzl66.github.io"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="JAVA多线程 - L的个人博客"/><meta property="og:site_name" content="L的个人博客"/><meta property="og:url"      content="https://wzl66.github.io/articles/2023/06/04/1685856943701.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="JAVA多线程 - L的个人博客" href="/opensearch.xml"><link href="https://wzl66.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://wzl66.github.io/manifest.json">        <link rel="canonical" href="https://wzl66.github.io/articles/2023/06/04/1685856943701.html">        <link rel="stylesheet"
+              href="https://wzl66.github.io/skins/Bubble/css/base.css?1702824557362"/>
+            <link rel="prev" title="VUE快速入门" href="https://wzl66.github.io/articles/2023/06/03/1685722268250.html">
+            <link rel="next" title="SpringIOC和AOP机制的学习" href="https://wzl66.github.io/articles/2023/06/10/1686383643546.html">
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://wzl66.github.io" rel="start">L的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">生活是活给自己看的，你有多大成色，世界才会给你多大脸色</h2>
+            <div class="header__desc">
+                Open Source, Open Mind, <br/>Open Sight, Open Future!
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
+            </svg>
+        </div>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://wzl66.github.io" rel="start"><img class="side__logo" alt="L的个人博客" src="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    9 文章 <br>
+                    <span data-uvstaturl="https://wzl66.github.io">0</span> 浏览
+                    
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
+                <li>
+                    <a href="https://wzl66.github.io" rel="start">
+                            L的个人博客
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/categories.html">分类</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/tags.html">标签墙</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/links.html">友链</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://wzl66.github.io/rss.xml">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article__top" style="background-image: url(https://b3logfile.com/bing/20230203.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        <div style="background-image: url(https://b3logfile.com/bing/20230203.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2023-06-10
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/java">java</a> &nbsp;
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a> &nbsp;
+            </div>
+            <h2 class="article__title">
+                JAVA多线程
+            </h2>
+<div class="article__share"
+     data-title="JAVA多线程"
+     data-blogtitle="L的个人博客"
+     data-url="https://wzl66.github.io/articles/2023/06/04/1685856943701.html"
+     data-avatar="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <p><img src="https://b3logfile.com/bing/20230203.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
+<h1 id="toc_h1_0"><strong>多线程入门</strong></h1>
+<h2 id="toc_h2_1"><strong>1、线程（Process）和进程（Thread）</strong></h2>
+<p><strong>程序是指令和数据的有序集合，其本身没有任何运行的含义，是一个静态的概念。</strong></p>
+<p><strong>而进程则是执行程序的一次执行过程，它是一个动态的概念。是系统资源分配的单位。</strong></p>
+<p><strong>通常在一个进程中可以包含若干个线程，当然一个进程中至少有一个线程，不然没有存在的意义。线程是中央处理器调度和执行的单位。</strong></p>
+<p><strong>注意：很多多线程是模拟出来的，真正的多线程是指由多核CPU，如服务器。如果是模拟出来的多线程，即在一个CPU的情况下，在同一个时间点，CPU只能执行一个代码，因为切换的很快，所以就有同行执行的错觉。</strong></p>
+<h2 id="toc_h2_2"><strong>线程的创建</strong></h2>
+<ul>
+<li><strong><strong>自定义线程类进程Thread类</strong></strong></li>
+<li><strong><strong>从写run()方法，编写线程执行体</strong></strong></li>
+<li><strong><strong>创建线程对象，调用start()方法启动线程不能调用run()方法run方法是函数调用</strong></strong></li>
+<li>
+<pre><code>//1、进程Thread类
+//总结：线程开启之后并不会立即调度，由CPU来界定
+public class dome1 extends Thread {
+ &nbsp; &nbsp;//2、从写run()方法
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public void run() {
+ &nbsp; &nbsp; &nbsp;//写入执行体
+ &nbsp; &nbsp; &nbsp; &nbsp;for (int i = 0; i &lt;200 ; i++) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("我在吃饭"+i);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+
+ &nbsp; &nbsp;public static void main(String[] args) {
+ &nbsp; &nbsp; &nbsp; &nbsp;//4、实例化线程对象
+ &nbsp; &nbsp; &nbsp; &nbsp;dome1 d=new dome1();
+ &nbsp; &nbsp; &nbsp; &nbsp;d.start();
+ &nbsp; &nbsp; &nbsp; &nbsp;for (int i = 0; i &lt;1000 ; i++) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("我在玩游戏"+i);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+
+</code></pre>
+</li>
+<li></li>
+</ul>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20230531003413990.png?lastModify=1685856919" alt="image-20230531003413990"></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20230531004224735.png?lastModify=1685856919" alt="image-20230531004224735"></p>
+<h3 id="toc_h3_3"><strong>实训：网图下载</strong></h3>
+<pre><code>import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+public class TestThread01 extends Thread {
+ &nbsp; &nbsp;private String url;
+ &nbsp; &nbsp;private String name;
+ &nbsp; &nbsp;public TestThread01(String url,String name){
+ &nbsp; &nbsp; &nbsp; &nbsp;this.url=url;
+ &nbsp; &nbsp; &nbsp; &nbsp;this.name=name;
+ &nbsp;  }
+
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public void run() {
+ &nbsp; &nbsp; &nbsp; &nbsp;new write().downloader(this.url,this.name);
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("要下载的图片"+this.name);
+ &nbsp;  }
+
+ &nbsp; &nbsp;public static void main(String[] args) {
+ &nbsp; &nbsp; &nbsp; &nbsp;TestThread01 testThread01 = new TestThread01("https://desk-fd.zol-img.com.cn/t_s960x600c5/g4/M07/06/05/Cg-4y1TcgwGIcCW6ADOtF-oxuF8AAUn6wNDA_AAM60v722.jpg", "1.jpg");
+ &nbsp; &nbsp; &nbsp; &nbsp;TestThread01 testThread02 =new TestThread01("https://tse2-mm.cn.bing.net/th/id/OIP-C.6szqS1IlGtWsaiHQUtUOVwHaQC?pid=ImgDet&amp;rs=1","2.jpg");
+ &nbsp; &nbsp; &nbsp; &nbsp;TestThread01 testThread03 =new TestThread01("https://ts1.cn.mm.bing.net/th/id/R-C.2dfdaed9d3e59f8e20462202ec847723?rik=J06C3PjIKrv2gg&amp;riu=http%3a%2f%2fup.deskcity.org%2fpic%2f202010%2fdt%2fqcyrevgybb31914.jpg&amp;ehk=YrflT4NTtOIFDL7cWfvPYExD3esBhvVDT4en8CPqbx4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0","3.jpg");
+ &nbsp; &nbsp; &nbsp;testThread01.start();
+ &nbsp; &nbsp; &nbsp;testThread02.start();
+ &nbsp; &nbsp; &nbsp;testThread03.start();
+ &nbsp;  }
+}
+class write{
+ &nbsp; &nbsp;//文件下载
+ &nbsp; &nbsp;public void downloader(String &nbsp;url,String name){
+ &nbsp; &nbsp; &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;FileUtils.copyURLToFile(new URL(url),new File(name));
+ &nbsp; &nbsp; &nbsp;  } catch (IOException e) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("图片下载异常");
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;e.printStackTrace();
+
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+
+</code></pre>
+<p><strong>运行结果：线程启动由CPU执行，先后顺序不可以知道</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20230531011703678.png?lastModify=1685856919" alt="image-20230531011703678"></p>
+<h2 id="toc_h2_4"><strong>使用Runnble方法(推荐使用，因为java是单继承的)</strong></h2>
+<p><strong>定义MyRunnable类实现Runnable接口</strong></p>
+<p><strong>实现run()方法，编写线程执行体</strong></p>
+<p><strong>创建线程对象，调用start()方法启动线程</strong></p>
+<pre><code>public class TestThread3 implements Runnable{
+
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public void run() {
+ &nbsp; &nbsp; &nbsp; &nbsp;//run方法线程体
+ &nbsp; &nbsp; &nbsp; &nbsp;for(int i =0 ;i&lt;50;i++){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("我在看代码"+i);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+
+ &nbsp; &nbsp;public static void main(String[] args) {
+ &nbsp; &nbsp; &nbsp; &nbsp;//创建runnable接口的实现类对象
+ &nbsp; &nbsp; &nbsp; &nbsp;TestThread3 testThread3 = new TestThread3();
+
+ &nbsp; &nbsp; &nbsp; &nbsp;//创建线程对象，通过线程对象来开启我们的线程，代理
+ &nbsp; &nbsp; &nbsp; &nbsp;//Thread thread = new Thread(testThread3);
+ &nbsp; &nbsp; &nbsp; &nbsp;//thread.start();
+ &nbsp; &nbsp; &nbsp; &nbsp;new Thread(testThread3).start();
+
+ &nbsp; &nbsp; &nbsp; &nbsp;for(int i =0;i&lt;200;i++){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("我在学习多线程"+i);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+</code></pre>
+<p><strong><strong>线程并发问题的发现</strong></strong>**：多个线程操作同一个资源的情况下，线程不安全，数据会出现数据紊乱的情况，比如多个人一起抢票会出现抢票重复等问题。**</p>
+<h2 id="toc_h2_5"><strong>实现Callable接口</strong></h2>
+<ol>
+<li><strong>实现Callable接口，需要返回值类型</strong></li>
+<li><strong>重写call方法，需要抛出异常</strong></li>
+<li><strong>创建对象</strong></li>
+<li><strong>创建执行服务:ExecutorService ser = Executors.newFixedThreadPool(1);</strong></li>
+<li><strong>提交执行：Future</strong>**<boolean>**<strong>result1 = ser.submit(ti);</strong></boolean></li>
+<li><strong>获取结果：boolean r1 = result1.get()</strong></li>
+<li><strong>关闭服务：ser.shutdownNow();</strong></li>
+</ol>
+<pre><code>import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.concurrent.*;
+
+public class Callableimp implements Callable&lt;Boolean&gt; {
+ &nbsp; &nbsp;private String url;
+ &nbsp; &nbsp;private String name;
+ &nbsp; &nbsp;public Callableimp(String url, String name){
+ &nbsp; &nbsp; &nbsp; &nbsp;this.url=url;
+ &nbsp; &nbsp; &nbsp; &nbsp;this.name=name;
+ &nbsp;  }
+ &nbsp; &nbsp;//重写call
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public Boolean call() {
+ &nbsp; &nbsp; &nbsp; &nbsp;new write().downloader(this.url,this.name);
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("要下载的图片"+this.name);
+ &nbsp; &nbsp; &nbsp; &nbsp;return true;
+ &nbsp;  }
+ &nbsp; &nbsp;public static void main(String[] args) throws ExecutionException, InterruptedException {
+ &nbsp; &nbsp;Callableimp c1=new Callableimp("https://ts1.cn.mm.bing.net/th/id/R-C.987f582c510be58755c4933cda68d525?rik=C0D21hJDYvXosw&amp;riu=http%3a%2f%2fimg.pconline.com.cn%2fimages%2fupload%2fupc%2ftx%2fwallpaper%2f1305%2f16%2fc4%2f20990657_1368686545122.jpg&amp;ehk=netN2qzcCVS4ALUQfDOwxAwFcy41oxC%2b0xTFvOYy5ds%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0","1.jpg");
+ &nbsp; &nbsp;Callableimp c2=new Callableimp("https://ts1.cn.mm.bing.net/th/id/R-C.df4462fabf18edd07195679a5f8a37e5?rik=FnNvr9jWWjHCVQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50059%2f8720.jpg_wh1200.jpg&amp;ehk=ofb4q76uCls2S07aIlc8%2bab3H5zwrmj%2bhqiZ%2fyw3Ghw%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0","2.jpg");
+ &nbsp; &nbsp; &nbsp; &nbsp;//创建执行服务
+ &nbsp; &nbsp; &nbsp; &nbsp;ExecutorService ser = Executors.newFixedThreadPool(2);
+ &nbsp; &nbsp; &nbsp; &nbsp;//提交执行
+ &nbsp; &nbsp; &nbsp; &nbsp;Future&lt;Boolean&gt; submit = ser.submit(c1);
+ &nbsp; &nbsp; &nbsp; &nbsp;Future&lt;Boolean&gt; submit2 = ser.submit(c2);
+ &nbsp; &nbsp; &nbsp; &nbsp;//获取结果
+ &nbsp; &nbsp; &nbsp; &nbsp;Boolean aBoolean = submit.get();
+ &nbsp; &nbsp; &nbsp; &nbsp;Boolean aBoolean2 = submit2.get();
+ &nbsp; &nbsp; &nbsp; &nbsp;//关闭服务
+ &nbsp; &nbsp; &nbsp; &nbsp;ser.shutdownNow();
+ &nbsp;  }
+}
+class Webwrite{
+ &nbsp; &nbsp;//文件下载
+ &nbsp; &nbsp;public void downloader(String &nbsp;url,String name){
+ &nbsp; &nbsp; &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;FileUtils.copyURLToFile(new URL(url),new File(name));
+ &nbsp; &nbsp; &nbsp;  } catch (IOException e) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("图片下载异常");
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;e.printStackTrace();
+
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+</code></pre>
+<h2 id="toc_h2_6"><strong>静态代理</strong></h2>
+<pre><code>package Lesson02;
+
+import javax.swing.*;
+/*
+ &nbsp; &nbsp;静态代理模式总结：
+ &nbsp; &nbsp;真实角色和代理角色都要实现同一个接口
+
+ &nbsp; &nbsp;//好处：
+ &nbsp; &nbsp; &nbsp; &nbsp;//代理对象可以做很多做不了的事情
+ &nbsp; &nbsp; &nbsp; &nbsp;//真实对象专注做自己的事情
+
+ &nbsp; &nbsp;说明：
+ &nbsp; &nbsp;你要结婚，找婚庆公司
+ &nbsp; &nbsp;你继承结婚这件事情的接口，写出了你要结婚做的事情。
+ &nbsp; &nbsp;婚庆公司同时继承结婚的接口，做完应该你做的事情，不如婚前布置这些。
+ &nbsp; &nbsp;最后调用他们的方法，把你这个结婚对象插进去。拼接事情。
+ */
+public class StacticProxy {
+
+ &nbsp; &nbsp;public static void main(String[] args) {
+
+
+ &nbsp; &nbsp; &nbsp; &nbsp;//You you = new You();
+ &nbsp; &nbsp; &nbsp; &nbsp;//WeddingCompany weddingCompany = new WeddingCompany(you);
+ &nbsp; &nbsp; &nbsp; &nbsp;//weddingCompany.Marry();
+ &nbsp; &nbsp; &nbsp; &nbsp;//上面三行也可写成
+ &nbsp; &nbsp; &nbsp; &nbsp;new WeddingCompany(new You()).Marry();
+ &nbsp;  }
+}
+
+//你结婚
+class You implements Marry{
+
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public void Marry() {
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("结婚咯！");
+ &nbsp;  }
+}
+
+//婚庆公司:代理，帮你结婚
+class WeddingCompany implements Marry{
+
+ &nbsp; &nbsp;//真实目标目标对象
+ &nbsp; &nbsp;private Marry target;
+
+ &nbsp; &nbsp;public WeddingCompany(Marry target) {
+ &nbsp; &nbsp; &nbsp; &nbsp;this.target = target;
+ &nbsp;  }
+
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public void Marry() {
+ &nbsp; &nbsp; &nbsp; &nbsp;before();
+ &nbsp; &nbsp; &nbsp; &nbsp;this.target.Marry();//这就是真实角色
+ &nbsp; &nbsp; &nbsp; &nbsp;after();
+ &nbsp;  }
+
+ &nbsp; &nbsp;private void after() {
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("结婚之后，收尾款");
+ &nbsp;  }
+
+ &nbsp; &nbsp;private void before() {
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("结婚之前，布置现场");
+ &nbsp;  }
+}
+
+//结婚接口
+interface Marry{
+ &nbsp; &nbsp;//结婚方法
+ &nbsp; &nbsp;void Marry();
+
+}
+</code></pre>
+<p><strong>思考与多线程的关系;</strong></p>
+<p><strong>run（）方法内容就是真实对象，Runnable接口和Thread类就是一个代理，这个代理帮本体完成了多线程的这一共功能。</strong></p>
+<h2 id="toc_h2_7"><strong>Lamda表达式</strong></h2>
+<p><strong>需要满足的条件是一个函数式接口定义：如果只包含唯一一个抽象方法，那么它就是一个函数式接口。</strong></p>
+<p><strong>总结：lambda表达式只能有一行代码的情况下才能简化成为一行，如果有多行，那么就用代码块包裹。</strong></p>
+<p><strong>前提是接口为函数式接口</strong></p>
+<p><strong>多个参数也可以去掉参数类型，要去掉就都去掉，必须加上括号。</strong></p>
+<pre><code>public class lambda {
+ &nbsp; &nbsp;public static void main(String[] args) {
+ &nbsp; &nbsp; &nbsp; &nbsp;//之前实现的方法
+ &nbsp; &nbsp; &nbsp; &nbsp;Ilike m=new my();
+ &nbsp; &nbsp; &nbsp; &nbsp;m.Ilike(1);
+ &nbsp; &nbsp; &nbsp; &nbsp;Ilike ilike=null;
+ &nbsp; &nbsp; &nbsp; &nbsp;//匿名内部类
+ &nbsp; &nbsp; &nbsp; &nbsp;ilike=new Ilike() {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@Override
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;public void Ilike(int a) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("I like eat"+a);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp;  };
+ &nbsp; &nbsp; &nbsp; &nbsp;ilike.Ilike(2);
+ &nbsp; &nbsp; &nbsp; &nbsp;//现在是lamdba表达式对比（有匿名内部类简化过来）
+ &nbsp; &nbsp; &nbsp; &nbsp;ilike=a-&gt; System.out.println("I like eat"+a);
+ &nbsp; &nbsp; &nbsp; &nbsp;ilike.Ilike(3);
+ &nbsp;  }
+}
+interface Ilike{
+ &nbsp; &nbsp;void Ilike(int a);
+}
+class my implements Ilike{
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public void Ilike(int a) {
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println("I like eat"+a);
+ &nbsp;  }
+}
+</code></pre>
+<h2 id="toc_h2_8"><strong>线程的状态</strong></h2>
+<table>
+<thead>
+<tr><th><strong>方法</strong></th><th><strong>说明</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>setPriority(int newPriority)</strong></td><td><strong>更改线程优先级</strong></td></tr>
+<tr><td><strong>static void sleep(long millis)</strong></td><td><strong>指定毫秒数让当前正在执行的线程休眠</strong></td></tr>
+<tr><td><strong>void join()</strong></td><td><strong>等待该线程终止（插队）</strong></td></tr>
+<tr><td><strong>static void tield()</strong></td><td><strong>暂停该线程，并执行其他线程(礼让)</strong></td></tr>
+<tr><td><strong>void interrupt()</strong></td><td><strong>停止线程，不建议使用</strong></td></tr>
+<tr><td><strong>boolean isAlive()</strong></td><td><strong>当前现在状态</strong></td></tr>
+</tbody>
+</table>
+<h3 id="toc_h3_9"><strong>1.停止线程（stop）</strong></h3>
+<ul>
+<li><strong>建议线程正常停止------&gt;利用次数，不建议死循环。</strong></li>
+<li><strong>建议使用标志位-------》设置一个标志位</strong></li>
+<li><strong>不要使用stop和destroy等过时或者JDK不建议使用的方法</strong></li>
+</ul>
+<pre><code>public class StopTest implements Runnable {
+ &nbsp; &nbsp;private boolean flag=true;
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public void run() {
+ &nbsp; &nbsp; &nbsp; &nbsp;int i=0;
+ &nbsp; &nbsp; &nbsp; &nbsp;while(flag){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println(Thread.currentThread().getName()+"线程run......"+i++);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println(Thread.currentThread().getName()+"结束了");
+ &nbsp;  }
+ &nbsp; &nbsp;public void stop(){
+ &nbsp; &nbsp; &nbsp; &nbsp;this.flag=false;
+ &nbsp;  }
+
+ &nbsp; &nbsp;public static void main(String[] args) {
+ &nbsp; &nbsp; &nbsp; &nbsp;StopTest t1=new StopTest();
+ &nbsp; &nbsp; &nbsp; &nbsp;new Thread(t1,"StopTest").start();
+ &nbsp; &nbsp; &nbsp; &nbsp;for (int i = 0; i &lt;1000 ; i++) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println(Thread.currentThread().getName()+"run.......");
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if(i==900){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//将标记位置为false使线程结束。
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;t1.stop();
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+
+</code></pre>
+<h3 id="toc_h3_10"><strong>2线程休眠</strong></h3>
+<ul>
+<li><strong>sleep(时间)指定当前线程堵塞的</strong><strong><strong>毫秒数</strong></strong></li>
+<li><strong>sleep存在异常InterruptedException;</strong></li>
+<li><strong>sleep时间达到后线程进入就绪状态；</strong></li>
+<li><strong>sleep可以模拟网络延迟，倒计时等。</strong></li>
+<li><strong>每一个对象都有一个锁，sleep不会可释放锁；</strong></li>
+</ul>
+<p><strong>实例利用sleep方法实现倒计时和获取当前时间</strong></p>
+<pre><code>import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
+
+public class sleepTest{
+
+ &nbsp; &nbsp;public static void main(String[] args) {
+ &nbsp; &nbsp; &nbsp; &nbsp;sleepTest.Timeout();
+ &nbsp; &nbsp; &nbsp; &nbsp;Date now=new Date(System.currentTimeMillis());//获取当前时间
+ &nbsp; &nbsp; &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;while(true) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Thread.sleep(1000);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println(new SimpleDateFormat("HH:mm:ss").format(now));
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;now = new Date(System.currentTimeMillis());//更新当前时间
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp;  } catch (InterruptedException e) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;e.printStackTrace();
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+ &nbsp; &nbsp;//倒数10秒
+ &nbsp; &nbsp;public static void Timeout(){
+ &nbsp; &nbsp; &nbsp; &nbsp;int current=10;
+ &nbsp; &nbsp; &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;while(true) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Thread.sleep(1000);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;System.out.println(current--);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (current &lt;= 0) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp;  } catch (InterruptedException e) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;e.printStackTrace();
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+
+</code></pre>
+<h3 id="toc_h3_11"><strong>线程礼让 （yield）</strong></h3>
+<ul>
+<li><strong>礼让线程，让当前正在执行的线程暂停，但不阻塞,就是让线程主动的放弃CPU</strong></li>
+<li><strong>将线程从运行状态转变为就绪状态</strong></li>
+<li><strong>让CPU重新调度，礼让不一定成功！看CPU心情</strong></li>
+</ul>
+<h2 id="toc_h2_12"><strong>线程优先级（setPriority）</strong></h2>
+<p><strong>线程优先级不一定就是先执行，线程的执行有CPU决定。</strong></p>
+<p><strong>主线程main的优先级是5，线程优先级的范围是1——10在这个范围之外会报错</strong></p>
+<h2 id="toc_h2_13"><strong>守护线程（daemon）</strong></h2>
+<p><strong>线程分为</strong><strong><strong>用户线程和守护线程</strong></strong></p>
+<p><strong>虚拟机必须确保用户线程执行完毕</strong></p>
+<p><strong><strong>虚拟机不用等待守护线程执行完毕</strong></strong></p>
+<p><strong>如：后台记录操作日志，监控内存，垃圾回收。</strong></p>
+<p><strong>Thread.setDaemon（boolean） 默认是false是用户线程</strong></p>
+<h2 id="toc_h2_14"><strong>线程同步</strong></h2>
+<h3 id="toc_h3_15">**1.并发 **</h3>
+<p><strong>并发：同于1个对象被多个线程同时操作</strong></p>
+<p><strong>处理多线程问题时，多个线程访问同一个对象，并且某些线程还想修改这个对象，这时候我们就需要线程同步，线程同步其实就是一种等待机制，多个需要同时访问此对象的线程进入这个对象的</strong><strong><strong>等待池</strong>****形成队列，等待前面线程使用完毕，下一个线程再使用。</strong></p>
+<h3 id="toc_h3_16"><strong>2、队列和锁</strong></h3>
+<p><strong>由于同一进程的多个线程共享同一块存储空间，再带来方便的同时，也带来了访问冲突的问题，为了保证数据在方法中被访问时的正确性，在访问时加入锁机制</strong><strong><strong>synchronized</strong>****，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后释放锁即可，存在一下问题：</strong></p>
+<ul>
+<li><strong>一个线程持有锁会导致其他所有需要此锁的线程挂起。</strong></li>
+<li><strong>在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延时，引起性能问题。</strong></li>
+<li><strong>如果一个优先级高的线程等待一个优先级低的线程释放锁，会导致优先级倒置，引起性能问题。</strong></li>
+</ul>
+<h2 id="toc_h2_17"><strong>三大不安全情况</strong></h2>
+<p><strong>1、买票</strong></p>
+<pre><code>package syn;
+
+public class buy implements  Runnable {
+    private static  int n=10;
+    @Override
+    public void run() {
+        while(pay()) {
+
+        }
+    }
+    public boolean pay(){
+        if(n&lt;0){
+            return false;
+        }
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName()+"抢到了"+n--);
+        return true;
+    }
+
+    public static void main(String[] args) {
+        buy b=new buy();
+        new Thread(b,"你").start();
+        new Thread(b,"我").start();
+        new Thread(b,"他").start();
+    }
+}
+</code></pre>
+<p><strong>2、银行取款</strong></p>
+<pre><code>package syn;
+
+public class UnsafeBank {
+    public static void main(String[] args) {
+        //账户
+        Account account = new Account(100,"结婚基金");
+
+        Drawing you = new Drawing(account,50,"你");
+        Drawing wife = new Drawing(account,100,"你老婆");
+
+        you.start();
+        wife.start();
+    }
+}
+//账户
+class Account{
+    int money;//余额
+    String name;//用户名
+    public Account(int money,String name){
+        this.money = money;
+        this.name = name;
+    }
+}
+
+//银行:模拟取款
+class Drawing extends Thread{
+    Account  account;//账户
+    //取了多少钱
+    int drawingMoney;
+    //现在又多少钱
+    int nowMoney;
+
+    public Drawing(Account account,int drawingMoney,String name){
+        super(name);
+        this.account = account;
+        this.drawingMoney = drawingMoney;
+    }
+
+    @Override
+    public void run() {
+        //判断有没有钱
+        if(account.money-drawingMoney&lt;0){
+            System.out.println(Thread.currentThread().getName()+"的余额不足");
+            return;
+        }
+        //模拟延迟，让你们俩人都进来
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //卡内余额 = 余额 - 取出的钱
+        account.money = account.money - drawingMoney;
+        //你手里的钱还剩
+        nowMoney = nowMoney + drawingMoney;
+        System.out.println(account.name+"余额为："+account.money);
+        System.out.println(this.getName()+"手里的钱还剩："+nowMoney);
+    }
+}
+</code></pre>
+<h2 id="toc_h2_18"><strong>同步方法（synchronized）</strong></h2>
+<p><strong>由于我们可以通过private关键字来保证数据对象只能被方法访问，所以我们只需要针对方法提出一套机制，这套机制就是synchronized关键字，它包括俩种方法：synchronized方法和synchronized块。</strong></p>
+<pre><code>public synchronized void method(int args){}
+</code></pre>
+<p>**同步代码块：**<strong><strong>锁的对象是变化的量，synchronied默认锁的是this</strong></strong></p>
+<pre><code>synchronized（Obj）{}
+</code></pre>
+<p><strong>synchronized方法控制对”对象“的访问，每个对象对应一把锁，每个synchronized方法都必须获得调用该方法的对象的锁才能够执行，否则线程会阻塞，方法一旦执行，就独占该锁，直到该方法返回才释放锁，后面被阻塞的线程才能获得这把锁，继续执行</strong></p>
+<p><strong><strong>缺陷：若将一个大的方法申明为synchronized将会影响效率</strong></strong></p>
+<p><strong><strong>方法里面需要修改的内容才需要锁，锁的太多，浪费资源</strong></strong></p>
+<pre><code>package syn;
+
+public class UnsafeBank {
+    public static void main(String[] args) {
+        //账户
+        Account account = new Account(100,"结婚基金");
+
+        Drawing you = new Drawing(account,50,"你");
+        Drawing wife = new Drawing(account,100,"你老婆");
+
+        you.start();
+        wife.start();
+    }
+}
+//账户
+class Account{
+    int money;//余额
+    String name;//用户名
+    public Account(int money,String name){
+        this.money = money;
+        this.name = name;
+    }
+}
+
+//银行:模拟取款
+class Drawing extends Thread{
+    Account  account;//账户
+    //取了多少钱
+    int drawingMoney;
+    //现在又多少钱
+    int nowMoney;
+
+    public Drawing(Account account,int drawingMoney,String name){
+        super(name);
+        this.account = account;
+        this.drawingMoney = drawingMoney;
+    }
+
+    @Override
+    public void run() {
+        //synchronized锁的对象是改变的对象
+        synchronized (account) {
+            //判断有没有钱
+            if (account.money - drawingMoney &lt; 0) {
+                System.out.println(Thread.currentThread().getName() + "的余额不足");
+                return;
+            }
+            //模拟延迟，让你们俩人都进来
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //卡内余额 = 余额 - 取出的钱
+            account.money = account.money - drawingMoney;
+            //你手里的钱还剩
+            nowMoney = nowMoney + drawingMoney;
+            System.out.println(account.name + "余额为：" + account.money);
+            System.out.println(this.getName() + "手里的钱还剩：" + nowMoney);
+        }
+    }
+}
+</code></pre>
+<h1 id="toc_h1_19"><strong>CopyOnWriteArrayyList</strong></h1>
+<p><strong>安全的集合</strong></p>
+<pre><code>package Lesson05;
+
+import java.util.concurrent.CopyOnWriteArrayList;
+
+//测试JUC安全类型的集合
+public class TestJUC {
+    public static void main(String[] args) {
+        CopyOnWriteArrayList&lt;String&gt; list = new CopyOnWriteArrayList&lt;String&gt;();
+        for (int i = 0; i &lt; 10000; i++) {
+            new Thread(()-&gt;{
+                list.add(Thread.currentThread().getName());
+            }).start();
+        }
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        System.out.println(list.size());
+    }
+}
+</code></pre>
+<h2 id="toc_h2_20"><strong>死锁</strong></h2>
+<h3 id="toc_h3_21"><strong>产生死锁的四个必要条件</strong></h3>
+<ol>
+<li><strong>互斥条件：每个资源每次只能被一个进程使用</strong></li>
+<li><strong>请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放</strong></li>
+<li><strong>不剥夺条件：进程以获得的资源，在未使用完前，不能强行剥夺</strong></li>
+<li><strong>循环等待条件：若干进程之间形成头尾相接的循环等待资源关系</strong></li>
+</ol>
+<pre><code>public class DeadLock {
+    public static void main(String[] args) {
+        Makeup g1 = new Makeup(0,"灰姑凉");
+        Makeup g2 = new Makeup(1,"白雪公主");
+
+        g1.start();
+        g2.start() ;
+    }
+}
+//口红
+class Lipstick{
+
+}
+//镜子
+class Mirror{
+
+}
+class Makeup extends Thread{
+    //需要的资源资源只有一份，用static来保证
+    static Lipstick lipstick = new Lipstick();
+    static Mirror mirror = new Mirror();
+
+    int choice;//选择
+    String girlNmae;//使用化妆品的人
+
+    Makeup(int choice, String girlNmae){
+        this.choice = choice;
+        this.girlNmae = girlNmae;
+    }
+
+    @Override
+    //化妆的方法，互相持有对方的锁，需要拿到对方的资源
+    public void run()  {
+        if (choice == 0) {
+            synchronized (lipstick) {//获得口红的锁
+                System.out.println(this.girlNmae + "获得口红的锁");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                synchronized (mirror) {//一秒钟后获得镜子
+                    System.out.println(this.girlNmae + "获得镜子的锁");
+                }
+            }
+        } else {
+            synchronized (mirror) {//获得镜子的锁
+                System.out.println(this.girlNmae + "获得镜子的锁");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                synchronized (lipstick) {//二秒钟后获得口红
+                    System.out.println(this.girlNmae + "获得口红的锁");
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="toc_h2_22"><strong>Lock锁</strong></h2>
+<pre><code>package syn;
+
+import java.util.concurrent.locks.ReentrantLock;
+
+public class LockTest implements Runnable {
+    static int ticknum=10;
+    private final ReentrantLock lock=new ReentrantLock();//声明出一个可复用锁
+    @Override
+    public void run() {
+        try{
+            lock.lock();
+        while(true){
+            if(ticknum&gt;0){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(ticknum--);
+            }else{
+                break;
+            }
+        }}finally {
+            lock.unlock();
+        }
+    }
+
+    public static void main(String[] args) {
+        LockTest locktest=new LockTest();
+        new Thread(locktest).start();
+        new Thread(locktest).start();
+        new Thread(locktest).start();
+
+    }
+}
+</code></pre>
+<p><strong><strong>synchronized与Lock的对比</strong></strong></p>
+<ul>
+<li><strong>Lock是显卡式锁（手动开启和关闭锁，记得关锁）synchronized是隐式锁，出了作用域自动释放。</strong></li>
+<li><strong>Lock只有代码块锁，synchronized有代码块锁和方法锁</strong></li>
+<li><strong>使用Lock锁，JVM将花费较少的时间来调度线程，性能更好。并且具有更好的扩展性。（提供更多的子类）</strong></li>
+<li><strong>优先使用顺序：Lock&gt;同步代码块（已经进入方法体，分配了相应资源）&gt;同步方法（在方法体之外）</strong></li>
+</ul>
+<h2 id="toc_h2_23"><strong>线程线程</strong></h2>
+<p>**  //解决生产者和消费者问题———》管道法**</p>
+<pre><code>import java.util.ArrayList;
+import java.util.List;
+
+//解决生产者和消费者问题———》管道法
+public class TextPc  {
+    public static void main(String[] args) {
+        syncontain syn=new syncontain();
+        product p=new product(syn);
+        customer c=new customer(syn);
+        p.start();
+        c.start();
+    }
+}
+class product extends Thread {
+    syncontain contain;
+    public product (syncontain contain){
+        this.contain=contain;
+    }
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i &lt; 10; i++) {
+                contain.push(i);
+                System.out.println("生产了第"+i+"产品");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+class customer extends Thread{
+    syncontain contain;
+    public customer(syncontain contain){
+        this.contain=contain;
+    }
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i &lt; 10; i++) {
+                int pop = contain.pop();
+                System.out.println("消费了"+pop+"产品");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+class Chicken {
+    int id;
+
+    public Chicken(int id) {
+        this.id = id;
+    }
+}
+class syncontain{
+    List&lt;Chicken&gt; list =new ArrayList&lt;&gt;();
+    static  int max_size=10;
+    public synchronized void push(int i) throws InterruptedException {
+        if(list.size()==max_size){
+            //缓冲区已经满了，生产者要等待消费者消费
+            this.wait();
+        }
+        list.add(new Chicken(i));
+        this.notify();//唤醒消费者线程，通知可以消费了
+    }
+    public synchronized int pop() throws InterruptedException {
+        Thread.sleep(10);
+        if(list.size()==0){
+            //缓冲区中没有商品了，无法消费，让消费者线程进入到等待状态
+            this.wait();
+        }
+        int result=list.get(list.size()-1).id;
+        list.remove(list.size()-1);
+        this.notify();//唤醒生产者进程
+        return result;
+    }
+}
+</code></pre>
+<p><strong>//2、  解决生产者和消费者问题———》标志位法</strong></p>
+<pre><code>package syn;
+
+public class TestPc2 {
+    public static void main(String[] args) {
+        TV tv=new TV();
+     player p=new player(tv);
+     watch w=new watch(tv);
+     p.start();
+     w.start();
+    }
+}
+class player extends Thread{
+    TV tv;
+    public player(TV tv ){
+        this.tv=tv;
+    }
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i &lt; 1000; i++) {
+                  if(i%2==0){
+                      tv.player("电视剧");
+                  }else{
+                      tv.player("抖音");
+                  }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+class watch extends  Thread {
+    TV tv;
+    public watch(TV tv ){
+        this.tv=tv;
+    }
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i &lt; 20; i++) {
+                tv.watchTv();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+class TV{
+      String voice ;//节目
+     static boolean flag=true;
+     public synchronized void  player(String voice) throws InterruptedException {
+           if(!flag){
+               this.wait();
+           }
+           System.out.println("演员"+voice);
+           this.notifyAll();
+           this.voice=voice;
+           this.flag=!flag;
+     }
+     public synchronized  void watchTv() throws InterruptedException {
+         if(flag) {
+             this.wait();
+         }
+         System.out.println("观众观看"+voice);
+         this.notifyAll();
+         this.flag=!flag;
+     }
+}
+</code></pre>
+                    <div>
+                        <hr>
+
+标题：JAVA多线程<br>
+作者：<a href="https://wzl66.github.io" target="_blank">zhoulei</a><br>
+地址：<a href="https://wzl66.github.io/articles/2023/06/04/1685856943701.html" target="_blank">https://wzl66.github.io/articles/2023/06/04/1685856943701.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">多线程入门</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">1、线程（Process）和进程（Thread）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_2">线程的创建</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">实训：网图下载</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_4">使用Runnble方法(推荐使用，因为java是单继承的)</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">实现Callable接口</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_6">静态代理</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_7">Lamda表达式</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_8">线程的状态</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_9">1.停止线程（stop）</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_10">2线程休眠</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_11">线程礼让 （yield）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_12">线程优先级（setPriority）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_13">守护线程（daemon）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_14">线程同步</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_15">**1.并发 **</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_16">2、队列和锁</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_17">三大不安全情况</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_18">同步方法（synchronized）</a>
+        </li>
+        <li class="toc__h1">
+            <a href="#toc_h1_19">CopyOnWriteArrayyList</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_20">死锁</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_21">产生死锁的四个必要条件</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_22">Lock锁</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_23">线程线程</a>
+        </li>
+</ul>        </div>
+        <div class="wrapper">
+            <div id="gitalk-container"></div>
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="zhoulei" data-postId="1685856943701"></div>
+            <div id="b3logsolocomments"></div>
+        </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/TweenMax.min.js?1702824557362"
+        charset="utf-8"></script>
+<footer class="footer">
+    <div class="wrapper">
+            <a href="https://ld246.com/member/zhoulei"
+       title="https://ld246.com/member/zhoulei"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+
+ <br>
+        &copy; 2023
+        <a href="https://wzl66.github.io">L的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+    </div>
+</footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://wzl66.github.io",
+    staticServePath: "https://wzl66.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.4.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1685856943701",
+  }
+</script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/common.min.js?1702824557362"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/circleMagic.min.js?1702824557362"
+        charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+    <svg viewBox="0 0 32 32" width="100%" height="100%" class="side__top side__top--toc">
+        <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+    </svg>
+
+<script type="text/javascript">
+    Util.addScript('https://wzl66.github.io/js/page.min.js?1702824557362', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1685856943701",
+        "blogHost": "https://wzl66.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1685856943701', '<h3>相关阅读</h3>');
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 107ms, 2023/12/17 22:49:44 -->

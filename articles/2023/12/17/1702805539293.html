@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>SpringCloud - L的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://wzl66.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://wzl66.github.io"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="SpringCloud - L的个人博客"/><meta property="og:site_name" content="L的个人博客"/><meta property="og:url"      content="https://wzl66.github.io/articles/2023/12/17/1702805539293.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="SpringCloud - L的个人博客" href="/opensearch.xml"><link href="https://wzl66.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://wzl66.github.io/manifest.json">        <link rel="canonical" href="https://wzl66.github.io/articles/2023/12/17/1702805539293.html">        <link rel="stylesheet"
+              href="https://wzl66.github.io/skins/Bubble/css/base.css?1702824557362"/>
+            <link rel="prev" title="Redis" href="https://wzl66.github.io/articles/2023/08/10/1691653234717.html">
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://wzl66.github.io" rel="start">L的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">生活是活给自己看的，你有多大成色，世界才会给你多大脸色</h2>
+            <div class="header__desc">
+                Open Source, Open Mind, <br/>Open Sight, Open Future!
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
+            </svg>
+        </div>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://wzl66.github.io" rel="start"><img class="side__logo" alt="L的个人博客" src="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    9 文章 <br>
+                    <span data-uvstaturl="https://wzl66.github.io">0</span> 浏览
+                    
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
+                <li>
+                    <a href="https://wzl66.github.io" rel="start">
+                            L的个人博客
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/categories.html">分类</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/tags.html">标签墙</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/links.html">友链</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://wzl66.github.io/rss.xml">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article__top" style="background-image: url(https://b3logfile.com/bing/20200511.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        <div style="background-image: url(https://b3logfile.com/bing/20200511.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2023-12-17
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/SpringCloud">SpringCloud</a> &nbsp;
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/java">java</a> &nbsp;
+            </div>
+            <h2 class="article__title">
+                SpringCloud
+            </h2>
+<div class="article__share"
+     data-title="SpringCloud"
+     data-blogtitle="L的个人博客"
+     data-url="https://wzl66.github.io/articles/2023/12/17/1702805539293.html"
+     data-avatar="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <p><img src="https://b3logfile.com/bing/20200511.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
+<h1 id="toc_h1_0"><strong>SpringCloud</strong></h1>
+<p><img src="https://b3logfile.com/file/2023/12/solo-fetchupload-10964351917094327979-PJ9MuxE.jpeg?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="一篇文章搞懂 Spring Cloud 是什么"></p>
+<p><strong>文章推荐：</strong><a href="https://c.biancheng.net/springcloud/eureka.html" target="_blank"><strong>Eureka：Spring Cloud服务注册与发现组件（非常详细） (biancheng.net)</strong></a></p>
+<h2 id="toc_h2_1"><strong>概述</strong></h2>
+<p><strong>Spring Cloud 是一个服务治理平台，</strong>=<strong>是若干个框架的集合</strong>=<strong>，提供了全套的分布式系统解决方案。包含了：</strong>=<strong><strong>服务注册与发现、配置中心、服务网关、智能路由、负载均衡、断路器、监控跟踪、分布式消息队列</strong></strong>=<strong>等等。</strong></p>
+<p><strong>Spring Cloud 通过 Spring Boot 风格的封装，屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、容易部署的分布式系统开发工具包。开发者可以快速的启动服务或构建应用、同时能够快速和云平台资源进行对接。</strong><code>微服务是可以独立部署、水平扩展、独立访问（或者有独立的数据库）的服务单元</code><strong>，Spring Cloud 就是这些微服务的大管家，采用了微服务这种架构之后，项目的数量会非常多，Spring Cloud 做为大管家需要管理好这些微服务，自然需要很多小弟来帮忙。</strong></p>
+<h2 id="toc_h2_2"><strong>SpringCloud常用组件表</strong></h2>
+<p><strong><strong>服务的注册和发现（eureka,nacos,consul）</strong></strong></p>
+<p><strong><strong>服务的负载均衡（ribbon,dubbo）</strong></strong></p>
+<p><strong><strong>服务的相互调用（openFeign,dubbo）</strong></strong></p>
+<p><strong><strong>服务的容错（hystrix,sentinel）</strong></strong></p>
+<p><strong><strong>服务网关（gateway，zuul）</strong></strong></p>
+<p><strong><strong>服务配置的统一管理（config-server,nacos,apollo）</strong></strong></p>
+<p><strong><strong>服务消息总线（bus）</strong></strong></p>
+<p><strong><strong>服务安全组件(security,Oauth2.0)</strong></strong></p>
+<p><strong><strong>服务监控（admin）（jvm）</strong></strong></p>
+<p><strong><strong>链路追综（sleuth+zipkin）</strong></strong></p>
+<h3 id="toc_h3_3"><strong>SpringCloud Alibaba与SpringCloud Netflix对照</strong></h3>
+<p><img src="https://b3logfile.com/file/2023/12/solo-fetchupload-7175449909879191552-VgD91g1.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="在这里插入图片描述"></p>
+<h2 id="toc_h2_4"><strong>注册和发现中心</strong></h2>
+<h3 id="toc_h3_5"><strong>Eureka快速入门</strong></h3>
+<h4 id="toc_h4_6"><strong>什么是CAP原则？</strong></h4>
+<h4 id="toc_h4_7"><strong>Eureka和zookeeper的区别</strong></h4>
+<p><strong>CAP原则是指一个分布式系统中，一致性,可用性，分区容错性</strong></p>
+<p><strong>一致性：多个节点的数据保持一致。   (consistent)</strong></p>
+<p><strong>可用性：当一个节点发生异常不可用之后，其他的节点任然可以提供服务。  available</strong></p>
+<p><strong>分区容错性：由于每个节点存在的机房或者是分区不一样，存在数据传输时间的消耗，所以每个节点上的数据可能会短暂的不一致。  partition</strong></p>
+<p>****CAP原则指的是，这三个要素最多只能同时存在实现两个，不可能三者兼顾。****<strong>但是每一个分布式系统中都会存在P原则，所以通常只会出现CP和AP组合。</strong></p>
+<p><strong>Zookeeper：CP 注重的数据的一致性，当节点发生异常不可用时，可能会造成几分钟无法访问</strong></p>
+<p><strong>Eureka：AP 注重的时可可用，但是可能用户访问的数据存在一定的差异。</strong></p>
+<h4 id="toc_h4_8"><strong>Eureka快速入门</strong></h4>
+<p><strong>搭建一个组测中心</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231204150321007.png?lastModify=1702805464" alt="image-20231204150321007"></p>
+<h5 id="toc_h5_9"><strong>创建Eureka-server</strong></h5>
+<p><strong>导入相关的依赖,注意SpringCloud有相应对应的版本。</strong><code>不要随意的搭配boot和Cloud的版本</code>**。 **</p>
+<pre><code>&lt;parent&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+ &nbsp; &nbsp;&lt;version&gt;2.3.12.RELEASE&lt;/version&gt;
+ &nbsp; &nbsp;&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+&lt;/parent&gt;
+&lt;properties&gt;
+ &nbsp; &nbsp;&lt;java.version&gt;1.8&lt;/java.version&gt;
+ &nbsp; &nbsp;&lt;spring-cloud.version&gt;Hoxton.SR12&lt;/spring-cloud.version&gt;
+&lt;/properties&gt;
+&lt;dependencies&gt;
+ &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
+ &nbsp; &nbsp;&lt;/dependency&gt;
+
+ &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;scope&gt;test&lt;/scope&gt;
+ &nbsp; &nbsp;&lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;dependencyManagement&gt;
+ &nbsp; &nbsp;&lt;dependencies&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;version&gt;${spring-cloud.version}&lt;/version&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;type&gt;pom&lt;/type&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;scope&gt;import&lt;/scope&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;/dependency&gt;
+ &nbsp; &nbsp;&lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+</code></pre>
+<p><strong>书写application.yml配置文件</strong></p>
+<pre><code>server:
+  port: 8761 #默认端口
+
+spring:
+  application:
+ &nbsp;  name: eureka-server &nbsp;#之前我们很少的指定过模块的名称，这里通常指定。
+</code></pre>
+<p><strong>在启动类上开启</strong>=<strong>@EnableEurekaServer</strong>=**  //开启Euraka注册中心的功能**</p>
+<p><strong>访问localhost:8761     表示Eureka-server注册成功</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231204160819473.png?lastModify=1702805464" alt="image-20231204160819473"></p>
+<h4 id="toc_h4_10"><strong>创建Eureka客户端</strong></h4>
+<p><strong>导入依赖</strong></p>
+<pre><code>&lt;parent&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+ &nbsp; &nbsp;&lt;version&gt;2.3.12.RELEASE&lt;/version&gt;
+ &nbsp; &nbsp;&lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+&lt;/parent&gt;
+&lt;properties&gt;
+ &nbsp; &nbsp;&lt;java.version&gt;17&lt;/java.version&gt;
+ &nbsp; &nbsp;&lt;spring-cloud.version&gt;Hoxton.SR12&lt;/spring-cloud.version&gt;
+&lt;/properties&gt;
+&lt;dependencies&gt;
+ &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+ &nbsp; &nbsp;&lt;/dependency&gt;
+ &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+ &nbsp; &nbsp;&lt;/dependency&gt;
+
+ &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;scope&gt;test&lt;/scope&gt;
+ &nbsp; &nbsp;&lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;dependencyManagement&gt;
+ &nbsp; &nbsp;&lt;dependencies&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;version&gt;${spring-cloud.version}&lt;/version&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;type&gt;pom&lt;/type&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;scope&gt;import&lt;/scope&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;/dependency&gt;
+ &nbsp; &nbsp;&lt;/dependencies&gt;
+&lt;/dependencyManagement&gt;
+</code></pre>
+<p><strong>改写配置文件：</strong></p>
+<pre><code>server:
+  port: 8081
+
+spring:
+  application:
+ &nbsp;  name: eureka-client-a
+#客户端需要将自己的信息注册(告诉)服务器(server)
+#发送到哪？
+eureka:
+  client:
+ &nbsp;  service-url:  #指定注册地址
+ &nbsp; &nbsp;  defaultZone: http://localhost:8761/eureka
+</code></pre>
+<p><strong>启动类上开启服务</strong><code>@EnableEurekaClient</code><strong>,</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231204164010035.png?lastModify=1702805464" alt="image-20231204164010035"></p>
+<p>=<strong>如果我们想将同一台实列注册多次，只需要修改配置文件中端口就行了。</strong>=</p>
+<h3 id="toc_h3_11"><strong>Eureka配置文件介绍</strong></h3>
+<p><strong>了解配置文件，我们需要知道Eureka-server需要做一些什么？</strong></p>
+<p><strong>作为注册中心（房东）</strong></p>
+<ol>
+<li><strong>需要有一个服务列表(容器)保存注册的应用的信息。</strong></li>
+<li><strong>需要知道自己的下面注册的应用是否还在线(心跳机制)</strong></li>
+<li><strong>应用A和应用B需要联系，不能总是的通过Eureka-serve实现联系，需要在应用的本地保存一份注册列表。这时需要考虑是否可以容忍脏读。</strong></li>
+<li><strong>如果某段时间内有大量的应用没有联系自己，这时Eureka-server会认为自己出现了问题。体现Ap原则</strong></li>
+</ol>
+<h4 id="toc_h4_12"><strong><strong>Eureka-server配置文件实列</strong></strong></h4>
+<pre><code># eureka-server的配置文件主要分为三类： server类  client类 instance类
+eureka:
+  server:
+ &nbsp;  eviction-interval-timer-in-ms: 10000 #服务间隔多少时间之后进行一个删除操作，当一个应用在该时间之内没有与服务器进行联系的话,服务器会认为应用已经下线
+ &nbsp;  renewal-percent-threshold: 0.85 #续约百分比，当超过规定范围的应用没有联系服务器时,服务器会认为自己出现了问题。
+  instance:
+ &nbsp;  hostname: localhost
+ &nbsp;  instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port} #实列id
+ &nbsp;  prefer-ip-address: true #以ip形式显示具体的服务信息
+ &nbsp;  lease-renewal-interval-in-seconds: 5 #指示 eureka 客户端需要多久（以秒为单位）向 eureka 服务器发送检测信号，这个时间应该小于eviction-interval-timer-in-ms
+</code></pre>
+<h4 id="toc_h4_13"><strong>Eureka-client配置文件</strong></h4>
+<pre><code>#客户端需要将自己的信息注册(告诉)服务器(server)
+#发送到哪？
+eureka:
+  client:
+ &nbsp;  service-url: &nbsp;#指定注册地址
+ &nbsp; &nbsp;  defaultZone: http://localhost:8761/eureka
+ &nbsp;  register-with-eureka: true #是否注册到注册中心上去
+ &nbsp;  fetch-registry: true #应用是否拉取服务列表到本地
+ &nbsp;  registry-fetch-interval-seconds: 10 #间隔多少时间拉取列表到本地
+  instance:
+ &nbsp;  lease-renewal-interval-in-seconds: 5
+ &nbsp;  hostname: localhost
+ &nbsp;  prefer-ip-address: true
+ &nbsp;  instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+</code></pre>
+<h3 id="toc_h3_14"><strong>分布式系统一致性算法</strong></h3>
+<p><strong>在我们分布式系统中，存在多个系统之间实现数据的集群，采用CP一致性算法保证每个节点数据的一致性的问题。比如Eureka、Zookeeper、Nacos实现集群都必须保证每个节点数据同步性的问题。</strong></p>
+<p><strong>Zookeeper基于ZAP协议实现保证每个节点数据同步的问题，中心化思想集群模式。分为领导和跟随者角色。（主从模式）</strong></p>
+<p><strong>Eureka基于AP模式实现注册中心，去中心化的思想、每个节点都是对等的，采用你中有我，我中有你的形式实现注册中心。</strong></p>
+<p><strong>常见分布式一致性算法：</strong></p>
+<ol>
+<li><strong>ZAP协议（底层就是基于Paxos实现），核心底层基于2PC两阶段提交协议实现。</strong></li>
+<li><strong>Nacos中集群保证一致性算法采ratf协议模式，采用心跳机制实现选举的。</strong><a href="http://thesecretlivesofdata.com/raft/" target="_blank"><strong>Raft (thesecretlivesofdata.com)</strong></a></li>
+<li><strong>Eureka没有分布式数据一致性的机制 节点都是相同的</strong></li>
+</ol>
+<h3 id="toc_h3_15"><strong>Eureka运行的理解</strong></h3>
+<p><strong>Eureka服务注册、下线、续约、剥离都是注册列表的CRUD</strong></p>
+<h5 id="toc_h5_16"><strong>Eureka注册</strong></h5>
+<p><strong>Eureka客户端的register源码解释：</strong></p>
+<pre><code>boolean register() throws Throwable {
+ &nbsp; &nbsp;logger.info(PREFIX + "{}: registering service...", appPathIdentifier);
+ &nbsp; &nbsp;EurekaHttpResponse&lt;Void&gt; httpResponse;
+ &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp;//注册的主要实现调用，instanceInfo读取配置文件配置项(ip，port,hostname)
+ &nbsp; &nbsp; &nbsp; &nbsp;httpResponse = eurekaTransport.registrationClient.register(instanceInfo);
+ &nbsp;  } catch (Exception e) {
+ &nbsp; &nbsp; &nbsp; &nbsp;logger.warn(PREFIX + "{} - registration failed {}", appPathIdentifier, e.getMessage(), e);
+ &nbsp; &nbsp; &nbsp; &nbsp;throw e;
+ &nbsp;  }
+ &nbsp; &nbsp;if (logger.isInfoEnabled()) {
+ &nbsp; &nbsp; &nbsp; &nbsp;logger.info(PREFIX + "{} - registration status: {}", appPathIdentifier, httpResponse.getStatusCode());
+ &nbsp;  }
+ &nbsp; &nbsp;return httpResponse.getStatusCode() == Status.NO_CONTENT.getStatusCode();
+}
+</code></pre>
+<p><strong>eurekaTransport.registrationClient.register(instanceInfo);调用register解释</strong></p>
+<pre><code>@Override
+public EurekaHttpResponse&lt;Void&gt; register(InstanceInfo info) {
+ &nbsp; &nbsp;String urlPath = "apps/" + info.getAppName();
+ &nbsp; &nbsp;ClientResponse response = null;
+ &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp;Builder resourceBuilder = jerseyClient.resource(serviceUrl).path(urlPath).getRequestBuilder();
+ &nbsp; &nbsp; &nbsp; &nbsp;addExtraHeaders(resourceBuilder);
+ &nbsp; &nbsp; &nbsp; &nbsp;//发送post请求给urlPath地址，restFul风格post表示增加
+ &nbsp; &nbsp; &nbsp; &nbsp;response = resourceBuilder
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .header("Accept-Encoding", "gzip")
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .type(MediaType.APPLICATION_JSON_TYPE)
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .accept(MediaType.APPLICATION_JSON)
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .post(ClientResponse.class, info);
+ &nbsp; &nbsp; &nbsp; &nbsp;return anEurekaHttpResponse(response.getStatus()).headers(headersOf(response)).build();
+ &nbsp;  } finally {
+ &nbsp; &nbsp; &nbsp; &nbsp;if (logger.isDebugEnabled()) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;logger.debug("Jersey HTTP POST {}/{} with instance {}; statusCode={}", serviceUrl, urlPath, info.getId(),
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; response == null ? "N/A" : response.getStatus());
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;if (response != null) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;response.close();
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+</code></pre>
+<p><strong>客服端发送post请求之后，那么服务端是如何处理保存Client信息的</strong></p>
+<p><strong><strong>注册表结构的第一个Key是应用名称（全大写） spring.application.name</strong></strong></p>
+<p><strong><strong>Value中的key是应用的实例id Eureka.instance.instance-id</strong></strong></p>
+<p><strong><strong>Value中的value是具体的服务节点信息</strong></strong></p>
+<pre><code>private final ConcurrentHashMap&lt;String, Map&lt;String, Lease&lt;InstanceInfo&gt;&gt;&gt; registry
+ &nbsp; &nbsp;= new ConcurrentHashMap&lt;String, Map&lt;String, Lease&lt;InstanceInfo&gt;&gt;&gt;();
+</code></pre>
+<pre><code>public void register(InstanceInfo registrant, int leaseDuration, boolean isReplication) {
+ &nbsp; &nbsp;read.lock();
+ &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp;Map&lt;String, Lease&lt;InstanceInfo&gt;&gt; gMap = registry.get(registrant.getAppName());
+ &nbsp; &nbsp; &nbsp; &nbsp;REGISTER.increment(isReplication);
+ &nbsp; &nbsp; &nbsp; &nbsp;if (gMap == null) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;final ConcurrentHashMap&lt;String, Lease&lt;InstanceInfo&gt;&gt; gNewMap = new ConcurrentHashMap&lt;String, Lease&lt;InstanceInfo&gt;&gt;();
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gMap = registry.putIfAbsent(registrant.getAppName(), gNewMap);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (gMap == null) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gMap = gNewMap;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;Lease&lt;InstanceInfo&gt; existingLease = gMap.get(registrant.getId());
+ &nbsp; &nbsp; &nbsp; &nbsp;……………………………………………………………………………………………………………………………………………………………………
+ &nbsp;  } finally {
+ &nbsp; &nbsp; &nbsp; &nbsp;read.unlock();
+ &nbsp;  }
+}
+</code></pre>
+<h5 id="toc_h5_17"><strong>Eureka续约</strong></h5>
+<pre><code>@Override
+public EurekaHttpResponse&lt;InstanceInfo&gt; sendHeartBeat(String appName, String id, InstanceInfo info, InstanceStatus overriddenStatus) {
+ &nbsp; &nbsp;String urlPath = "apps/" + appName + '/' + id;
+ &nbsp; &nbsp;ClientResponse response = null;
+ &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp;WebResource webResource = jerseyClient.resource(serviceUrl)
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .path(urlPath)
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .queryParam("status", info.getStatus().toString())
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .queryParam("lastDirtyTimestamp", info.getLastDirtyTimestamp().toString());
+ &nbsp; &nbsp; &nbsp; &nbsp;if (overriddenStatus != null) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;webResource = webResource.queryParam("overriddenstatus", overriddenStatus.name());
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;Builder requestBuilder = webResource.getRequestBuilder();
+ &nbsp; &nbsp; &nbsp; &nbsp;addExtraHeaders(requestBuilder);
+ &nbsp; &nbsp; &nbsp; &nbsp;//发送put请求给服务器端
+ &nbsp; &nbsp; &nbsp; &nbsp;response = requestBuilder.put(ClientResponse.class);
+ &nbsp; &nbsp; &nbsp; &nbsp;EurekaHttpResponseBuilder&lt;InstanceInfo&gt; eurekaResponseBuilder = anEurekaHttpResponse(response.getStatus(), InstanceInfo.class).headers(headersOf(response));
+ &nbsp; &nbsp; &nbsp; &nbsp;if (response.hasEntity() &amp;&amp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;!HTML.equals(response.getType().getSubtype())) { //don't try and deserialize random html errors from the server
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;eurekaResponseBuilder.entity(response.getEntity(InstanceInfo.class));
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;return eurekaResponseBuilder.build();
+ &nbsp;  } finally {
+ &nbsp; &nbsp; &nbsp; &nbsp;if (logger.isDebugEnabled()) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;logger.debug("Jersey HTTP PUT {}/{}; statusCode={}", serviceUrl, urlPath, response == null ? "N/A" : response.getStatus());
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;if (response != null) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;response.close();
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  }
+}
+</code></pre>
+<p><strong><strong>Eureka的剥除也是一样发送相应的</strong><code>delete</code><strong>请求给服务器端。</strong></strong></p>
+<h3 id="toc_h3_18"><strong>服务发现</strong></h3>
+<p><strong>什么是服务发现？</strong>**<br>
+**<strong><strong>通过服务名称获取到服务具体实例的过程。</strong></strong></p>
+<pre><code>@GetMapping("/test")
+public String doDiscovery(String serverName){
+ &nbsp; &nbsp;//通过服务名称获取相应的服务实例
+ &nbsp; &nbsp;//注意返回值是一个list集合类型,因为一个实例名称可以开启多个实列，实现一个集群的实现
+ &nbsp; &nbsp;List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(serverName);
+ &nbsp; &nbsp;instances.forEach(System.out::println);
+ &nbsp; &nbsp;ServiceInstance serviceInstance = instances.get(0);
+ &nbsp; &nbsp;String host = serviceInstance.getHost();
+ &nbsp; &nbsp;int port = serviceInstance.getPort();
+ &nbsp; &nbsp;String url="http://"+host+port;
+ &nbsp; &nbsp;//使用restTemplate发送Http请求给url就可以了
+ &nbsp; &nbsp;return serviceInstance.toString();
+}
+</code></pre>
+<p><strong>返回结果：从中我们可以通过服务名称获取到服务的端口和hostName，通过字符串的拼接就可以实现发送Http请求给相应的地址，只需知道相应API的功能就可以了。</strong></p>
+<pre><code>[EurekaDiscoveryClient.EurekaServiceInstance@3aa089fe instance = InstanceInfo [instanceId = localhost:eureka-client-b:8082, appName = EUREKA-CLIENT-B, hostName = 192.168.117.1, status = UP, ipAddr = 192.168.117.1, port = 8082, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@276b4a2]
+</code></pre>
+<h3 id="toc_h3_19"><strong>RestTemplate</strong></h3>
+<h4 id="toc_h4_20"><strong>RestTemplateApi介绍</strong></h4>
+<pre><code>void RestTemplateApi(){
+ &nbsp; &nbsp;String url="";
+ &nbsp; &nbsp;String data="";
+ &nbsp; &nbsp;//Entity  将会返回消息的完整消息(包括状态码，相应的结果)
+ &nbsp; &nbsp;//Object  只会返回相应的结果
+ &nbsp; &nbsp;restTemplate.getForEntity(url,String.class);
+ &nbsp; &nbsp;restTemplate.getForObject(url,String.class);
+ &nbsp; &nbsp;restTemplate.postForEntity(url,data,String.class);
+ &nbsp; &nbsp;restTemplate.postForObject(url,data,String.class);
+ &nbsp; &nbsp;restTemplate.put(url,String.class);
+ &nbsp; &nbsp;restTemplate.delete(url);
+}
+</code></pre>
+<h2 id="toc_h2_21"><strong>ribbon</strong></h2>
+<h3 id="toc_h3_22"><strong>负载均衡</strong></h3>
+<p><strong>在任何一个系统中，负载均衡都是一个十分重要且不得不去实施的内容，它是系统处理高并发、缓解网络压力和服务端扩容的重要手段之一。</strong></p>
+<p><strong>负载均衡（Load Balance） ，简单点说就是将用户的请求平摊分配到多个服务器上运行，以达到扩展服务器带宽、增强数据处理能力、增加吞吐量、提高网络的可用性和灵活性的目的。</strong></p>
+<p><strong>常见的负载均衡算法：</strong></p>
+<ol>
+<li><strong>轮询分发</strong></li>
+<li><strong>固定ip</strong></li>
+<li><strong>随机分发</strong></li>
+<li><strong>权重分发</strong></li>
+<li><strong>Hash</strong></li>
+</ol>
+<p><strong>常见的负载均衡方式有两种：</strong></p>
+<ul>
+<li><strong>服务端负载均衡</strong></li>
+<li><strong>客户端负载均衡</strong></li>
+</ul>
+<h4 id="toc_h4_23"><strong>服务端负载均衡</strong></h4>
+<p><strong>服务端负载均衡是最常见的负载均衡方式，其工作原理如下图。</strong></p>
+<p><img src="https://b3logfile.com/file/2023/12/solo-fetchupload-3789152066920936031-yHatYV5.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="服务端负载均衡工作原理"></p>
+<h4 id="toc_h4_24"><strong>客户端负载均衡</strong></h4>
+<p><strong>相较于服务端负载均衡，客户端服务在均衡则是一个比较小众的概念。</strong></p>
+<p><strong>客户端负载均衡的工作原理如下图。</strong></p>
+<p><img src="https://b3logfile.com/file/2023/12/solo-fetchupload-3845615791388746422-8dh3KTO.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="客户端负载均衡原理"></p>
+<p><strong>客户端负载均衡是将负载均衡逻辑以</strong><code>代码的形式</code><strong>封装到客户端上，即负载均衡器位于客户端。</strong>=<strong>客户端通过服务注册中心（例如 Eureka Server）获取到一份服务端提供的可用服务清单。有了服务清单后，负载均衡器会在客户端发送请求前通过负载均衡算法选择一个服务端实例再进行访问，以达到负载均衡的目的</strong>=<strong>；</strong></p>
+<p><strong>客户端负载均衡具有以下特点：</strong></p>
+<ul>
+<li><strong>负载均衡器位于客户端，不需要单独搭建一个负载均衡服务器。</strong></li>
+<li><strong>负载均衡是在客户端发送请求前进行的，因此客户端清楚地知道是哪个服务端提供的服务。</strong></li>
+<li><strong>客户端都维护了一份可用服务清单，而这份清单都是从服务注册中心获取的。</strong></li>
+</ul>
+<h3 id="toc_h3_25"><strong>Ribbon入门</strong></h3>
+<pre><code>&lt;!--Spring Cloud Ribbon 依赖--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-netflix-ribbon&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>使用</strong><strong><strong>Ribbon+RestTemplate</strong></strong></p>
+<pre><code>@Bean //将 RestTemplate 注入到容器中
+@LoadBalanced //在客户端使用 RestTemplate 请求服务端时，开启负载均衡（Ribbon）
+public RestTemplate restTemplate() {
+    return new RestTemplate();
+}
+</code></pre>
+<p><strong>使用</strong><strong><strong>LoadBalancerClient</strong></strong></p>
+<p><strong>1.注入LoadBalancerClient</strong></p>
+<pre><code>@Autowired
+private LoadBalancerClient loadBalancerClient;
+</code></pre>
+<p>**2.调用loadBalancerClient或者加了 **<code>@LoadBalanced</code><strong>注解的RestTemplate</strong></p>
+<pre><code>@GetMapping("/ribbon")
+public URI ribbon(){
+ &nbsp; &nbsp;// 通过地址自动负载均衡
+ &nbsp; &nbsp;ServiceInstance choose = loadBalancerClient.choose("provider");
+ &nbsp; &nbsp;return choose.getUri();
+}
+</code></pre>
+<p><strong>在consumer发送发送请求给provider时只需要将原来的URL中的IP使用应用名称来代替。</strong></p>
+<p><strong><strong>Ribbon为我们所做的事情</strong></strong></p>
+<ul>
+<li><strong>将我们的请求拦截。获取当中的服务名称。</strong></li>
+<li><strong>通过服务名称结合Eureka的服务发现，获取到服务列表</strong></li>
+<li><strong>通过服务列表使用负载均衡算法，获取相应的ip和port</strong></li>
+<li><strong>重构URL</strong></li>
+<li><strong>发送Http请求</strong></li>
+</ul>
+<h4 id="toc_h4_26"><strong>Ribbon 实现负载均衡</strong></h4>
+<p><strong>Ribbon 是一个客户端的负载均衡器，它可以与 Eureka 配合使用轻松地实现客户端的负载均衡。Ribbon 会先从 Eureka Server（服务注册中心）去获取服务端列表，然后通过负载均衡策略将请求分摊给多个服务端，从而达到负载均衡的目的。</strong></p>
+<p><strong>Spring Cloud Ribbon 提供了一个 IRule 接口，该接口主要用来定义负载均衡策略，它有 7 个默认实现类，每一个实现类都是一种负载均衡策略。</strong></p>
+<table>
+<thead>
+<tr><th><strong>序号</strong></th><th><strong>实现类</strong></th><th><strong>负载均衡策略</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>1</strong></td><td><strong>RoundRobinRule</strong></td><td><strong>按照线性轮询策略，即按照一定的顺序依次选取服务实例</strong></td></tr>
+<tr><td><strong>2</strong></td><td><strong>RandomRule</strong></td><td><strong>随机选取一个服务实例</strong></td></tr>
+<tr><td><strong>3</strong></td><td><strong>RetryRule</strong></td><td><strong>按照 RoundRobinRule（轮询）的策略来获取服务，如果获取的服务实例为 null 或已经失效，则在指定的时间之内不断地进行重试（重试时获取服务的策略还是 RoundRobinRule 中定义的策略），如果超过指定时间依然没获取到服务实例则返回 null 。</strong></td></tr>
+<tr><td><strong>4</strong></td><td><strong>WeightedResponseTimeRule</strong></td><td><strong>WeightedResponseTimeRule 是 RoundRobinRule 的一个子类，它对 RoundRobinRule 的功能进行了扩展。  根据平均响应时间，来计算所有服务实例的权重，响应时间越短的服务实例权重越高，被选中的概率越大。刚启动时，如果统计信息不足，则使用线性轮询策略，等信息足够时，再切换到 WeightedResponseTimeRule。</strong></td></tr>
+<tr><td><strong>5</strong></td><td><strong>BestAvailableRule</strong></td><td><strong>继承自 ClientConfigEnabledRoundRobinRule。先过滤点故障或失效的服务实例，然后再选择并发量最小的服务实例。</strong></td></tr>
+<tr><td><strong>6</strong></td><td><strong>AvailabilityFilteringRule</strong></td><td><strong>先过滤掉故障或失效的服务实例，然后再选择并发量较小的服务实例。</strong></td></tr>
+<tr><td><strong>7</strong></td><td><strong>ZoneAvoidanceRule</strong></td><td><code>默认的负载均衡策略</code><strong>，综合判断服务所在区域（zone）的性能和服务（server）的可用性，来选择服务实例。在没有区域的环境下，该策略与轮询（RandomRule）策略类似。</strong></td></tr>
+</tbody>
+</table>
+<p><strong>探究一些ZoneAvoidanceRule,通过调用父类PredicateBasedRule的Choose函数，服务数量进行一个取模运算。</strong></p>
+<p><strong>为了保持线程安全，Ribbon使用CAS,和原子类保证了线程的安全。</strong></p>
+<pre><code>private int incrementAndGetModulo(int modulo) {
+ &nbsp; &nbsp;for (;;) {
+ &nbsp; &nbsp; &nbsp; &nbsp;int current = nextIndex.get();
+ &nbsp; &nbsp; &nbsp; &nbsp;int next = (current + 1) % modulo;
+ &nbsp; &nbsp; &nbsp; &nbsp;if (nextIndex.compareAndSet(current, next) &amp;&amp; current &lt; modulo)
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return current;
+ &nbsp;  }
+}
+</code></pre>
+<h4 id="toc_h4_27"><strong>更改负载均衡算法</strong></h4>
+<h5 id="toc_h5_28"><strong>指定不同的服务使用不同的负载均衡算法</strong></h5>
+<pre><code>#访问不同的服务可以使用不同的算法规则
+provider: &nbsp;#先写服务提供者的应用名称
+  rabbion:
+ &nbsp; &nbsp; NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule 
+</code></pre>
+<h5 id="toc_h5_29"><strong>更改全局的负载均衡算法</strong></h5>
+<pre><code>@Bean
+public IRule myRule(){
+ &nbsp; &nbsp;return new RandomRule();
+}
+</code></pre>
+<p><strong>由于IRule是一个接口，所以我可以通过实现这个接口，自定义自己的负载均衡算法。</strong></p>
+<h2 id="toc_h2_30"><strong>OpenFeign：Spring Cloud声明式服务调用组件</strong></h2>
+<p><strong>OpenFeign是一个Web声明式的Http客户端调用工具，提供接口和注解形式调用</strong></p>
+<p><strong>OpenFeign是一个声明式RESTful网络请求客户端。OpenFeign会根据带有注解的函数信息构建出网络请求的模板，在发送网络请求之前，OpenFeign会将函数的参数值设置到这些请求模板中。虽然OpenFeign只能支持基于文本的网络请求，但是它可以极大简化网络请求的实现，方便编程人员快速构建自己的网络请求应用</strong></p>
+<h4 id="toc_h4_31"><strong>OpenFeign 常用注解</strong></h4>
+<p>**使用 OpenFegin 进行远程服务调用时，常用注解如下表。 **</p>
+<table>
+<thead>
+<tr><th><strong>注解</strong></th><th><strong>说明</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>@FeignClient</strong></td><td><strong>该注解用于通知 OpenFeign 组件对 @RequestMapping 注解下的接口进行解析，并通过动态代理的方式产生实现类，实现负载均衡和服务调用。</strong></td></tr>
+<tr><td><strong>@EnableFeignClients</strong></td><td><strong>该注解用于开启 OpenFeign 功能，当 Spring Cloud 应用启动时，OpenFeign 会扫描标有 @FeignClient 注解的接口，生成代理并注册到 Spring 容器中。</strong></td></tr>
+<tr><td><strong>@RequestMapping</strong></td><td><strong>Spring MVC 注解，在 Spring MVC 中使用该注解映射请求，通过它来指定控制器（Controller）可以处理哪些 URL 请求，相当于 Servlet 中 web.xml 的配置。</strong></td></tr>
+<tr><td><strong>@GetMapping</strong></td><td><strong>Spring MVC 注解，用来映射 GET 请求，它是一个组合注解，相当于 @RequestMapping(method = RequestMethod.GET) 。</strong></td></tr>
+<tr><td><strong>@PostMapping</strong></td><td><strong>Spring MVC 注解，用来映射 POST 请求，它是一个组合注解，相当于 @RequestMapping(method = RequestMethod.POST) 。</strong></td></tr>
+</tbody>
+</table>
+<h4 id="toc_h4_32"><strong>OpenFeign的入门</strong></h4>
+<pre><code>&lt;!--添加 OpenFeign 依赖--&gt;
+&lt;dependency&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>开启OpenFeign服务</strong><code>@EnableFeignClients</code></p>
+<h5 id="toc_h5_33"><strong>简单应用</strong></h5>
+<p><strong>使用OpenFeign，UserServer远程调用OrderServer中DoOrder接口</strong></p>
+<p><strong>OrderServer</strong></p>
+<pre><code>@RestController
+public class OrderController {
+ &nbsp; &nbsp;@GetMapping("/DoOrder")
+ &nbsp; &nbsp;public String DoOrder(){
+ &nbsp; &nbsp; &nbsp; &nbsp;return &nbsp;"用户下了订单";
+ &nbsp;  }
+}
+</code></pre>
+<p><strong>在UserServer中需要定义一个接口</strong></p>
+<pre><code>@FeignClient(value = "eureka-client-a") //服务名称
+@Component
+public interface UserOrderFeign {
+ &nbsp; &nbsp;//需要远程调用服务方法的方法签名
+ &nbsp; &nbsp;@GetMapping("/DoOrder")
+ &nbsp; &nbsp;public String DoOrder();
+}
+</code></pre>
+<pre><code>@RestController
+public class UserDoOrder {
+ &nbsp; &nbsp;@Autowired
+ &nbsp; &nbsp;private UserOrderFeign userOrderFeign;
+ &nbsp; &nbsp;@GetMapping("/UserDoOrder")
+ &nbsp; &nbsp;public String UserDoOrder(){
+ &nbsp; &nbsp; &nbsp; &nbsp;return userOrderFeign.DoOrder();
+ &nbsp;  }
+}
+</code></pre>
+<p><strong>注意点：如果在我们请求订单模块时，订单模块需要对数据库进行操作，可能会比较的消耗时间。那么我们的UserOrder会不会出现超时异常，通过实验，结果是UserOrder会抛出一个超时异常。</strong></p>
+<h5 id="toc_h5_34"><strong>修改OpenFeign远程调用的超时时间</strong></h5>
+<p><strong>由于OpenFeign的原理是将Ribbon进行一个封装，所以如果我们希望修改OpenFeign的超时时间的话，其实质是修改Ribbon的配置。默认超时时间默认是1S</strong></p>
+<pre><code>ribbon:
+ &nbsp;ReadTimeout: 3000 #访问超时时间
+ &nbsp;ConnectTimeout: 3000 #连接超时时间
+</code></pre>
+<h4 id="toc_h4_35"><strong>OpenFeign核心探索</strong></h4>
+<p><strong>OPenFeign使用一个注解就可以实现远程调用是如何做到</strong></p>
+<p><strong>可以猜测这个接口一个会议代理对象，我们知道只有两种代理的方式(JDK动态代理，cglib动态代理)</strong></p>
+<p><strong>JDK动态代理为</strong><code>接口创建代理实例</code><strong>，</strong></p>
+<p><strong>CGLIB通过</strong><code>继承方式实现代理</code></p>
+<p><strong>所以OPenFeign一定是采用的是JDK动态代理生成代理对象的</strong></p>
+<pre><code> &nbsp; @Test
+void contextLoads() {
+ &nbsp; &nbsp;UserOrderFeign o = (UserOrderFeign)Proxy.newProxyInstance(EurekaClientBApplication.class.getClassLoader(), new Class[]{UserOrderFeign.class}, new InvocationHandler() {
+ &nbsp; &nbsp; &nbsp; &nbsp;@Override
+ &nbsp; &nbsp; &nbsp; &nbsp;public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/*
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 通过代理获取到方法注解上的API名称
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 通过获取接口上方的FeignClient()中的Value,应用的名称,结合上Eureka的方法发现
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 通过拼接URL，使用Ribbon向URL接口发送请求就可以实现远程调用
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* */
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//获取API
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;GetMapping annotation = method.getAnnotation(GetMapping.class);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String[] Api = annotation.value();
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String API = Api[0];
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//获取应用名称
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Class&lt;?&gt; aClass = method.getDeclaringClass();
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;FeignClient feignClient = aClass.getAnnotation(FeignClient.class);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String appName = feignClient.value();
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//拼接URL
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String url="http://"+appName+"/"+API;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//使用Ribbon发送请求实现负载均衡
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String forObject = restTemplate.getForObject(url, String.class);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return forObject;
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp;  });
+ &nbsp; &nbsp;//使用JDK动态代理所以一定会调用invoke方法,类似与AOP机制
+ &nbsp; &nbsp;String s = o.DoOrder();
+ &nbsp; &nbsp;System.out.println(s);
+}
+</code></pre>
+<h4 id="toc_h4_36"><strong>OpenFeign 日志增强</strong></h4>
+<p>** Logger.Level 的具体级别如下：**</p>
+<ul>
+<li><strong>NONE：不记录任何信息。</strong></li>
+<li><strong>BASIC：仅记录请求方法、URL 以及响应状态码和执行时间。</strong></li>
+<li><strong>HEADERS：除了记录 BASIC 级别的信息外，还会记录请求和响应的头信息。</strong></li>
+<li><strong>FULL：记录所有请求与响应的明细，包括头信息、请求体、元数据等等。</strong></li>
+</ul>
+<pre><code>  /**
+   * Controls the level of logging.
+   */
+  public enum Level {
+    /**
+     * No logging.
+     */
+    NONE,
+    /**
+     * Log only the request method and URL and the response status code and execution time.
+     */
+    BASIC,
+    /**
+     * Log the basic information along with request and response headers.
+     */
+    HEADERS,
+    /**
+     * Log the headers, body, and metadata for both requests and responses.
+     */
+    FULL
+  }
+</code></pre>
+<p><strong>在配置文件中开启接口的日志级别</strong></p>
+<pre><code>logging:
+  level:
+    #feign 日志以什么样的级别监控该接口
+    net.biancheng.c.service.DeptFeignService: debug
+</code></pre>
+<pre><code>@Bean
+public Logger.Level level(){
+    return Logger.Level.FULL;
+}
+</code></pre>
+<h2 id="toc_h2_37"><strong>Hystrix：Spring Cloud服务熔断与降级组件</strong></h2>
+<h3 id="toc_h3_38"><strong>服务雪崩</strong></h3>
+<p><strong>在一个微服务系统中，我们的一个服务可能是一个链式调用的，A-&gt;B-&gt;C如果C发生了宕机的话，那么A,B中的线程只会在等待超时之后才会将线程回收，在并发量很大的时候，就会出现服务线程无法及时的回收，导致整个服务器出现崩溃。</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231212123227726.png?lastModify=1702805464" alt="image-20231212123227726"></p>
+<p><strong>解决方案：</strong></p>
+<ul>
+<li><strong>调整我们的超时时间，将超时时间缩短就可以做到及时的回收我们的线程。缺点如果服务器中本身就存在服务耗时比较长，这种方式就会影响到我们正常的服务了。</strong></li>
+<li><strong>如果我们上层的服务知道下层的服务已经发生了宕机的话，那么我之后的请求就可以直接的返回，不需要等待超时时间。及时回收线程。</strong></li>
+</ul>
+<p><strong>这种方式并不是保证服务的正常服务的，知道保证当存在一个服务宕机时，缓解服务器压力。</strong></p>
+<h3 id="toc_h3_39"><strong>熔断器</strong></h3>
+<p><strong>熔断器（Circuit Breaker）一词来源物理学中的电路知识，它的作用是当线路出现故障时，迅速切断电源以保护电路的安全。</strong></p>
+<p><strong>与物理学中的熔断器作用相似，微服务架构中的熔断器能够在某个服务发生故障后，向服务调用方返回一个符合预期的、可处理的降级响应（FallBack），而不是长时间的等待或者抛出调用方无法处理的异常。</strong>=<strong>这样就保证了服务调用方的线程不会被长时间、不必要地占用，避免故障在微服务系统中的蔓延，防止系统雪崩效应的发生</strong>=<strong>。</strong></p>
+<h3 id="toc_h3_40"><strong>Hystrix的基本使用</strong></h3>
+<p><strong>导入依赖</strong></p>
+<pre><code>&lt;!--hystrix 依赖--&gt;
+&lt;dependency&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>书写一个Hystrix实现类作为超时失败后的备选方案</strong></p>
+<pre><code>@Component
+public class UserOrderHystrix implements UserOrderFeign {
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public String DoOrder() {
+ &nbsp; &nbsp; &nbsp; &nbsp;return "我是服务超时时的备选方案";
+ &nbsp;  }
+}
+</code></pre>
+<p><strong>当然只有经过了远程调用的方法才会需要一个熔断所以需要在Feign接口上面指定失败的回调类是什么</strong></p>
+<pre><code>@FeignClient(value = "eureka-client-a",fallback = UserOrderHystrix.class) //服务名称
+public interface UserOrderFeign {
+ &nbsp; &nbsp;@GetMapping("/DoOrder")
+ &nbsp; &nbsp;public String DoOrder();
+}
+</code></pre>
+<p><strong>还需要开启Hystrix服务</strong></p>
+<p><strong>@EnableHystrix</strong></p>
+<pre><code>feign:
+  hystrix:
+ &nbsp;  enabled: true #在SpringCloud F版本之前是默认开启的。
+</code></pre>
+<h3 id="toc_h3_41"><strong>hystrix的配置文件</strong></h3>
+<p><strong>隔离级别默认是使用thread</strong></p>
+<p><strong>thread消费者会为每个提供者分配好线程(默认是10个),</strong></p>
+<p><strong>优点： 每个线程都有自己的线程组，高度隔离，互不影响</strong></p>
+<p><strong>缺点：存在线程的切换，效率比较低</strong></p>
+<p><strong>场景：并发量比较大的场景</strong></p>
+<p><strong>Semaphore：</strong></p>
+<p><strong>优点：不会存在线程的切换，效率比较高。</strong></p>
+<p><strong>缺点：但是提供者之间存在影响。</strong></p>
+<p><strong>并发量比较小，内部调用。</strong></p>
+<pre><code>hystrix: #hystrix的全局控制
+  command:
+ &nbsp;  default: #default是全局控制，也可以换成的单个方法控制，把default换成方法名
+ &nbsp; &nbsp;  circuitBreaker:
+ &nbsp; &nbsp; &nbsp;  enabled: true #开启短路器
+ &nbsp; &nbsp; &nbsp;  requestVolumeThreshold: 3 #失败次数(阈值) 10次
+ &nbsp; &nbsp; &nbsp;  sleepWindowInMilliseconds: 20000 #窗口时间
+ &nbsp; &nbsp; &nbsp;  errorThresholdPercentage: 60 #失败率
+ &nbsp; &nbsp;  execution:
+ &nbsp; &nbsp; &nbsp;  isolation:
+ &nbsp; &nbsp; &nbsp; &nbsp;  Strategy: thread #隔离方式thread线程隔离集合和semaphore信号量隔离
+ &nbsp; &nbsp; &nbsp; &nbsp;  thread:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  timeoutInMilliseconds: 3000 #调用超时时长
+ &nbsp; &nbsp;  fallback:
+ &nbsp; &nbsp; &nbsp;  isolation:
+ &nbsp; &nbsp; &nbsp; &nbsp;  semaphore:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  maxConcurrentRequests: 1000 #信号量隔离级别最大并发数
+</code></pre>
+<p><strong>上面是全部配置。</strong></p>
+<p><strong>摸一个方法配置,在方法使用</strong></p>
+<pre><code>@HystrixCommand(fallbackMethod = "deptCircuitBreaker_fallback", commandProperties = {
+ &nbsp; &nbsp; &nbsp; &nbsp;//以下参数在 HystrixCommandProperties 类中有默认配置
+ &nbsp; &nbsp; &nbsp; &nbsp;@HystrixProperty(name = "circuitBreaker.enabled", value = "true"), //是否开启熔断器
+ &nbsp; &nbsp;@HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds",value = "1000"), //统计时间窗
+ &nbsp; &nbsp; &nbsp; &nbsp;@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), //统计时间窗内请求次数
+ &nbsp; &nbsp; &nbsp; &nbsp;@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), //休眠时间窗口期
+ &nbsp; &nbsp; &nbsp; &nbsp;@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"), //在统计时间窗口期以内，请求失败率达到 60% 时进入熔断状态
+})
+</code></pre>
+<h3 id="toc_h3_42"><strong>Hystrix 服务熔断</strong></h3>
+<p><strong>熔断机制是为了应对雪崩效应而出现的一种微服务链路保护机制。</strong></p>
+<p><strong>当微服务系统中的某个微服务不可用或响应时间太长时，为了保护系统的整体可用性，熔断器会暂时切断请求对该服务的调用，并快速返回一个友好的错误响应。这种熔断状态不是永久的，在经历了一定的时间后，熔断器会再次检测该微服务是否恢复正常，若服务恢复正常则恢复其调用链路。</strong></p>
+<h4 id="toc_h4_43"><strong>熔断状态</strong></h4>
+<p><strong>在熔断机制中涉及了三种熔断状态：</strong></p>
+<ul>
+<li><strong>熔断关闭状态（Closed）：当服务访问正常时，熔断器处于关闭状态，服务调用方可以正常地对服务进行调用。</strong></li>
+<li><strong>熔断开启状态（Open）：默认情况下，在固定时间内接口调用出错比率达到一个阈值（例如 50%），熔断器会进入熔断开启状态。进入熔断状态后，后续对该服务的调用都会被切断，熔断器会执行本地的降级（FallBack）方法。</strong></li>
+<li><strong>半熔断状态（Half-Open）： 在熔断开启一段时间之后，熔断器会进入半熔断状态。在半熔断状态下，熔断器会尝试恢复服务调用方对服务的调用，允许部分请求调用该服务，并监控其调用成功率。如果成功率达到预期，则说明服务已恢复正常，熔断器进入关闭状态；如果成功率仍旧很低，则重新进入熔断开启状态。</strong></li>
+</ul>
+<p><strong>三种熔断状态之间的转化关系如下图：</strong></p>
+<p><img src="https://b3logfile.com/file/2023/12/solo-fetchupload-15683653688569267439-t025GNV.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="熔断状态转换"></p>
+<h4 id="toc_h4_44"><strong>Hystrix 实现熔断机制</strong></h4>
+<p><strong>在 Spring Cloud 中，熔断机制是通过 Hystrix 实现的。Hystrix 会监控微服务间调用的状况，当失败调用到一定比例时（例如 5 秒内失败 20 次），就会启动熔断机制。</strong></p>
+<p><strong>Hystrix 实现服务熔断的步骤如下：</strong></p>
+<ol>
+<li><strong>当服务的调用出错率达到或超过 Hystix 规定的比率（默认为 50%）后，熔断器进入熔断开启状态。</strong></li>
+<li><strong>熔断器进入熔断开启状态后，Hystrix 会启动一个休眠时间窗，在这个时间窗内，该服务的降级逻辑会临时充当业务主逻辑，而原来的业务主逻辑不可用。</strong></li>
+<li><strong>当有请求再次调用该服务时，会直接调用降级逻辑快速地返回失败响应，以避免系统雪崩。</strong></li>
+<li><strong>当休眠时间窗到期后，Hystrix 会进入半熔断转态，允许部分请求对服务原来的主业务逻辑进行调用，并监控其调用成功率。</strong></li>
+<li><strong>如果调用成功率达到预期，则说明服务已恢复正常，Hystrix 进入熔断关闭状态，服务原来的主业务逻辑恢复；否则 Hystrix 重新进入熔断开启状态，休眠时间窗口重新计时，继续重复第 2 到第 5 步。</strong></li>
+</ol>
+<h2 id="toc_h2_45"><strong>第一个微服务架构</strong></h2>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231212192629124.png?lastModify=1702805464" alt="image-20231212192629124"></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231212192642964.png?lastModify=1702805464" alt="image-20231212192642964"></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231212193207679.png?lastModify=1702805464" alt="image-20231212193207679"></p>
+<h2 id="toc_h2_46"><strong>sleuth：链路追踪</strong></h2>
+<h3 id="toc_h3_47"><strong>什么是链路追踪</strong></h3>
+<p><strong><strong>单纯的理解链路追踪，就是指一次任务的开始到结束，期间调用的所有系统及耗时（时间跨度）都可以完整记录下来。</strong></strong></p>
+<h3 id="toc_h3_48"><strong>zipkin</strong></h3>
+<p><strong>Zipkin是Twitter开源的调用链分析工具，目前基于springcloud sleuth得到了广泛的使用，特点是轻量，使用部署简单。用于展示链路情况。</strong></p>
+<h3 id="toc_h3_49"><strong>基本使用</strong></h3>
+<p><strong>导入sleuth依赖：因为sleth需要记录没有一次的调用情况，所以所有的consumer-server和provider-server基本需要导入依赖。</strong></p>
+<pre><code>&lt;dependency&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-starter-zipkin&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="toc_h3_50"><strong>zipkin下载</strong></h3>
+<p><strong>Spring Cloud Edgware 版本之后，改为强制采用官方提供的 Jar 包的形式启动。</strong>**<br>
+****下载地址：**<a href="https://repo1.maven.org/maven2/io/zipkin/zipkin-server/" target="_blank">https://repo1.maven.org/maven2/io/zipkin/zipkin-server/</a></p>
+<h3 id="toc_h3_51"><strong>zipkin启动</strong></h3>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231213164006133.png?lastModify=1702805464" alt="image-20231213164006133"></p>
+<p><strong>添加配置</strong></p>
+<pre><code>spring:
+  application:
+ &nbsp;  name: user-service
+  zipkin:
+ &nbsp;  base-url: http://localhost:9411
+  sleuth:
+ &nbsp;  sampler:
+ &nbsp; &nbsp;  probability: 1 #配置采样率 默认的采样比例为:0.1,即10%,所设置的值介于0 到 1,1表示会全部采集
+ &nbsp; &nbsp;  rate: 10 #为了使用速率限制采样器，选择每秒间隔接受trace量，最小数字为0
+</code></pre>
+<p><strong>将所有的项目启动之后访问</strong><a href="http://127.0.0.1:9411/" target="_blank">http://127.0.0.1:9411/</a></p>
+<h2 id="toc_h2_52"><strong>Admin监控</strong></h2>
+<h3 id="toc_h3_53"><strong>功能</strong></h3>
+<p><strong>Spring Boot Admin提供了很多服务治理方面的功能，利用它能节省我们很多在治理服务方面的时间和精力Spring Boot Admin提供了如下功能（包括但不限于）：</strong></p>
+<ul>
+<li><strong>显示健康状态及详细信息，如JVM和内存指标、数据源指标、缓存指标</strong></li>
+<li><strong>跟踪并下载日志文件</strong></li>
+<li><strong>查看jvm系统-和环境属性</strong></li>
+<li><strong>查看Spring启动配置属性方便loglevel管理</strong></li>
+<li><strong>查看线程转储视图http-traces</strong></li>
+<li><strong>查看http端点查看计划任务</strong></li>
+<li><strong>查看和删除活动会话(使用spring-session)</strong></li>
+<li><strong>状态更改通知(通过电子邮件、Slack、Hipchat…)</strong></li>
+<li><strong>状态变化的事件日志(非持久性)</strong></li>
+<li><strong>下载 heapdump</strong></li>
+<li><strong>查看 Spring Boot 配置属性</strong></li>
+<li><strong>支持 Spring Cloud 的环境端点和刷新端点</strong></li>
+<li><strong>支持 K8s</strong></li>
+<li><strong>易用的日志级别管理</strong></li>
+<li><strong>与JMX-beans交互</strong></li>
+<li><strong>查看线程转储</strong></li>
+<li><strong>查看http跟踪</strong></li>
+<li><strong>查看auditevents</strong></li>
+<li><strong>查看http-endpoints</strong></li>
+<li><strong>查看计划任务</strong></li>
+<li><strong>查看和删除活动会话（使用 Spring Session ）</strong></li>
+<li><strong>查看Flyway/Liquibase数据库迁移</strong></li>
+<li><strong>状态变更通知（通过电子邮件，Slack，Hipchat等，支持钉钉）</strong></li>
+<li><strong>状态更改的事件日志（非持久化）</strong></li>
+</ul>
+<p><strong>用于管理和监视您的Spring Boot®应用程序。这些应用程序在我们的Spring Boot Admin Client中注册（通过HTTP），或者是通过Spring Cloud®（例如Eureka，Consul）发现的。 UI只是Spring Boot Actuator端点之上的Vue.js应用程序。</strong></p>
+<h3 id="toc_h3_54"><strong>使用</strong></h3>
+<p>**admin存在连个端：一个service端一个是client端，在springBoot项目中使用 **<a href="https://juejin.cn/post/7052857798530433031" target="_blank"><strong>Spring Boot Admin，贼好使！ - 掘金 (juejin.cn)</strong></a></p>
+<p><strong>在SpringCloud项目中使用可以结合Eureka获取到所有服务的信息</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231213174837421.png?lastModify=1702805464" alt="image-20231213174837421"></p>
+<h4 id="toc_h4_55"><strong>配置开放所有监控项</strong></h4>
+<pre><code># 开启监控所有项
+management:
+  endpoints:
+ &nbsp; &nbsp; &nbsp; &nbsp; web:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exposure:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  includem: "*"
+</code></pre>
+<p><strong>注意这个配置并不是springBoot自带的，而是actuator依赖带的，我们需要在相应的server服务导入依赖</strong></p>
+<pre><code>&lt;dependency&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>最终效果</strong></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231213185557060.png?lastModify=1702805464" alt="image-20231213185557060"></p>
+<h2 id="toc_h2_56"><strong>Gateway：Spring Cloud API网关组件</strong></h2>
+<p><a href="https://c.biancheng.net/springcloud/gateway.html" target="_blank"><strong>Gateway：Spring Cloud API网关组件（非常详细） (biancheng.net)</strong></a></p>
+<p><strong>在微服务架构中，一个系统往往由多个微服务组成，而这些服务可能部署在不同机房、不同地区、不同域名下。这种情况下，客户端（例如浏览器、手机、软件工具等）想要直接请求这些服务，就需要知道它们具体的地址信息，例如 IP 地址、端口号等。</strong></p>
+<p><strong>API 网关是一个搭建在客户端和微服务之间的服务，我们可以在 API 网关中处理一些非业务功能的逻辑，例如权限验证、监控、缓存、请求路由等。</strong></p>
+<p><strong>API 网关就像整个微服务系统的门面一样，是系统对外的唯一入口。有了它，客户端会先将请求发送到 API 网关，然后由 API 网关根据请求的标识信息将请求转发到微服务实例。</strong></p>
+<p><img src="https://b3logfile.com/file/2023/12/solo-fetchupload-4476513277075357031-7UIatjA.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="img"></p>
+<p><strong>所以可以猜测一下网关的功能应该需要有哪些</strong></p>
+<ol>
+<li><strong>路由转发，所有的请求全部需要在网关这通过相应的方式找到具体的API,转发到具体的服务上。</strong></li>
+<li><strong>安全方面，不需要直接将微服务里面的服务端口暴露出去。</strong></li>
+<li><strong>负载均衡。一个服务如果有多台机器运行，那么我们需要负载均衡一下，缓解服务器压力。</strong></li>
+</ol>
+<p><strong>作用：就是可以实现用户的验证登陆、解决跨域、日志拦截、权限控制、限流熔断、负载均衡、黑名单和白名单机制等。</strong></p>
+<p><strong><strong>Zuul与GateWay有那些区别</strong></strong></p>
+<p><strong>Zuul网关属于NetFix公司开源框架，属于第一代微服务网关</strong></p>
+<p><strong>GateWay属于SpringCloud自己研发的网关框架，属于第二代微服务网关。相比来说GateWay比Zuul网关的性能要好很多。</strong></p>
+<p>**Zuul 1.0网关底层基于Servlet实现，阻塞式（BIO）api，不支持长连接 **</p>
+<p><strong>Zuul2.0 NIO</strong></p>
+<p><strong>SpringBoot-WebSpringCloudGateWay基于Spring5构建，能够实现响应式非阻塞式(NIO)api，支持长连接，能够更好的支持Spring体系产品，依赖SpringBoot-WebFux</strong></p>
+<p><strong>springCloud没有集成和支持Zuul2.0</strong></p>
+<p><strong>SpringCloudGateway是基于webFlux框架实现的，而webFlux框架底层则使用了高性能的</strong><code>Reactor模式</code><strong>通信框架的</strong><code>Netty</code></p>
+<p><strong>网关服务的端口号一般多少：80或者443</strong></p>
+<h4 id="toc_h4_57"><strong>Spring Cloud Gateway 核心概念</strong></h4>
+<p><strong>Spring Cloud GateWay 最主要的功能就是路由转发，而在定义转发规则时主要涉及了以下三个核心概念，如下表。</strong></p>
+<table>
+<thead>
+<tr><th><strong>核心概念</strong></th><th><strong>描述</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Route（路由）</strong></td><td><strong>网关最基本的模块。它由一个 ID、一个目标 URI、一组断言（Predicate）和一组过滤器（Filter）组成。</strong></td></tr>
+<tr><td><strong>Predicate（断言）</strong></td><td><strong>路由转发的判断条件，我们可以通过 Predicate 对 HTTP 请求进行匹配，例如请求方式、请求路径、请求头、参数等，如果请求与断言匹配成功，则将请求转发到相应的服务。</strong></td></tr>
+<tr><td><strong>Filter（过滤器）</strong></td><td><strong>过滤器，我们可以使用它对请求进行拦截和修改，还可以使用它对上文的响应进行再处理。</strong></td></tr>
+</tbody>
+</table>
+<h4 id="toc_h4_58"><strong>Gateway 的工作流程</strong></h4>
+<p><strong>Spring Cloud Gateway 工作流程如下图。</strong></p>
+<p><img src="https://b3logfile.com/file/2023/12/solo-fetchupload-17896667180535188799-fAmt02e.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="Spring Cloud Gateway 工作流程"></p>
+<p><strong>Spring Cloud Gateway 工作流程说明如下：</strong></p>
+<ol>
+<li><strong>客户端将请求发送到 Spring Cloud Gateway 上。</strong></li>
+<li><strong>Spring Cloud Gateway 通过 Gateway Handler Mapping 找到与请求相匹配的路由，将其发送给 Gateway Web Handler。</strong></li>
+<li><strong>Gateway Web Handler 通过指定的过滤器链（Filter Chain），将请求转发到实际的服务节点中，执行业务逻辑返回响应结果。</strong></li>
+<li><strong>过滤器之间用虚线分开是因为过滤器可能会在转发请求之前（pre）或之后（post）执行业务逻辑。</strong></li>
+<li><strong>过滤器（Filter）可以在请求被转发到服务端前，对请求进行拦截和修改，例如参数校验、权限校验、流量监控、日志输出以及协议转换等。</strong></li>
+<li><strong>过滤器可以在响应返回客户端之前，对响应进行拦截和再处理，例如修改响应内容或响应头、日志输出、流量监控等。</strong></li>
+<li><strong>响应原路返回给客户端。</strong></li>
+</ol>
+<h4 id="toc_h4_59"><strong>Nginx和Gateway区别</strong></h4>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231214125132137.png?lastModify=1702805464" alt="image-20231214125132137"></p>
+<p><strong>相同点：</strong></p>
+<p><strong>都是可以实现api的拦截，负载均衡、反向代理、请求过滤，可以完全和网关实现一样的效果。</strong></p>
+<p><strong>不同点：</strong></p>
+<p><strong>Nginx性能好，并发量在30000到50000,使用C+lua编写。</strong></p>
+<p><strong>GateWay，性能较差，并发量在1000，使用java编写</strong></p>
+<h4 id="toc_h4_60"><strong>GateWay入门</strong></h4>
+<p><strong>导入依赖</strong></p>
+<pre><code>&lt;dependency&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-cloud-starter-gateway&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>注意的当导入了GateWay的依赖之后，就不能导入spring-boot-starter-web依赖了，因为web默认的服务器是tomcat,而GataWay的服务器是Netty。</strong></p>
+<p><strong>GateWay配置文件</strong></p>
+<pre><code>server:
+  port: 80
+spring:
+  application:
+ &nbsp;  name: gateway-server
+  cloud:
+ &nbsp;  gateway:
+ &nbsp; &nbsp;  enabled: true #只要添加了依赖默认开启
+ &nbsp; &nbsp;  routes:
+ &nbsp; &nbsp; &nbsp;  - id: user-server-route
+ &nbsp; &nbsp; &nbsp; &nbsp;  uri: http://localhost:88
+ &nbsp; &nbsp; &nbsp; &nbsp;  predicates:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  - Path=/UserDoOrder
+</code></pre>
+<p><strong>通过代码的方式实现路由</strong></p>
+<pre><code>package com.zl.config;
+
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class GateWayConfig {
+ &nbsp; &nbsp;/*
+ &nbsp; &nbsp;* 代码实现和yml实现可以一起使用
+ &nbsp; &nbsp;* */
+ &nbsp; &nbsp;@Bean
+ &nbsp; &nbsp;public RouteLocator routeLocator(RouteLocatorBuilder builder){
+ &nbsp; &nbsp; &nbsp; &nbsp;return builder.routes()
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .route("dance-id",r-&gt;r.path("/v/dance").uri("https://www.bilibili.com"))
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  .build();
+ &nbsp;  }
+}
+</code></pre>
+<h4 id="toc_h4_61"><strong>Spring Cloud Gateway 动态路由</strong></h4>
+<p><strong>默认情况下，Spring Cloud Gateway 会根据服务注册中心（例如 Eureka Server）中维护的服务列表，以服务名（spring.application.name）作为路径创建动态路由进行转发，从而实现动态路由功能。</strong></p>
+<p><strong>我们可以在配置文件中，将 Route 的 uri 地址修改为以下形式。</strong></p>
+<pre><code>lb://service-name
+</code></pre>
+<p><strong>以上配置说明如下：</strong></p>
+<ul>
+<li><strong>lb：uri 的协议，表示开启 Spring Cloud Gateway 的负载均衡功能。</strong></li>
+<li><strong>service-name：服务名，Spring Cloud Gateway 会根据它获取到具体的微服务地址。</strong></li>
+</ul>
+<pre><code>server:
+  port: 81
+spring:
+  application:
+ &nbsp;  name: gateway-server
+  cloud:
+ &nbsp;  gateway:
+ &nbsp; &nbsp;  enabled: true #只要添加了依赖默认开启
+ &nbsp; &nbsp;  routes:
+ &nbsp; &nbsp; &nbsp;  - id: user-server-route
+ &nbsp; &nbsp; &nbsp; &nbsp;  uri: lb://user-service &nbsp;#使用lb:将会实现一个负载均衡的效果。
+ &nbsp; &nbsp; &nbsp; &nbsp;  predicates:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  - Path=/UserDoOrder
+ &nbsp; &nbsp;  discovery:
+ &nbsp; &nbsp; &nbsp;  locator:
+ &nbsp; &nbsp; &nbsp; &nbsp;  enabled: true #开启动态路由,但是在访问API实现，需要在前面添加/应用名称/APi
+ &nbsp; &nbsp; &nbsp; &nbsp;  lower-case-service-id: true #开启服务名称小写
+# 需要将GateWay服务注册到Eureka服务上面去，因为GateWay需要通过拉取服务列表，结合服务发现实现动态路由的效果。
+eureka:
+  client:
+ &nbsp;  service-url: &nbsp;#指定注册地址
+ &nbsp; &nbsp;  defaultZone: http://localhost:8761/eureka
+ &nbsp;  register-with-eureka: true #是否注册到注册中心上去
+ &nbsp;  fetch-registry: true #应用是否拉取服务列表到本地
+ &nbsp;  registry-fetch-interval-seconds: 3 #间隔多少时间拉取列表到本地
+  instance:
+ &nbsp;  lease-renewal-interval-in-seconds: 5
+ &nbsp;  hostname: localhost
+ &nbsp;  prefer-ip-address: true
+ &nbsp;  instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+</code></pre>
+<h4 id="toc_h4_62">**断言工厂predicate **</h4>
+<p><a href="https://springdoc.cn/spring-cloud-gateway/#gateway-request-predicates-factories" target="_blank"><strong>Spring Cloud Gateway 中文文档 (springdoc.cn)</strong></a></p>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231214150244126.png?lastModify=1702805464" alt="image-20231214150244126"></p>
+<p><strong>常见的 Predicate 断言如下表（假设转发的 URI 为 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong>）。简单来说predicate就是给请求路由添加了一定限制条件。</strong></p>
+<table>
+<thead>
+<tr><th><strong>断言</strong></th><th><strong>示例</strong></th><th><strong>说明</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Path</strong></td><td><strong>- Path=/dept/list/</strong>**</td><td><strong>当请求路径与 /dept/list/</strong> 匹配时，该请求才能被转发到 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong> 上。**</td></tr>
+<tr><td><strong>Before</strong></td><td><strong>- Before=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]</strong></td><td><strong>在 2021 年 10 月 20 日 11 时 47 分 34.255 秒之前的请求，才会被转发到 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong> 上。</strong></td></tr>
+<tr><td><strong>After</strong></td><td><strong>- After=2021-10-20T11:47:34.255+08:00[Asia/Shanghai]</strong></td><td><strong>在 2021 年 10 月 20 日 11 时 47 分 34.255 秒之后的请求，才会被转发到 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong> 上。</strong></td></tr>
+<tr><td><strong>Between</strong></td><td><strong>- Between=2021-10-20T15:18:33.226+08:00[Asia/Shanghai],2021-10-20T15:23:33.226+08:00[Asia/Shanghai]</strong></td><td><strong>在 2021 年 10 月 20 日 15 时 18 分 33.226 秒 到 2021 年 10 月 20 日 15 时 23 分 33.226 秒之间的请求，才会被转发到 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong> 服务器上。</strong></td></tr>
+<tr><td><strong>Cookie</strong></td><td><strong>- Cookie=name,c.biancheng.net</strong></td><td><strong>携带 Cookie 且 Cookie 的内容为 name=c.biancheng.net 的请求，才会被转发到 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong> 上。</strong></td></tr>
+<tr><td><strong>Header</strong></td><td><strong>- Header=X-Request-Id,\d+</strong></td><td><strong>请求头上携带属性 X-Request-Id 且属性值为整数的请求，才会被转发到 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong> 上。</strong></td></tr>
+<tr><td><strong>Method</strong></td><td><strong>- Method=GET</strong></td><td><strong>只有 GET 请求才会被转发到 <strong><a href="http://localhost:8001" target="_blank">http://localhost:8001</a></strong> 上。</strong></td></tr>
+</tbody>
+</table>
+<h4 id="toc_h4_63"><strong>Gateway过滤器</strong></h4>
+<h5 id="toc_h5_64"><strong>Filter 的分类</strong></h5>
+<p><strong>Spring Cloud Gateway 提供了以下两种类型的过滤器，可以对请求和响应进行精细化控制。</strong></p>
+<table>
+<thead>
+<tr><th><strong>过滤器类型</strong></th><th><strong>说明</strong></th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Pre 类型</strong></td><td><strong>这种过滤器在请求被转发到</strong>=<strong>微服务之前</strong>=<strong>可以对请求进行拦截和修改，</strong>=<strong>例如参数校验、权限校验、流量监控、日志输出以及协议转换等操作</strong>=<strong>。</strong></td></tr>
+<tr><td><strong>Post 类型</strong></td><td><strong>这种过滤器在微服务对请求</strong>=<strong>做出响应后</strong>=<strong>可以对响应进行拦截和再处理，</strong>=<strong>例如修改响应内容或响应头、日志输出、流量监控等</strong>=<strong>。</strong></td></tr>
+</tbody>
+</table>
+<p><strong>按照作用范围划分，Spring Cloud gateway 的 Filter 可以分为 2 类：</strong></p>
+<ul>
+<li><strong>GatewayFilter：应用在</strong><code>单个路由或者一组路由上</code><strong>的过滤器。</strong></li>
+<li><strong>GlobalFilter：应用在所有的路由上的过滤器。</strong></li>
+</ul>
+<h5 id="toc_h5_65"><strong>自定义GlobalFilter过滤器</strong></h5>
+<pre><code>package com.zl.filter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.server.RequestPath;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
+
+import java.net.URI;
+import java.util.HashMap;
+
+@Component
+
+public class myGlobalFilter implements GlobalFilter, Ordered {
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public Mono&lt;Void&gt; filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+ &nbsp; &nbsp; &nbsp; &nbsp;//可以通过exchange获取到相应的Request和Response
+ &nbsp; &nbsp; &nbsp; &nbsp;//通过Request获取到请求的一下参数
+ &nbsp; &nbsp; &nbsp; &nbsp;ServerHttpRequest request = exchange.getRequest();
+ &nbsp; &nbsp; &nbsp; &nbsp;URI uri = request.getURI();
+ &nbsp; &nbsp; &nbsp; &nbsp;RequestPath path = request.getPath();
+ &nbsp; &nbsp; &nbsp; &nbsp;//当请求失败之后可以使用response发送相应的JSON数据给前端 forExample code:403 message: "你没有权限"
+ &nbsp; &nbsp; &nbsp; &nbsp;ServerHttpResponse response = exchange.getResponse();
+ &nbsp; &nbsp; &nbsp; &nbsp;response.getHeaders().set("content-type","application/json:charset=utf-8");
+ &nbsp; &nbsp; &nbsp; &nbsp;HashMap&lt;String, Object&gt; map = new HashMap&lt;&gt;();
+ &nbsp; &nbsp; &nbsp; &nbsp;map.put("code",200);
+ &nbsp; &nbsp; &nbsp; &nbsp;map.put("message","你没有权限");
+ &nbsp; &nbsp; &nbsp; &nbsp;ObjectMapper objectMapper = new ObjectMapper();
+ &nbsp; &nbsp; &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;byte[] bytes = objectMapper.writeValueAsBytes(map);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;DataBuffer wrap = response.bufferFactory().wrap(bytes);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return response.writeWith(Mono.just(wrap));
+ &nbsp; &nbsp; &nbsp;  } catch (JsonProcessingException e) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;throw new RuntimeException(e);
+ &nbsp; &nbsp; &nbsp;  }
+// &nbsp; &nbsp; &nbsp;  return chain.filter(exchange);
+ &nbsp;  }
+ &nbsp; //配置当前过滤器的位置 数字越小越先执行
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public int getOrder() {
+ &nbsp; &nbsp; &nbsp; &nbsp;return 0;
+ &nbsp;  }
+}
+</code></pre>
+<h5 id="toc_h5_66"><strong>IP拦截</strong></h5>
+<pre><code>package com.zl.filter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+@Component
+public class IpCheckFilter implements GlobalFilter, Ordered {
+ &nbsp; &nbsp;public static final String blockList= "0:0:0:0:0:0:0:1";
+ &nbsp; &nbsp;/*
+ &nbsp; &nbsp;* 一般使用一个数据库来存储黑名单的IP,获取有的地方使用白名单。
+ &nbsp; &nbsp;* 两种的区别
+ &nbsp; &nbsp;* 黑名单表示在该名单中的IP是不可以进行访问的
+ &nbsp; &nbsp;* 百名单表示只有这个名单中的IP是可以进行访问的。
+ &nbsp; &nbsp;* 在网关中我不要做一下比较耗时的操作，比如查询数据库，因为网关并发量比较大。通常会将名单存储到redis中。
+ &nbsp; &nbsp;* 如果是名单IP比较少时，直接将IP保存到内存中
+ &nbsp; &nbsp;* */
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public Mono&lt;Void&gt; filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+ &nbsp; &nbsp; &nbsp; &nbsp;ServerHttpRequest request = exchange.getRequest();
+ &nbsp; &nbsp; &nbsp; &nbsp;//获取到访问这个的IP 通常IPV6,
+ &nbsp; &nbsp; &nbsp; &nbsp;String hostString = request.getRemoteAddress().getAddress().getHostName();
+ &nbsp; &nbsp; &nbsp; &nbsp;System.out.println(hostString);
+ &nbsp; &nbsp; &nbsp; &nbsp;//查询黑名单中是否存在该IP地址
+ &nbsp; &nbsp; &nbsp; &nbsp;if(!blockList.equals(hostString)){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return chain.filter(exchange);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;ServerHttpResponse response = exchange.getResponse();
+ &nbsp; &nbsp; &nbsp; &nbsp;HashMap&lt;Object, Object&gt; map = new HashMap&lt;&gt;();
+ &nbsp; &nbsp; &nbsp; &nbsp;response.getHeaders().set("content-type","application/json;charset=utf-8");
+ &nbsp; &nbsp; &nbsp; &nbsp;map.put("code",438);
+ &nbsp; &nbsp; &nbsp; &nbsp;map.put("message","你是黑名单");
+ &nbsp; &nbsp; &nbsp; &nbsp;ObjectMapper objectMapper = new ObjectMapper();
+ &nbsp; &nbsp; &nbsp; &nbsp;byte[] bytes = new byte[0];
+ &nbsp; &nbsp; &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bytes = objectMapper.writeValueAsBytes(map);
+ &nbsp; &nbsp; &nbsp;  } catch (JsonProcessingException e) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;throw new RuntimeException(e);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;DataBuffer wrap = response.bufferFactory().wrap(bytes);
+ &nbsp; &nbsp; &nbsp; &nbsp;return response.writeWith(Mono.just(wrap));
+ &nbsp;  }
+
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public int getOrder() {
+ &nbsp; &nbsp; &nbsp; &nbsp;return -5;
+ &nbsp;  }
+}
+</code></pre>
+<h5 id="toc_h5_67"><strong>自定义token拦截</strong></h5>
+<p><img src="file://C:/Users/pc/AppData/Roaming/Typora/typora-user-images/image-20231217120712581.png?lastModify=1702805464" alt="image-20231217120712581"></p>
+<pre><code>@Component
+/*
+* 1、获取到url,判断该URL是否不需要验证token
+* 2、获取请求头Authorization
+* 3、判断是否为null
+* 4、判断token是否存在与redis中
+* 5、进行放行与拦截
+* */
+public class tokenFilter implements GlobalFilter, Ordered {
+ &nbsp; &nbsp;private static List whiterList= Arrays.asList("/doLogin");
+ &nbsp; &nbsp;@Autowired
+ &nbsp; &nbsp;private StringRedisTemplate redisTemplate;
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public Mono&lt;Void&gt; filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+ &nbsp; &nbsp; &nbsp; &nbsp;RequestPath url = exchange.getRequest().getPath();
+ &nbsp; &nbsp; &nbsp; &nbsp;if(whiterList.contains(url)){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return chain.filter(exchange);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;HttpHeaders headers = exchange.getRequest().getHeaders();
+ &nbsp; &nbsp; &nbsp; &nbsp;List&lt;String&gt; authorization = headers.get("Authorization");
+ &nbsp; &nbsp; &nbsp; &nbsp;if(!CollectionUtils.isEmpty(authorization)){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;String token = authorization.get(0);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if(StringUtils.hasText(token)){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//判断token中是否存在token
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(redisTemplate.hasKey(token)){
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return chain.filter(exchange);
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;//对请求进行拦截
+ &nbsp; &nbsp; &nbsp; &nbsp;ServerHttpResponse response = exchange.getResponse();
+ &nbsp; &nbsp; &nbsp; &nbsp;Map&lt;String,Object&gt; map=new HashMap&lt;&gt;();
+ &nbsp; &nbsp; &nbsp; &nbsp;map.put("code",401);
+ &nbsp; &nbsp; &nbsp; &nbsp;map.put("msg","未授权");
+ &nbsp; &nbsp; &nbsp; &nbsp;ObjectMapper objectMapper = new ObjectMapper();
+ &nbsp; &nbsp; &nbsp; &nbsp;byte[] bytes = new byte[0];
+ &nbsp; &nbsp; &nbsp; &nbsp;try {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bytes = objectMapper.writeValueAsBytes(map);
+ &nbsp; &nbsp; &nbsp;  } catch (JsonProcessingException e) {
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;throw new RuntimeException(e);
+ &nbsp; &nbsp; &nbsp;  }
+ &nbsp; &nbsp; &nbsp; &nbsp;DataBuffer wrap = response.bufferFactory().wrap(bytes);
+ &nbsp; &nbsp; &nbsp; &nbsp;return response.writeWith(Mono.just(wrap));
+ &nbsp;  }
+
+ &nbsp; &nbsp;@Override
+ &nbsp; &nbsp;public int getOrder() {
+ &nbsp; &nbsp; &nbsp; &nbsp;return 2;
+ &nbsp;  }
+}
+</code></pre>
+<h5 id="toc_h5_68"><strong>gateway集成redis做限流</strong></h5>
+<p><a href="https://www.cnblogs.com/wiliamzhao/p/14842222.html" target="_blank"><strong>spring cloud - Gateway整合Redis实现网关限流 - william_zhao - 博客园 (cnblogs.com)</strong></a></p>
+<h6 id="toc_h6_69"><strong>什么是限流？</strong></h6>
+<p><strong>限流就是限制一段时间内，用户访问资源的次数，减轻服务器压力，主要分为两类：</strong></p>
+<p><strong>1、IP限流（5s内同一个IP访问超过3次，则限制不让访问，过一段时间才可以继续访问）</strong></p>
+<p><strong>2、请求量限流（只要一段时间内（窗口期），请求次数到达一个阀值，就直接拒绝后面来的访问）</strong></p>
+<p>=<strong>gateway已经内置一个RequestRateLimiterGatewayFilterFactory,</strong>=<strong>注意这是一个gatewayFilter过滤器所以只能针对的是某个API.需要添加依赖</strong><code>spring-boot-starter-data-redis-reactive</code></p>
+<pre><code>&lt;!--RequestRateLimiter限流--&gt;
+&lt;dependency&gt;
+ &nbsp; &nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+ &nbsp; &nbsp;&lt;artifactId&gt;spring-boot-starter-data-redis-reactive&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h6 id="toc_h6_70"><strong>令牌桶算法</strong></h6>
+<p><strong>令牌桶算法:随着时间流逝，系统会按恒定 1/QPS 时间间隔（如果 QPS=100，则间隔是 10ms）往桶里加入 Token（想象和漏洞漏水相反，有个水龙头在不断的加水），如果桶已经满了就不再加了。新请求来临时，会各自拿走一个 Token，如果没有 Token 可拿了就阻塞或者拒绝服务。</strong></p>
+<p><strong>令牌桶的另外一个好处是可以方便的改变速度。一旦需要提高速率，则按需提高放入桶中的令牌的速率。一般会定时（比如 100 毫秒）往桶中增加一定数量的令牌，有些变种算法则实时的计算应该增加的令牌的数量。Guava 中的 RateLimiter 采用了令牌桶的算法，设计思路参见 <strong><a href="https://github.com/google/guava/blob/v18.0/guava/src/com/google/common/util/concurrent/SmoothRateLimiter.java#L25:L144" target="_blank"><strong>How is the RateLimiter designed, and why?</strong></a></strong>，详细的算法实现参见</strong><a href="https://github.com/google/guava/blob/master/guava/src/com/google/common/util/concurrent/RateLimiter.java" target="_blank"><strong>源码</strong></a><strong>。</strong></p>
+<p>** **<img src="https://b3logfile.com/file/2021/01/solofetchupload3026901865735950014-a9c066e0.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="img"></p>
+<p><strong>实现：</strong></p>
+<pre><code>package com.zl.config;
+
+import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import reactor.core.publisher.Mono;
+
+@Configuration
+public class RequestLimited {
+ &nbsp; &nbsp;@Bean
+ &nbsp; &nbsp;@Primary //作为主选方案
+ &nbsp; &nbsp;public KeyResolver ipKeyResolver(){
+ &nbsp; &nbsp; &nbsp; &nbsp;// 通过对IP进行限制
+ &nbsp; &nbsp; &nbsp; &nbsp;return exchange -&gt; Mono.just(exchange.getRequest().getRemoteAddress().getHostString());
+ &nbsp;  }
+ &nbsp; &nbsp;@Bean
+ &nbsp; &nbsp;public KeyResolver apiKeyResolver(){
+ &nbsp; &nbsp; &nbsp; &nbsp;return exchange -&gt; Mono.just(exchange.getRequest().getPath().toString());
+ &nbsp;  }
+}
+</code></pre>
+<p><strong>配置针对的API做限流</strong></p>
+<pre><code>spring:
+ &nbsp;application:
+ &nbsp; &nbsp;name: gateway-server
+ &nbsp;cloud:
+ &nbsp; &nbsp;gateway:
+ &nbsp; &nbsp; &nbsp;enabled: true #只要添加了依赖默认开启
+ &nbsp; &nbsp; &nbsp;routes:
+ &nbsp; &nbsp; &nbsp; &nbsp;- id: user-server-route
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;uri: lb://user-service
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;predicates:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;- Path=/UserDoOrder
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;filters:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;- name: RequestRateLimiter
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;args:
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# 用于限流的键的解析器的 Bean 对象的名字。它使用 SpEL 表达式根据#{@beanName}从 Spring 容器中获取 Bean 对象。
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;key-resolver: "#{@ipKeyResolver}"
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# 令牌桶每秒填充平均速率,即行等价于允许用户每秒处理多少个请求平均数
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;redis-rate-limiter.replenishRate: 1
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# 令牌桶的容量，允许在一秒钟内完成的最大请求数
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;redis-rate-limiter.burstCapacity: 2
+</code></pre>
+<h5 id="toc_h5_71"><strong>gateweay进行跨域</strong></h5>
+<pre><code>package com.zl.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.util.pattern.PathPatternParser;
+
+@Configuration
+public class CorsConfig {
+ &nbsp; &nbsp;@Bean
+ &nbsp; &nbsp;public CorsWebFilter corsFilter() {
+ &nbsp; &nbsp; &nbsp; &nbsp;CorsConfiguration config = new CorsConfiguration();
+ &nbsp; &nbsp; &nbsp; &nbsp;config.addAllowedMethod("*");//允许所有请求头
+ &nbsp; &nbsp; &nbsp; &nbsp;config.addAllowedOrigin("*");//允许所有请求方法，例如get，post等
+ &nbsp; &nbsp; &nbsp; &nbsp;config.addAllowedHeader("*");//允许所有的请求来源
+ &nbsp; &nbsp; &nbsp; &nbsp;config.setAllowCredentials(true);//允许携带cookie
+
+ &nbsp; &nbsp; &nbsp; &nbsp;UrlBasedCorsConfigurationSource source= new UrlBasedCorsConfigurationSource(new PathPatternParser());
+ &nbsp; &nbsp; &nbsp; &nbsp;source.registerCorsConfiguration("/**", config);//对所有经过网关的请求都生效
+ &nbsp; &nbsp; &nbsp; &nbsp;return new CorsWebFilter(source);
+ &nbsp;  }
+}
+</code></pre>
+                    <div>
+                        <hr>
+
+标题：SpringCloud<br>
+作者：<a href="https://wzl66.github.io" target="_blank">zhoulei</a><br>
+地址：<a href="https://wzl66.github.io/articles/2023/12/17/1702805539293.html" target="_blank">https://wzl66.github.io/articles/2023/12/17/1702805539293.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">SpringCloud</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">概述</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_2">SpringCloud常用组件表</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">SpringCloud Alibaba与SpringCloud Netflix对照</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_4">注册和发现中心</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_5">Eureka快速入门</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_6">什么是CAP原则？</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_7">Eureka和zookeeper的区别</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_8">Eureka快速入门</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_9">创建Eureka-server</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_10">创建Eureka客户端</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_11">Eureka配置文件介绍</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_12">Eureka-server配置文件实列</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_13">Eureka-client配置文件</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_14">分布式系统一致性算法</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_15">Eureka运行的理解</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_16">Eureka注册</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_17">Eureka续约</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_18">服务发现</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_19">RestTemplate</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_20">RestTemplateApi介绍</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_21">ribbon</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_22">负载均衡</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_23">服务端负载均衡</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_24">客户端负载均衡</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_25">Ribbon入门</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_26">Ribbon 实现负载均衡</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_27">更改负载均衡算法</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_28">指定不同的服务使用不同的负载均衡算法</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_29">更改全局的负载均衡算法</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_30">OpenFeign：Spring Cloud声明式服务调用组件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_31">OpenFeign 常用注解</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_32">OpenFeign的入门</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_33">简单应用</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_34">修改OpenFeign远程调用的超时时间</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_35">OpenFeign核心探索</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_36">OpenFeign 日志增强</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_37">Hystrix：Spring Cloud服务熔断与降级组件</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_38">服务雪崩</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_39">熔断器</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_40">Hystrix的基本使用</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_41">hystrix的配置文件</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_42">Hystrix 服务熔断</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_43">熔断状态</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_44">Hystrix 实现熔断机制</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_45">第一个微服务架构</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_46">sleuth：链路追踪</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_47">什么是链路追踪</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_48">zipkin</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_49">基本使用</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_50">zipkin下载</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_51">zipkin启动</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_52">Admin监控</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_53">功能</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_54">使用</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_55">配置开放所有监控项</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_56">Gateway：Spring Cloud API网关组件</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_57">Spring Cloud Gateway 核心概念</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_58">Gateway 的工作流程</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_59">Nginx和Gateway区别</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_60">GateWay入门</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_61">Spring Cloud Gateway 动态路由</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_62">**断言工厂predicate **</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_63">Gateway过滤器</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_64">Filter 的分类</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_65">自定义GlobalFilter过滤器</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_66">IP拦截</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_67">自定义token拦截</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_68">gateway集成redis做限流</a>
+        </li>
+        <li class="toc__h6">
+            <a href="#toc_h6_69">什么是限流？</a>
+        </li>
+        <li class="toc__h6">
+            <a href="#toc_h6_70">令牌桶算法</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_71">gateweay进行跨域</a>
+        </li>
+</ul>        </div>
+        <div class="wrapper">
+            <div id="gitalk-container"></div>
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="zhoulei" data-postId="1702805539293"></div>
+            <div id="b3logsolocomments"></div>
+        </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/TweenMax.min.js?1702824557362"
+        charset="utf-8"></script>
+<footer class="footer">
+    <div class="wrapper">
+            <a href="https://ld246.com/member/zhoulei"
+       title="https://ld246.com/member/zhoulei"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+
+ <br>
+        &copy; 2023
+        <a href="https://wzl66.github.io">L的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+    </div>
+</footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://wzl66.github.io",
+    staticServePath: "https://wzl66.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.4.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1702805539293",
+  }
+</script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/common.min.js?1702824557362"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/circleMagic.min.js?1702824557362"
+        charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+    <svg viewBox="0 0 32 32" width="100%" height="100%" class="side__top side__top--toc">
+        <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+    </svg>
+
+<script type="text/javascript">
+    Util.addScript('https://wzl66.github.io/js/page.min.js?1702824557362', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1702805539293",
+        "blogHost": "https://wzl66.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1702805539293', '<h3>相关阅读</h3>');
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 96ms, 2023/12/17 22:49:44 -->

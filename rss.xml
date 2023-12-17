@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>L的个人博客</title>
+    <link>https://wzl66.github.io</link>
+    <atom:link href="https://wzl66.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>生活是活给自己看的，你有多大成色，世界才会给你多大脸色</description>
+    <generator>Solo, v4.4.0, https://b3log.org/solo</generator>
+    <lastBuildDate>Sun, 17 Dec 2023 22:49:44 +0800</lastBuildDate>
+    <language>zh-cn</language>
+    <item>
+      <title>SpringCloud</title>
+      <link>https://wzl66.github.io/articles/2023/12/17/1702805539293.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/12/17/1702805539293.html</guid>
+      <category>java</category>
+      <category>SpringCloud</category>
+      <pubDate>Sun, 17 Dec 2023 22:47:11 +0800</pubDate>
+    </item>
+    <item>
+      <title>Redis</title>
+      <link>https://wzl66.github.io/articles/2023/08/10/1691653234717.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/08/10/1691653234717.html</guid>
+      <category>有更新</category>
+      <pubDate>Thu, 10 Aug 2023 16:03:31 +0800</pubDate>
+    </item>
+    <item>
+      <title>mybatis-plus学习</title>
+      <link>https://wzl66.github.io/articles/2023/06/14/1686725649698.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/06/14/1686725649698.html</guid>
+      <category>代码生成器</category>
+      <category>wrapper</category>
+      <pubDate>Wed, 14 Jun 2023 14:54:09 +0800</pubDate>
+    </item>
+    <item>
+      <title>Cookie,Session,Filter</title>
+      <link>https://wzl66.github.io/articles/2023/06/10/1686383982630.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/06/10/1686383982630.html</guid>
+      <category>javaweb</category>
+      <pubDate>Sat, 10 Jun 2023 16:12:32 +0800</pubDate>
+    </item>
+    <item>
+      <title>反射机制</title>
+      <link>https://wzl66.github.io/articles/2023/06/10/1686383841065.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/06/10/1686383841065.html</guid>
+      <category>java反射</category>
+      <pubDate>Sat, 10 Jun 2023 16:12:04 +0800</pubDate>
+    </item>
+    <item>
+      <title>mybatis</title>
+      <link>https://wzl66.github.io/articles/2023/06/10/1686383786980.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/06/10/1686383786980.html</guid>
+      <category>Mybatis</category>
+      <pubDate>Sat, 10 Jun 2023 16:11:42 +0800</pubDate>
+    </item>
+    <item>
+      <title>SpringIOC和AOP机制的学习</title>
+      <link>https://wzl66.github.io/articles/2023/06/10/1686383643546.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/06/10/1686383643546.html</guid>
+      <category>Spring</category>
+      <pubDate>Sat, 10 Jun 2023 16:11:04 +0800</pubDate>
+    </item>
+    <item>
+      <title>JAVA多线程</title>
+      <link>https://wzl66.github.io/articles/2023/06/04/1685856943701.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/06/04/1685856943701.html</guid>
+      <category>多线程</category>
+      <category>java</category>
+      <pubDate>Sat, 10 Jun 2023 16:10:34 +0800</pubDate>
+    </item>
+    <item>
+      <title>VUE快速入门</title>
+      <link>https://wzl66.github.io/articles/2023/06/03/1685722268250.html</link>
+      <description/>
+      <author>zhoulei</author>
+      <guid>https://wzl66.github.io/articles/2023/06/03/1685722268250.html</guid>
+      <category>Vue</category>
+      <pubDate>Sat, 10 Jun 2023 16:10:11 +0800</pubDate>
+    </item>
+  </channel>
+</rss>

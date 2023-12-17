@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>SpringIOC和AOP机制的学习 - L的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://wzl66.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://wzl66.github.io"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="SpringIOC和AOP机制的学习 - L的个人博客"/><meta property="og:site_name" content="L的个人博客"/><meta property="og:url"      content="https://wzl66.github.io/articles/2023/06/10/1686383643546.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="SpringIOC和AOP机制的学习 - L的个人博客" href="/opensearch.xml"><link href="https://wzl66.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://wzl66.github.io/manifest.json">        <link rel="canonical" href="https://wzl66.github.io/articles/2023/06/10/1686383643546.html">        <link rel="stylesheet"
+              href="https://wzl66.github.io/skins/Bubble/css/base.css?1702824557362"/>
+            <link rel="prev" title="JAVA多线程" href="https://wzl66.github.io/articles/2023/06/04/1685856943701.html">
+            <link rel="next" title="mybatis" href="https://wzl66.github.io/articles/2023/06/10/1686383786980.html">
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://wzl66.github.io" rel="start">L的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">生活是活给自己看的，你有多大成色，世界才会给你多大脸色</h2>
+            <div class="header__desc">
+                Open Source, Open Mind, <br/>Open Sight, Open Future!
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
+            </svg>
+        </div>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://wzl66.github.io" rel="start"><img class="side__logo" alt="L的个人博客" src="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    9 文章 <br>
+                    <span data-uvstaturl="https://wzl66.github.io">0</span> 浏览
+                    
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
+                <li>
+                    <a href="https://wzl66.github.io" rel="start">
+                            L的个人博客
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/categories.html">分类</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/tags.html">标签墙</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/links.html">友链</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://wzl66.github.io/rss.xml">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article__top" style="background-image: url(https://b3logfile.com/bing/20180208.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)">
+        <div style="background-image: url(https://b3logfile.com/bing/20180208.jpg?imageView2/1/w/960/h/540/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2023-06-10
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/Spring">Spring</a> &nbsp;
+            </div>
+            <h2 class="article__title">
+                SpringIOC和AOP机制的学习
+            </h2>
+<div class="article__share"
+     data-title="SpringIOC和AOP机制的学习"
+     data-blogtitle="L的个人博客"
+     data-url="https://wzl66.github.io/articles/2023/06/10/1686383643546.html"
+     data-avatar="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <p><img src="https://b3logfile.com/bing/20180208.jpg?imageView2/1/w/960/h/540/interlace/1/q/100" alt=""></p>
+<h1 id="toc_h1_0"><strong>SpringIOC和AOP机制的学习</strong></h1>
+<p><a href="https://www.bilibili.com/video/BV1WE411d7Dv?p=5&amp;spm_id_from=pageDriver&amp;vd_source=09d6df3001e540118eb4b675c976f542" target="_blank"><strong>5、HelloSpring</strong><em><strong>哔哩哔哩</strong></em><strong>bilibili</strong></a></p>
+<p><strong>springIOC依赖</strong></p>
+<pre><code> &nbsp;  &lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp;  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp;  &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+ &nbsp; &nbsp; &nbsp;  &lt;version&gt;5.1.9.RELEASE&lt;/version&gt;
+ &nbsp;  &lt;/dependency&gt;
+</code></pre>
+<p><strong>直接导入mvc依赖也可以</strong></p>
+<pre><code> &nbsp; &nbsp; &nbsp; &nbsp;&lt;dependency&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;version&gt;5.3.7&lt;/version&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;/dependency&gt;
+</code></pre>
+<p><img src="file://D:/typora/Typora/SpringIOC%E5%92%8CAOP%E6%9C%BA%E5%88%B6%E7%9A%84%E5%AD%A6%E4%B9%A0.assets/image-20230530170157131.png?lastModify=1686383605" alt="image-20230530170157131"></p>
+<h2 id="toc_h2_1"><strong>SpringIOC理论推导</strong></h2>
+<p><strong>原来业务实现步骤：</strong></p>
+<ol>
+<li><strong>Dao实现Mapper接口</strong></li>
+<li><strong>Dao实体类</strong></li>
+<li><strong>Service业务接口</strong></li>
+<li><strong>serviceImp业务实现类</strong></li>
+</ol>
+<p><strong>存在的问题</strong></p>
+<p><strong>在我们的业务中，用户的需求可能会影响我们原代码。</strong></p>
+<p><img src="file://D:/typora/Typora/SpringIOC%E5%92%8CAOP%E6%9C%BA%E5%88%B6%E7%9A%84%E5%AD%A6%E4%B9%A0.assets/solo-fetchupload-5467763466933905140-25150916.png?lastModify=1686383605" alt="img"></p>
+<p><strong>本质上解决了问题，程序员不用再去管理对象的创建</strong></p>
+<p><strong>系统的耦合性大大降低，可以更专注在业务的实现上</strong></p>
+<p><strong>这是IOC（控制反转）的原型，反转(理解)：主动权交给了用户</strong></p>
+<pre><code>//在Service层的实现类(UserServiceImpl)增加一个Set()方法
+//利用set动态实现值的注入！
+private UserDao userDao;
+public void setUserDao(UserDao userDao){
+ &nbsp; &nbsp;this.userDao = userDao;
+}
+</code></pre>
+<ul>
+<li><strong>之前，程序是主动创建对象！******控制权在程序猿手上，已经在代码中写死了的 比如一个类的对象=new 类（）</strong>****！**</li>
+<li><strong>使用了set注入后，程序不再具有主动性，而是变成了被动的接受对象！（<strong><strong><strong>主动权在客户手上</strong></strong></strong>）</strong></li>
+<li><img src="file://D:/typora/Typora/SpringIOC%E5%92%8CAOP%E6%9C%BA%E5%88%B6%E7%9A%84%E5%AD%A6%E4%B9%A0.assets/6.png?lastModify=1686383605" alt="img"></li>
+</ul>
+<h2 id="toc_h2_2"><strong>IOC本质</strong></h2>
+<p>****控制反转IOC是一种设计思想，Dl(依赖注入)是实现IOC的一种方法。****<strong>没有IOC的程序中，我们使用面向对象编程，对象的创建与对象的依赖关系完全硬编码在程序中，对象的创建由程序控制，控制反转后将对象的创建转移给第三方。</strong></p>
+<p><img src="file://D:/typora/Typora/SpringIOC%E5%92%8CAOP%E6%9C%BA%E5%88%B6%E7%9A%84%E5%AD%A6%E4%B9%A0.assets/4.png?lastModify=1686383605" alt="img"></p>
+<p><strong><strong>控制反转是一种通过描述（XML或者注解）并通过第三方生产或获取特定对象的方式，在Spring中实现控制反转的是IOC容器，其实现方法是依赖注入DI</strong></strong></p>
+<p><strong><strong>applicationcontext.xml配置</strong></strong></p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+ &nbsp; &nbsp; &nbsp; xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ &nbsp; &nbsp; &nbsp; xsi:schemaLocation="http://www.springframework.org/schema/beans
+ &nbsp; &nbsp;http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+ &nbsp; &nbsp;&lt;!--在Spring中创建对象，在Spring这些都称为bean
+ &nbsp;      类型 变量名 = new 类型();
+ &nbsp;      Holle holle = new Holle();
+ &nbsp;
+ &nbsp;      bean = 对象(holle)
+ &nbsp;      id = 变量名(holle)
+ &nbsp;      class = new的对象(new Holle();)
+ &nbsp;      property 相当于给对象中的属性设值,让str="Spring"
+ &nbsp; &nbsp;--&gt;
+
+ &nbsp; &nbsp;&lt;!--使用Spring来创建，在Spring这些都称之为bean--&gt;
+ &nbsp; &nbsp;&lt;bean id="hello" class="com.hy.pojo.Hello"&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;property name="str" value="Spring"&gt;&lt;/property&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;!--ref是引用容器中创建好的对象--&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp; &lt;!--value是具体的值，是基本数据类型--&gt;
+ &nbsp; &nbsp;&lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<p><strong><strong>类的实例化的核心是用到了反射技术，所以类要有无参构造方法  invoke()实现</strong></strong></p>
+<p><strong><strong>属性实例化的核心用set注入，所以必须要有下面的set()方法</strong></strong></p>
+<ul>
+<li><strong>Hello对象是由Spring创建得</strong></li>
+<li><strong>Hello对象得属性是由Spring设置得</strong></li>
+</ul>
+<p><strong>这个过程就叫做控制反转</strong></p>
+<p><strong>控制：谁来控制对象得创建，传统应用程序的对象由程序本身创建，使用Spring之后对象由Spring创建。</strong></p>
+<p><strong>反转：程序本身不创建对象，而变成被动得接受对象</strong></p>
+<p><strong><strong>依赖注入：就是利用set方法进行注入</strong></strong></p>
+<p><strong>IOC是一种编程思想，由主动编程编程被动接受</strong></p>
+<p>**可以通过 **<code>newClassPathXmlApplicationContext</code><strong>去浏览底层源码</strong></p>
+<h3 id="toc_h3_3"><strong>IOC创建对象的方式</strong></h3>
+<p><strong><strong>默认方式：通过无参构造</strong></strong></p>
+<p><strong><strong>类的实例化的核心是用到了反射技术，所以类要有无参构造方法  invoke()实现</strong></strong></p>
+<p><strong><strong>通过有参构造</strong></strong></p>
+<p><strong>下标赋值</strong></p>
+<p><strong><strong>index指的是有参构造中参数的下标，下标从0开始</strong></strong></p>
+<pre><code>&lt;bean id="user" class="pojo.User"&gt;
+ &nbsp; &nbsp;&lt;constructor-arg index="0" value="chen"/&gt;
+&lt;/bean&gt;
+</code></pre>
+<p>****类型赋值（不建议使用）****<strong>当出现两个类型一样的就不好配置了</strong></p>
+<pre><code>&lt;bean id="user" class="pojo.User"&gt;
+ &nbsp; &nbsp;&lt;constructor-arg type="java.lang.String" value="kuang"/&gt;
+&lt;/bean&gt;
+</code></pre>
+<p><strong><strong>直接通过参数名（掌握）</strong></strong></p>
+<pre><code>&lt;!-- 比如参数名是name，则有name="具体值" --&gt;
+&lt;bean id="user" class="pojo.User"&gt;
+ &nbsp; &nbsp;&lt;constructor-arg name="name" value="kuang"&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;
+&lt;!--官方的写法--&gt;
+&lt;bean id="user" class="pojo.User"&gt;
+ &nbsp; &nbsp; &nbsp; &nbsp;&lt;constructor-arg ref="beanone"&gt;&lt;/constructor-arg&gt;
+&lt;/bean&gt;
+&lt;bean id="beanone" class="pojo.XXX"&gt;&lt;/bean&gt;
+</code></pre>
+<p><strong>总结：在配置文件加载的时候，容器中管理的对象就已经被初始化了！</strong></p>
+<p><strong>spring比作婚庆公司，在你去访问的时候，里面的"对象"就已经被创建好了，当你准备选择谁的时候相当于getBean（）操作获取对象。同时多人访问时，也内存中也只是有一个对象。</strong></p>
+<p><strong>在注册bean之后就对象的初始化了</strong><strong><strong>类似 new 类名()</strong></strong></p>
+<h2 id="toc_h2_4"><strong>Spring配置说明</strong></h2>
+<p><strong><strong>别名：</strong></strong></p>
+<pre><code>&lt;alias name="bean的id名" alias="自己起一个名字"&gt;
+两个名字使用getBean()都可以实例化对象
+&lt;/alias&gt;
+</code></pre>
+<p><strong><strong>Bean配置：</strong></strong></p>
+<pre><code>&lt;!--id：bean的唯一标识符，也就是相当于我们学的对象名
+class：bean对象所对应的会限定名：包名+类型
+name：也是别名，而且name可以同时取多个别名 --&gt;
+&lt;bean id="user" class="pojo.User" name="u1 u2,u3;u4"&gt;
+    &lt;property name="name" value="chen"/&gt;
+&lt;/bean&gt;
+&lt;!-- 使用时
+	User user2 = (User) context.getBean("u1");
+--&gt;
+</code></pre>
+<p><strong><strong>import配置</strong></strong>**：**</p>
+<p><strong>应用场景：当多个人去开发时，每个人都是用不同的bean容器，当需要合并是可以选择一个主要的bean容器，然后导入，当让也可以是classpathxmlApplicationcontext()扫描多个.xml文件</strong></p>
+<p><strong>比如</strong></p>
+<p>**    张三（bean1）**</p>
+<p>**   李四（bean2）**</p>
+<p>**   王五（bean3）**</p>
+<p><strong>在applicationContext.xml</strong></p>
+<pre><code>&lt;import resource="beans.xm1"/&gt;
+&lt;import resource="beans2.xml"/&gt;
+&lt;import resource="beans3.xm1"/&gt;
+</code></pre>
+<p><strong><strong>使用的时候，直接使用总的配置就可以了</strong></strong></p>
+<p><strong><strong>当这些bean中出现重名的情况时spring按照在总的xml中的导入顺序来进行创建，后导入的会重写先导入的，最终实例化的对象会是后导入xml中的那个</strong></strong>****</p>
+<h2 id="toc_h2_5"><strong>DI依赖注入环境</strong></h2>
+<h3 id="toc_h3_6"><strong>构造器注入</strong></h3>
+<h3 id="toc_h3_7"><strong>set方法注入</strong></h3>
+<p><strong>依赖注入：set注入！</strong></p>
+<ul>
+<li><strong>依赖：bean对象的创建依赖于容器</strong></li>
+<li><strong>注入：bean对象中的所有属性，由容器来注入</strong></li>
+<li><strong>Student类使用bean来将下面的属性全部进行初始化</strong></li>
+</ul>
+<pre><code>import jdk.nashorn.internal.objects.annotations.Property;
+import lombok.Data;
+
+import java.util.List;
+import java.util.Map;
+@Data
+public class Student {
+     private String name;
+     private List&lt;String&gt; list;
+     private Map&lt;String,String&gt; map;
+     private Property property;
+     private Address address;
+}
+</code></pre>
+<pre><code>    &lt;bean id="address" class="com.zhoulei.Dom.Address"&gt;
+        &lt;property name="city" value="常德"&gt;&lt;/property&gt;
+        &lt;property name="rural" value="澧县"&gt;&lt;/property&gt;
+    &lt;/bean&gt;
+    &lt;bean id="student" class="com.zhoulei.Dom.Student"&gt;
+        &lt;property name="name" value="周磊"&gt;&lt;/property&gt;
+        &lt;property name="address" ref="address"&gt;&lt;/property&gt;
+        &lt;!--数组注入--&gt;
+        &lt;property name="str"&gt;
+            &lt;array&gt;
+                &lt;value&gt;1&lt;/value&gt;
+                &lt;value&gt;2&lt;/value&gt;
+                &lt;value&gt;3&lt;/value&gt;
+            &lt;/array&gt;
+        &lt;/property&gt;
+        &lt;!--list注入--&gt;
+        &lt;property name="list" &gt;
+            &lt;list&gt;
+                &lt;value&gt;1&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+        &lt;!--map注入--&gt;
+        &lt;property name="map"&gt;
+            &lt;map&gt;
+                &lt;entry key="a" value="1"&gt;&lt;/entry&gt;
+            &lt;/map&gt;
+        &lt;/property&gt;
+        &lt;!--property文件注入--&gt;
+        &lt;property name="property"&gt;
+            &lt;props&gt;
+                &lt;prop key="crod"&gt;aaaa&lt;/prop&gt;
+            &lt;/props&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+</code></pre>
+<p><strong><strong>注意：当什么属性的值为null时，需要使用</strong></strong><null />****</p>
+<h2 id="toc_h2_8"><strong>拓展注入（C或P命名空间）</strong></h2>
+<p><strong>pojo增加User类</strong></p>
+<pre><code>package pojo;
+@Data
+public class User {
+    private String name;
+    private int id;
+	public User() {
+    }
+}
+</code></pre>
+<p><strong>注意： beans 里面加上这下面两行</strong></p>
+<p><strong>使用p和c命名空间需要导入xml约束</strong></p>
+<p><strong>xmlns:p=“</strong><a href="http://www.springframework.org/schema/p" target="_blank">http://www.springframework.org/schema/p</a><strong>”****<br>
+****xmlns:c=“</strong><a href="http://www.springframework.org/schema/c" target="_blank">http://www.springframework.org/schema/c</a><strong>”</strong></p>
+<pre><code>?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+    &lt;!--p命名空间注入/set注入，可以直接注入属性的值-》property--&gt;
+    &lt;bean id="user" class="pojo.User" p:name="cxk" p:id="20" &gt;
+    &lt;/bean&gt;
+
+    &lt;!--c命名空间，通过构造器注入，需要写入有参和无参构造方法-》construct-args--&gt;
+    &lt;bean id="user2" class="pojo.User" c:name="cbh" c:id="22"&gt;&lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
+<h2 id="toc_h2_9"><strong>Bean作用域（scope）</strong></h2>
+<pre><code>&lt;!--单例模式默认所得到的对象都是一个--&gt;
+&lt;bean id="user2" class="pojo.User" c:name="cxk" c:age="19" scope="singleton"&gt;&lt;/bean&gt;
+&lt;!--原型模式，每次创建getbean之后都是独立的对象--&gt;
+&lt;bean id="user2" class="pojo.User" c:name="cxk" c:age="19" scope="prototype"&gt;&lt;/bean&gt;
+</code></pre>
+<p><strong><strong>作用域</strong></strong></p>
+<p><strong>singleTon：单例 每次创建对象都一样</strong></p>
+<p><strong>prototype：多例每次创建的对象都不一样</strong></p>
+<p><strong>request：创建的对象在web一次请求中有效，针对web项目有效</strong></p>
+<p><strong>Session：创建的对象在一次会话中有效 web</strong></p>
+<p><strong>GlobalSession：创建的对象在分布式项目中的全局session中有效</strong></p>
+<p><strong>Application：创建的对象在整个项目周期内有效</strong></p>
+<h2 id="toc_h2_10"><strong>Bean的自动装配</strong></h2>
+<ul>
+<li><strong>自动装配是spring满足bean依赖一种方式</strong></li>
+<li><strong>spring会在上下文中自动寻找，并自动给bean装配属性</strong></li>
+</ul>
+<p><strong><strong>spring有三种装配方式</strong></strong></p>
+<ul>
+<li><strong>手动xml显示装配</strong></li>
+<li><strong>javaconfig装配</strong></li>
+<li><strong>隐式bean自动装配</strong></li>
+</ul>
+<p><strong><strong>自动配置属性：</strong></strong></p>
+<ul>
+<li>**autowrire="byname" byname:**<strong><strong>会自动在容器上下文中查找，和自己对象set方法后面的值对应的beanid</strong></strong></li>
+</ul>
+<p><strong><strong>缺点也很明显当名字出现不相同的时候就无法实现自动装配了，不够灵活</strong></strong></p>
+<pre><code> &lt;bean id="dog" class="com.zhoulei.Dom.dog"&gt; &lt;/bean&gt;
+  &lt;bean id="cat" class="com.zhoulei.Dom.cat"&gt; &lt;/bean&gt;
+    &lt;bean id="student" class="com.zhoulei.Dom.Student" autowire="byName"&gt;
+
+    &lt;/bean&gt;
+</code></pre>
+<ul>
+<li>**autowrite="bytype" **<strong><strong>bytype：会自动在容器上下文中查找，和自己对象属性类型相同的beanid;</strong></strong></li>
+</ul>
+<p><strong><strong>缺点当出现了多个属性一样的bean之后会直接报错。</strong></strong></p>
+<pre><code> &lt;bean id="dog" class="com.zhoulei.Dom.dog"&gt; &lt;/bean&gt;
+  &lt;bean id="cat" class="com.zhoulei.Dom.cat"&gt; &lt;/bean&gt;
+    &lt;bean id="student" class="com.zhoulei.Dom.Student" autowire="bytype"&gt;
+
+    &lt;/bean&gt;
+</code></pre>
+<h2 id="toc_h2_11"><strong>注解实现自动装配</strong></h2>
+<p><strong>jdk1.5支持注解开发，Spring是jdk2.5</strong></p>
+<p><strong>使用注解开发前提：</strong></p>
+<ul>
+<li><strong>导入约束</strong>
+<pre><code>  xmlns:context="http://www.springframework.org/schema/context"
+</code></pre>
+</li>
+<li><strong>导入注解支持</strong></li>
+<li>
+<pre><code>&lt;context:annotation-config/&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="toc_h3_12"><strong>@Autowrited</strong></h3>
+<p><strong><strong>@Autowrited会更根据类型和名字区寻找bean默认先通过类型bytype如果找不到bean的话就会按照byname来寻找</strong></strong></p>
+<p><strong>注解的作用域</strong></p>
+<pre><code>@Target({ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
+</code></pre>
+<p><strong>可以在属性上面和set上面。</strong></p>
+<p><strong>使用Autowrited注解可以不需要set方法</strong></p>
+<p><strong>在bean环境复杂的情况下不如同一个类型的bean有多个并且不存在一个beanid和类中的属性名称一样的情况我们可以使用</strong>****@Qualifie****<strong>r注解来标识我们想指定的bean</strong></p>
+<pre><code>@Data
+public class Student {
+      @Autowired
+      @Qualifier("dog1")
+      private dog dog;
+      private cat cat;
+}
+</code></pre>
+<p>**<strong>@Resource</strong>**<strong>注解也具有自动装配的效果是java自己支持的自动装配注解效果和Autowrited差不多</strong><strong><strong>默认是使用byname然后使用bytype</strong></strong></p>
+<h2 id="toc_h2_13"><strong>Spring注解开发</strong></h2>
+<ul>
+<li><strong>需要导入aop依赖</strong></li>
+<li><strong>在applicationContent.xml文件中使用包扫描</strong></li>
+<li>
+<pre><code>&lt;context:component-scan base-package="com.zhoulei"&gt;&lt;/context:component-scan&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="toc_h3_14"><strong>@Component</strong></h3>
+<p><strong>可以将注解的类放入到bean仓库中管理</strong></p>
+<pre><code>@Component
+@Data
+public class Student {
+      @Value("dog")
+      private String dog;
+}
+</code></pre>
+<p><strong><strong>衍生的注解</strong></strong></p>
+<p><strong>@Component有几个衍生注解，会按照web开发中，mvc架构中分层。</strong></p>
+<ul>
+<li><strong>dao （@Repository）</strong></li>
+<li><strong>service（@Service）</strong></li>
+<li><strong>controller（@Controller）</strong></li>
+</ul>
+<p><strong><strong>这四个注解的功能是一样的，都是代表将某个类注册到容器中</strong></strong></p>
+<h2 id="toc_h2_15"><strong>使用java来配置xml文件</strong></h2>
+<pre><code>package com.zhoulei.config;
+
+import com.zhoulei.pojo.user;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
+@Configuration//标明这个类是一个Spring的配置类相当与beans标签，这个标签内部也使用Component表名这个注解的类也会交给spring来管理
+@ComponentScan("com.zhoulei.pojo")//配置包扫描，使在该包下面的Component以及衍生注解生效，将注解的类放入到bean中由Spring管理
+@Import(Myconfig2.class)//导入其他的配置文件
+public class Myconfig {
+    @Bean
+    //在方法上使用这个注解以后相当与xml文件中的bean
+    //其中方法名称相当于是id名称
+    //返回值相当于是class:后面的值
+    //思考使用这方式来怕配置bean如何来赋值呢？
+    //简单属性可以使用注解@Value可以赋值
+    public user getUser(){
+        return new user();
+    }
+}
+</code></pre>
+<pre><code>public class Springtest {
+    @Test
+    public void test(){
+        ApplicationContext app = new AnnotationConfigApplicationContext(Myconfig.class);
+        user user = app.getBean("getUser", user.class);
+        System.out.println(user.getName());
+    }
+}
+</code></pre>
+<p><strong>没有注意到这个细节</strong></p>
+<p><strong><strong>会创建两个相同对象问题的说明：</strong></strong><a href="https://lmlx66.top/articles/2022/04/25/1650858981511.html#toc_h2_26" target="_blank"><strong>王富贵 (lmlx66.top)</strong></a></p>
+<p><strong><strong>学长大佬总结 - -&gt; @Bean是相当于&lt; bean&gt;标签创建的对象，而我们之前学的@Component是通过spring自动创建的这个被注解声明的对象，所以这里相当于有两个User对象被创建了。一个是bean标签创建的（@Bean），一个是通过扫描然后使用@Component，spring自动创建的User对象，所以这里去掉@Bean这些东西，然后开启扫描。之后在User头上用@Component即可达到spring自动创建User对象了</strong></strong></p>
+<h2 id="toc_h2_16"><strong>代理模式</strong></h2>
+<p><strong>什么要学习静态代理模式？</strong></p>
+<p><strong>这个就是AOP的底层逻辑</strong></p>
+<h3 id="toc_h3_17"><strong>静态代理</strong></h3>
+<p><strong>主要角色分为：</strong></p>
+<ul>
+<li><strong>真实对象，拥有资源可以分配的对象比如房租</strong></li>
+<li><strong>抽象角色，一般是</strong><strong><strong>接口</strong>****用来处理动作的。</strong></li>
+<li><strong>代理对象，帮助真实对象处理一些公共的繁琐的动作比如中介需要接待客户以及合同</strong></li>
+<li><strong>客户,需要得到自己资源的对象。</strong></li>
+</ul>
+<p><strong><strong>好处</strong></strong></p>
+<p><strong>可以方便拓展公共动作。分工明确</strong></p>
+<p><strong><strong>缺点</strong></strong></p>
+<p><strong>增加了代码量</strong></p>
+<p><strong>AOP切面逻辑</strong></p>
+<h2 id="toc_h2_18"><strong>动态代理</strong></h2>
+<ul>
+<li>
+<p><strong>动态代理和静态代理角色一样</strong></p>
+</li>
+<li>
+<p><strong>动态代理使用动态生成。</strong></p>
+</li>
+<li>
+<p><strong>动态代理主要分为两大类：基于接口的动态代理，基于类的动态代理</strong></p>
+<ul>
+<li><strong>基于接口--jdk动态代理</strong></li>
+<li><strong>基于类：cglib</strong></li>
+<li><strong>java字节码</strong></li>
+</ul>
+<p><strong>需要提前了解这两个类 proxy :代理 ，invocationHandler :调用处理程序</strong></p>
+</li>
+</ul>
+<pre><code>package com.zhoulei.dome03;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+public class Proxyinvocation implements InvocationHandler {
+    private Rent rent;
+
+    public void setRent(Rent rent) {
+        this.rent = rent;
+    }
+
+    // Foo f =(Foo) Proxy.newProxyInstance(Foo. Class.GetClassLoader(),
+    // new Class&lt;?&gt;[] { Foo.Class },
+    // handler);
+    // 生成代理类
+    public Object getProxy(){
+        return  Proxy.newProxyInstance(this.getClass().getClassLoader(),rent.getClass().getInterfaces(),this);
+    }
+
+    //处理代理实例并返回结果
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        Object result = method.invoke(rent, args);
+        return result;
+    }
+}
+</code></pre>
+<h2 id="toc_h2_19"><strong>Spring实现AOP</strong></h2>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+    &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
+    &lt;version&gt;1.9.4&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>Spring学习</strong></p>
+<p><strong>1、在Sping模块使用AOP需要在ApplicationContext.XML需要配置包扫描</strong></p>
+<pre><code>&lt;!--包扫描--&gt;
+&lt;context:component-scan base-package="com.www"&gt;&lt;/context:component-scan&gt;
+&lt;!--aop扫描接口--&gt;
+&lt;aop:aspectj-autoproxy&gt;&lt;/aop:aspectj-autoproxy&gt;
+</code></pre>
+<p><strong>2、使用AOP注解开发时首先需要自己定义以Annotion注解对象</strong></p>
+<pre><code>@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+public @interface invokeLog {
+//invokeLog是自己定义的注解对象,主要功能是在需要增强的方法上面加上相应的
+//注解。
+}
+</code></pre>
+<p><strong>3、接下来建立切面类，主要包括可以使用切面表达式(<strong><strong><strong>execution</strong></strong></strong>)或者使用@annotion注解，使用@Around("pt()")环绕注解，并且该类还要使用@Component加载该类的Bean对象@Aspect是该类变成一个切面类</strong></p>
+<pre><code>@Component
+@Aspect
+public class Cut {
+    @Pointcut("@annotation(invokeLog)")
+    public void pint(){
+    }
+    @Around("pint()")
+    public Object printf(ProceedingJoinPoint pjp){
+        Object[] args = pjp.getArgs(); //获取目标方法的参数
+        String str=(String)(args[0]);//将获取到先参数强转换成为String类型
+        System.out.println(str);
+        MethodSignature ms = (MethodSignature) pjp.getSignature();
+        String name = ms.getName();//返回目标方法的名称
+        String type = ms.getDeclaringTypeName();//返回目标方法的所在的类名
+        System.out.println(name);
+        System.out.println(type);
+        Object ret=null;
+        try {
+            ret = pjp.proceed();//执行目标方法
+            System.out.println(ret.getClass().getName());//函数的返回值类型
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        System.out.println("方法被执行，生效");
+        return ret;
+    }
+
+}
+</code></pre>
+<h2 id="toc_h2_20"><strong>Spring-mybatis</strong></h2>
+<p><strong>导入mybatis</strong></p>
+<pre><code>&lt;!--//mybatis整合Spring的整合包--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+    &lt;version&gt;2.0.4&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!--Spring操作数据库--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+    &lt;version&gt;5.1.9.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>复制学长的笔记</strong><a href="https://lmlx66.top/articles/2022/04/25/1650858981511.html#toc_h2_45" target="_blank"><strong>王富贵 (lmlx66.top)</strong></a></p>
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop
+		https://www.springframework.org/schema/aop/spring-aop.xsd"&gt;
+
+	&lt;!--DataSource:使用Spring的数帮源替换Mybatis的配置 其他数据源：c3p0、dbcp、druid 
+		这使用Spring提供的JDBC: org.springframework.jdbc.datasource 
+        使用alibabaDruid连接池
+扫描jdbc.proprtties文件，配置jdbc的基础属性
+&lt;context:property-placeholder location="classpath:jdbc.properties"&gt;&lt;/context:property-placeholder&gt;
+配置DruidDataSource属性建立连接池
+&lt;bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource"&gt;
+    &lt;property name="driverClassName" value="${jdbc.driver}"&gt;&lt;/property&gt;
+    &lt;property name="url" value="${jdbc.url}"&gt;&lt;/property&gt;
+    &lt;property name="password" value="${jdbc.password}"&gt;&lt;/property&gt;
+    &lt;property name="username" value="${jdbc.username}"&gt;&lt;/property&gt;
+&lt;/bean&gt;
+--&gt;
+	&lt;!--data source --&gt;
+	&lt;bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+		&lt;property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" /&gt;
+		&lt;property name="url" value="jdbc:mysql://127.0.0.1:3306/mybatis?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai"/&gt;
+		&lt;property name="username" value="root" /&gt;
+		&lt;property name="password" value="root" /&gt;
+	&lt;/bean&gt;
+
+	&lt;!--sqlSessionFactory--&gt;
+    &lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt;
+        &lt;property name="dataSource" ref="datasource" /&gt;
+        &lt;!--绑定 mybatis 配置文件--&gt;
+        &lt;property name="configLocation" value="classpath:mybatis-config.xml"/&gt;
+        &lt;!--这步也可以省略掉，在mybatis-config.xml文件中配置或者使用包扫描(个人图方便)
+         或者
+扫描
+&lt;bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="configurer"&gt;
+    &lt;property name="basePackage" value="com.zhoulei"&gt;&lt;/property&gt;
+&lt;/bean&gt;
+--&gt;
+        &lt;property name="mapperLocations" value="classpath:mapper/*.xml"/&gt;
+    &lt;/bean&gt;
+
+	&lt;!-- sqlSessionTemplate 就是之前使用的：sqlsession --&gt;
+    &lt;bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"&gt;
+    	&lt;!-- 只能使用构造器注入sqlSessionFactory 原因：它没有set方法--&gt;
+        &lt;constructor-arg index="0" ref="sqlSessionFactory"/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre>
+<h2 id="toc_h2_21"><strong>Spring声明式事务</strong></h2>
+<p><strong>jar spring-tx 在jdbc中以及依赖了</strong></p>
+<p><strong>声明式事务xml配置</strong></p>
+<pre><code>    &lt;bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;
+        &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;/bean&gt;
+ &lt;!--结合aop实现事务织入--&gt;
+    &lt;!--配置事务的通知类--&gt;
+    &lt;tx:advice id="txAdvice" transaction-manager="transactionManager"&gt;
+        &lt;!--给哪些方法配置事务--&gt;
+        &lt;!--新东西：配置事务的传播特性 propagation--&gt;
+        &lt;tx:attributes&gt;
+            &lt;tx:method name="add" propagation="REQUIRED"/&gt;
+            &lt;tx:method name="delete" propagation="REQUIRED"/&gt;
+            &lt;tx:method name="update" propagation="REQUIRED"/&gt;
+            &lt;tx:method name="query" read-only="true"/&gt;
+            &lt;!-- *号包含上面4个方法：
+            &lt;tx:method name="*" propagation="REQUIRED"/&gt; --&gt;
+        &lt;/tx:attributes&gt;
+    &lt;/tx:advice&gt;
+    &lt;!--配置事务切入--&gt;
+    &lt;aop:config&gt;
+        &lt;aop:pointcut id="txpointcut" expression="execution(* mapper.*.*(..))"/&gt;
+        &lt;aop:advisor advice-ref="txAdvice" pointcut-ref="txpointcut"/&gt;
+    &lt;/aop:config&gt;
+</code></pre>
+<p><strong>声明式事务注解配置</strong></p>
+<pre><code> &lt;bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;
+        &lt;property name="dataSource" ref="dataSource"/&gt;
+    &lt;/bean&gt;
+    &lt;tx:annotation-driven transaction-manager="txManager"/&gt;
+</code></pre>
+<p><strong>在想要实现事务的方法和类上面使用</strong></p>
+<pre><code>@Transactional//设置事务回滚异常（class） //开启事务
+</code></pre>
+<p><strong>@Transactional作用域</strong></p>
+<pre><code>@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+</code></pre>
+                    <div>
+                        <hr>
+
+标题：SpringIOC和AOP机制的学习<br>
+作者：<a href="https://wzl66.github.io" target="_blank">zhoulei</a><br>
+地址：<a href="https://wzl66.github.io/articles/2023/06/10/1686383643546.html" target="_blank">https://wzl66.github.io/articles/2023/06/10/1686383643546.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">SpringIOC和AOP机制的学习</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">SpringIOC理论推导</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_2">IOC本质</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_3">IOC创建对象的方式</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_4">Spring配置说明</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_5">DI依赖注入环境</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_6">构造器注入</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_7">set方法注入</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_8">拓展注入（C或P命名空间）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_9">Bean作用域（scope）</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_10">Bean的自动装配</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_11">注解实现自动装配</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_12">@Autowrited</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_13">Spring注解开发</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_14">@Component</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_15">使用java来配置xml文件</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_16">代理模式</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_17">静态代理</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_18">动态代理</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_19">Spring实现AOP</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_20">Spring-mybatis</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_21">Spring声明式事务</a>
+        </li>
+</ul>        </div>
+        <div class="wrapper">
+            <div id="gitalk-container"></div>
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="zhoulei" data-postId="1686383643546"></div>
+            <div id="b3logsolocomments"></div>
+        </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/TweenMax.min.js?1702824557362"
+        charset="utf-8"></script>
+<footer class="footer">
+    <div class="wrapper">
+            <a href="https://ld246.com/member/zhoulei"
+       title="https://ld246.com/member/zhoulei"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+
+ <br>
+        &copy; 2023
+        <a href="https://wzl66.github.io">L的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+    </div>
+</footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://wzl66.github.io",
+    staticServePath: "https://wzl66.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.4.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1686383643546",
+  }
+</script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/common.min.js?1702824557362"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/circleMagic.min.js?1702824557362"
+        charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+    <svg viewBox="0 0 32 32" width="100%" height="100%" class="side__top side__top--toc">
+        <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+    </svg>
+
+<script type="text/javascript">
+    Util.addScript('https://wzl66.github.io/js/page.min.js?1702824557362', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1686383643546",
+        "blogHost": "https://wzl66.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1686383643546', '<h3>相关阅读</h3>');
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 106ms, 2023/12/17 22:49:44 -->

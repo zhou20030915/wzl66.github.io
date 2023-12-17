@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/><meta name="theme-color" content="#3b3e43"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="format-detection" content="telephone=no"/><title>Redis - L的个人博客</title><meta name="description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/><meta property="og:description" content="A small and beautiful blogging system. 一款小而美的博客系统。"/>    <meta name="keywords" content="Solo,Java,博客,开源"/><link rel="dns-prefetch" href="https://wzl66.github.io"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://wzl66.github.io"><link rel="icon" type="image/png" href="https://b3log.org/images/brand/solo-128.png"/><link rel="apple-touch-icon" href="https://b3log.org/images/brand/solo-128.png"><link rel="shortcut icon" type="image/x-icon" href="https://b3log.org/images/brand/solo-128.png"><meta name="copyright" content="B3log"/><meta http-equiv="Window-target" content="_top"/><meta property="og:locale" content="zh_CN"/><meta property="og:title" content="Redis - L的个人博客"/><meta property="og:site_name" content="L的个人博客"/><meta property="og:url"      content="https://wzl66.github.io/articles/2023/08/10/1691653234717.html?"/><meta property="og:image" content="https://b3log.org/images/brand/solo-128.png"/><link rel="search" type="application/opensearchdescription+xml" title="Redis - L的个人博客" href="/opensearch.xml"><link href="https://wzl66.github.io/rss.xml" title="RSS" type="application/rss+xml" rel="alternate"/><link rel="manifest" href="https://wzl66.github.io/manifest.json">        <link rel="canonical" href="https://wzl66.github.io/articles/2023/08/10/1691653234717.html">        <link rel="stylesheet"
+              href="https://wzl66.github.io/skins/Bubble/css/base.css?1702824557362"/>
+            <link rel="prev" title="mybatis-plus学习" href="https://wzl66.github.io/articles/2023/06/14/1686725649698.html">
+            <link rel="next" title="SpringCloud" href="https://wzl66.github.io/articles/2023/12/17/1702805539293.html">
+    <script src="https://cdn.jsdelivr.net/npm/vditor@3.8.4/dist/js/icons/ant.js" async="" id="vditorIconScript"></script></head>
+<body class="fn__flex-column">
+<div id="pjax" class="fn__flex-1">
+    
+    <progress class="fn__progress"></progress>
+    <header class="header header--article">
+        <div class="wrapper header__title">
+            <h1 class="header__h1 fn__flex-inline">
+                <a href="https://wzl66.github.io" rel="start">L的个人博客</a>
+            </h1>
+            <h2 class="header__desc header__desc--title">生活是活给自己看的，你有多大成色，世界才会给你多大脸色</h2>
+            <div class="header__desc">
+                Open Source, Open Mind, <br/>Open Sight, Open Future!
+            </div>
+            <svg class="header__down" id="headerDown" viewBox="0 0 32 32" width="100%" height="100%">
+                <path d="M15.992 25.304c-0 0-0 0-0.001 0-0.516 0-0.981-0.216-1.31-0.563l-0.001-0.001-14.187-14.996c-0.306-0.323-0.494-0.76-0.494-1.241 0-0.998 0.809-1.807 1.807-1.807 0.517 0 0.983 0.217 1.313 0.565l0.001 0.001 12.875 13.612 12.886-13.612c0.331-0.348 0.797-0.565 1.314-0.565 0.481 0 0.918 0.187 1.242 0.493l-0.001-0.001c0.723 0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z"></path>
+            </svg>
+        </div>
+    </header>
+    <div class="side__menu">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+        </svg>
+        <span>
+            &nbsp; menu
+        </span>
+    </div>
+    <div class="side__main">
+        <div class="side__bg"></div>
+        <div class="side__panel">
+            <svg class="side__close ft__a" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                 viewBox="0 0 20 20">
+                <path d="M18.362 19.324c-0.902 0.902-2.363 0.902-3.263 0l-5.098-5.827-5.098 5.825c-0.902 0.902-2.363 0.902-3.263 0-0.902-0.902-0.902-2.363 0-3.263l5.304-6.057-5.306-6.061c-0.902-0.902-0.902-2.361 0-3.263s2.361-0.902 3.263 0l5.1 5.829 5.098-5.829c0.902-0.902 2.361-0.902 3.263 0s0.902 2.363 0 3.263l-5.304 6.061 5.304 6.057c0.902 0.902 0.902 2.363 0 3.265z"></path>
+            </svg>
+
+            <div class="side__header">
+                <a href="https://wzl66.github.io" rel="start"><img class="side__logo" alt="L的个人博客" src="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100"></a>
+
+                <div class="side__meta">
+                    9 文章 <br>
+                    <span data-uvstaturl="https://wzl66.github.io">0</span> 浏览
+                    
+                </div>
+            </div>
+
+            <div class="side__title">
+                <span>ღゝ◡╹)ノ❤️</span>
+            </div>
+            <ul class="side__nav">
+                <li>
+                    <a href="https://wzl66.github.io" rel="start">
+                            L的个人博客
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/categories.html">分类</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/tags.html">标签墙</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/archives.html">存档</a>
+                </li>
+                <li>
+                    <a href="https://wzl66.github.io/links.html">友链</a>
+                </li>
+                <li>
+                    <a rel="alternate" href="https://wzl66.github.io/rss.xml">RSS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="article__top" style="background-image: url(C:%5CUsers%5Cpc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230802203232740.png?imageView2/1/w/1280/h/720/interlace/1/q/100)">
+        <div style="background-image: url(C:%5CUsers%5Cpc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230802203232740.png?imageView2/1/w/1280/h/720/interlace/1/q/100)"></div>
+        <canvas id="articleTop"></canvas>
+    </div>
+    <div class="article">
+        <div class="ft__center">
+            <div class="article__meta">
+                <time>
+                    2023-08-10
+                </time>
+                /
+                    <a rel="tag"
+                       href="https://wzl66.github.io/tags/%E6%9C%89%E6%9B%B4%E6%96%B0">有更新</a> &nbsp;
+            </div>
+            <h2 class="article__title">
+                Redis
+            </h2>
+<div class="article__share"
+     data-title="Redis"
+     data-blogtitle="L的个人博客"
+     data-url="https://wzl66.github.io/articles/2023/08/10/1691653234717.html"
+     data-avatar="https://b3logfile.com/avatar/1684909784530_1684909889613.jpeg?imageView2/1/w/128/h/128/interlace/0/q/100">
+    <span class="item" data-type="qqz">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M22.824 13.989l-8.348 6.287s3.351 0.522 8.404 0.461l-0.23-1.040 7.2-6.549c0.132-0.12 0.183-0.312 0.129-0.487s-0.203-0.299-0.377-0.314l-9.492-0.856-3.708-9.213c-0.068-0.169-0.226-0.279-0.401-0.279s-0.333 0.11-0.401 0.279l-3.708 9.213-9.492 0.856c-0.174 0.015-0.323 0.139-0.377 0.314s-0.004 0.366 0.129 0.487l7.2 6.549-2.158 9.742c-0.040 0.178 0.026 0.365 0.168 0.474 0.142 0.107 0.331 0.115 0.481 0.021l8.158-5.165 8.158 5.165c0.070 0.045 0.147 0.066 0.225 0.066 0.090 0 0.18-0.029 0.256-0.086 0.142-0.109 0.208-0.295 0.168-0.474l-1.707-7.704c0.732-0.386 1.538-1.040 1.538-1.040s-3.195 1.638-14.664 0.838l8.312-6.325s-0.327-0.534-10.744-0.914c-0.697-0.026 8.493-1.83 15.281-0.305z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="wechat">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M9.062 9.203c0-0.859-0.562-1.422-1.422-1.422-0.844 0-1.703 0.562-1.703 1.422 0 0.844 0.859 1.406 1.703 1.406 0.859 0 1.422-0.562 1.422-1.406zM20.672 17.125c0-0.562-0.562-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.859 0 1.422-0.562 1.422-1.141zM16.984 9.203c0-0.859-0.562-1.422-1.406-1.422-0.859 0-1.703 0.562-1.703 1.422 0 0.844 0.844 1.406 1.703 1.406 0.844 0 1.406-0.562 1.406-1.406zM26.906 17.125c0-0.562-0.578-1.125-1.422-1.125-0.562 0-1.125 0.562-1.125 1.125 0 0.578 0.562 1.141 1.125 1.141 0.844 0 1.422-0.562 1.422-1.141zM22.75 10.922c-0.359-0.047-0.719-0.063-1.094-0.063-5.375 0-9.625 4.016-9.625 8.953 0 0.828 0.125 1.625 0.359 2.375-0.359 0.031-0.703 0.047-1.063 0.047-1.422 0-2.547-0.281-3.969-0.562l-3.953 1.984 1.125-3.406c-2.828-1.984-4.531-4.547-4.531-7.656 0-5.391 5.094-9.625 11.328-9.625 5.563 0 10.453 3.391 11.422 7.953zM32 19.687c0 2.547-1.688 4.813-3.969 6.516l0.859 2.828-3.109-1.703c-1.141 0.281-2.281 0.578-3.406 0.578-5.391 0-9.625-3.688-9.625-8.219s4.234-8.219 9.625-8.219c5.094 0 9.625 3.688 9.625 8.219z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="weibo">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M13.444 27.064c-5.3 0.525-9.875-1.875-10.219-5.35-0.344-3.481 3.675-6.719 8.969-7.244 5.3-0.525 9.875 1.875 10.212 5.35 0.35 3.481-3.669 6.725-8.963 7.244zM24.038 15.521c-0.45-0.137-0.762-0.225-0.525-0.819 0.512-1.287 0.563-2.394 0.006-3.188-1.038-1.481-3.881-1.406-7.137-0.037 0 0-1.025 0.444-0.762-0.363 0.5-1.613 0.425-2.956-0.356-3.737-1.769-1.769-6.469 0.069-10.5 4.1-3.013 3.006-4.763 6.212-4.763 8.981 0 5.287 6.787 8.506 13.425 8.506 8.7 0 14.494-5.056 14.494-9.069 0-2.431-2.044-3.806-3.881-4.375z"></path>
+            <path d="M29.819 5.833c-2.1-2.331-5.2-3.219-8.063-2.612v0c-0.663 0.144-1.081 0.794-0.938 1.45 0.144 0.662 0.788 1.081 1.45 0.938 2.038-0.431 4.238 0.2 5.731 1.856s1.9 3.913 1.256 5.888v0c-0.206 0.644 0.144 1.331 0.788 1.544 0.644 0.206 1.331-0.144 1.544-0.787v-0.006c0.9-2.762 0.331-5.938-1.769-8.269z"></path>
+            <path d="M26.588 8.752c-1.025-1.138-2.538-1.569-3.925-1.269-0.569 0.119-0.931 0.688-0.813 1.256 0.125 0.569 0.688 0.931 1.25 0.806v0c0.681-0.144 1.419 0.069 1.919 0.619 0.5 0.556 0.637 1.313 0.419 1.975v0c-0.175 0.55 0.125 1.15 0.681 1.331 0.556 0.175 1.15-0.125 1.331-0.681 0.438-1.356 0.163-2.906-0.863-4.037z"></path>
+            <path d="M13.738 20.771c-0.188 0.319-0.594 0.469-0.912 0.337-0.319-0.125-0.412-0.488-0.231-0.794 0.188-0.306 0.581-0.456 0.894-0.337 0.313 0.113 0.425 0.469 0.25 0.794zM12.044 22.933c-0.512 0.819-1.613 1.175-2.438 0.8-0.813-0.369-1.056-1.319-0.544-2.119 0.506-0.794 1.569-1.15 2.388-0.806 0.831 0.356 1.1 1.3 0.594 2.125zM13.969 17.146c-2.519-0.656-5.369 0.6-6.463 2.819-1.119 2.262-0.037 4.781 2.506 5.606 2.638 0.85 5.75-0.456 6.831-2.894 1.069-2.394-0.262-4.85-2.875-5.531z"></path>
+        </svg>
+    </span>
+    <span class="item" data-type="twitter">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32.003 6.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path>
+        </svg>
+    </span>
+    <span class="item__qr"></span>
+</div>        </div>
+        <div class="wrapper">
+            <section class="vditor-reset articles article__content">
+                <h1 id="toc_h1_0">Redis</h1>
+<p><a href="https://www.bilibili.com/video/BV1S54y1R7SB?p=36&amp;vd_source=09d6df3001e540118eb4b675c976f542" target="_blank">36、小结及拓展_哔哩哔哩_bilibili</a></p>
+<h2 id="toc_h2_1">1.redis概念</h2>
+<p>Redis （全称：Remote Dictionary Server 远程字典服务）是一个开源的使用ANSI <strong>C语言编写、支持网络、可基于内存亦可持久化</strong>的日志型、Key-Value数据库，并提供多种语言的API。它是一个运行在内存中的数据结构存储系统，它可以用作<strong>数据库、缓存</strong>和<strong>消息中间件</strong>。</p>
+<blockquote>
+<p>redis可以用来干嘛</p>
+</blockquote>
+<ol>
+<li>内存存储、持久化、内存中的内容是断电即失、所以说持久化很重要（rdb,aof）</li>
+<li>效率高，可以用来高速缓存</li>
+<li>发布订阅系统</li>
+<li>地图信息分析</li>
+<li>计时器，计数器（浏览量！）</li>
+</ol>
+<blockquote>
+<p>特性</p>
+</blockquote>
+<p>多样的数据类型，集群持久化，事务</p>
+<h2 id="toc_h2_2">2、windows上下载redis</h2>
+<p>官方不建议在windows上使用redis,很久没有更新维护了，可以在github上去下载redis</p>
+<p>下载完成解压之后，双击redis-server.exe开启redis服务（注意redis端口是6379）</p>
+<p><a href="https://b3logfile.com/file/2023/08/image-Xm9M6By.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" target="_blank">image-Xm9M6By.png (1203×635) (b3logfile.com)</a></p>
+<p><strong>测试redis</strong></p>
+<p>开启redis-cli.exe开启redis客户端执行ping指令显示pong表示已经开启完成</p>
+<h2 id="toc_h2_3">3、Linux安装redis</h2>
+<p>我使用的是虚拟机ubuntu</p>
+<h3 id="toc_h3_4">1、首先我们需要将下载的redis.tar.gz文件保存到linux上</h3>
+<p>找到redis的安装目录</p>
+<pre><code class="language-nginx">cd /redis相应的安装目录
+</code></pre>
+<h3 id="toc_h3_5">2、将redis.tar.gz文件移到/opt中</h3>
+<pre><code class="language-nginx">mv redis-7.0.12.tar.gz /opt
+</code></pre>
+<h3 id="toc_h3_6">3、将文件进行解压</h3>
+<pre><code class="language-nginx">tar -zxvf redis-7.0.12.tar.gz
+</code></pre>
+<h3 id="toc_h3_7">4、进入到解压之后的文件目录</h3>
+<pre><code class="language-nginx">cd redis-7.0.12/
+</code></pre>
+<h3 id="toc_h3_8">5、安装需要编译的命名</h3>
+<pre><code class="language-nginx">yum install gcc-c++ # centos
+apt-get install gcc-c++ # ubuntu
+make # 安装依赖
+make install # 安装依赖
+</code></pre>
+<p>注意：这是centos升级gcc -C++的操作</p>
+<pre><code class="language-nginx">安装redis6.0以上版本需要升级gcc到5.3及以上,如下：升级到gcc 9.3
+yum -y install centos-release-scl
+yum -y install devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-binutils scl enable devtoolset-9 bash
+需要注意的是scl命令启用只是临时的，退出shell或重启就会恢复原系统gcc版本。
+如果要长期使用gcc 9.3的话：
+echo source /opt/rh/devtoolset-9/enable /etc/profile
+这样退出shell重新打开就是新版的gcc了
+</code></pre>
+<p>ubuntu操作</p>
+<pre><code class="language-nginx">输入命令行：
+sudo apt-get install gcc-9
+执行完毕后再输入：
+sudo apt-get install g++-9
+接着进入/usr/bin目录下删除旧版本gcc/g++文件：
+cd /usr/bin
+sudo rm gcc g++
+最后再将gcc/g++和新安装的gcc-9/g+±9关联起来：
+sudo ln -s gcc-9 gcc
+sudo ln -s g++-9 g++
+此时查看gcc版本：
+gcc -V
+————————————————
+版权声明：本文为CSDN博主「我宿孤栈」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_37346140/article/details/127686966
+</code></pre>
+<h3 id="toc_h3_9">6、进入到<strong>redis的默认安装路径 <code>usr/local/bin</code></strong></h3>
+<pre><code class="language-nginx">cd usr/local/bin/
+</code></pre>
+<h3 id="toc_h3_10">7、将redis.conf文件拷贝到当前文件</h3>
+<pre><code class="language-n">mkdir redisconfig # 创建一个目录
+cp /opt/redis-7.0.12/redis.conf redisconfig
+</code></pre>
+<p>我们以后就使用这个文件，可以保护原来的文件，当出现错误可以恢复</p>
+<h3 id="toc_h3_11">8、将redis改为后台运行</h3>
+<pre><code class="language-nginx">vim redis.conf
+# 或者使用vi命令直接修改
+vi redis.conf daemonize yes
+</code></pre>
+<h3 id="toc_h3_12">9、启动redis服务</h3>
+<p>注意我们时使用指定的配置文件启动</p>
+<pre><code class="language-nginx">redis-server redisconfig/redis.conf
+</code></pre>
+<h3 id="toc_h3_13">10、启动redis-cli客户端测试连接</h3>
+<pre><code class="language-nginx">redis-cli -p 6379
+</code></pre>
+<p>使用ping测试连接</p>
+<h3 id="toc_h3_14">11、<strong>11.查看redis进程是否开启</strong></h3>
+<pre><code>ps -ef|grep redis # 过滤redis的进程
+</code></pre>
+<h3 id="toc_h3_15"><strong>12.退出redis</strong></h3>
+<pre><code>shutdown # 关闭redis
+
+exit # 退出
+</code></pre>
+<h2 id="toc_h2_16">4、redis的基本知识</h2>
+<p>redis 默认有16个数据库，redis.conf文件可以看到相关的配置，默认是第0个数据库</p>
+<p>当然也可以使用select去切换数据库</p>
+<p><img src="C:%5CUsers%5Cpc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230802203232740.png" alt="image-20230802203232740"></p>
+<h3 id="toc_h3_17"><strong>redis常见命令：</strong></h3>
+<p>redis命令英文网<a href="https://redis.io/commands/" target="_blank">命令 |雷迪斯 (redis.io)</a></p>
+<p>redis命令中文网<a target="_blank"></a><a href="https://www.redis.net.cn/order/" target="_blank">redis命令手册</a></p>
+<p>select :数据库的切换</p>
+<p>dbsize:当前数据库的大小</p>
+<p>key *：查看所有的key</p>
+<p>flushdb:是清空当前库</p>
+<p>exists：判断key是否存在</p>
+<p>move：移除key</p>
+<p>expire key time:设置key的过期时间（单位是秒）</p>
+<p>ttl:可以查看剩余时间</p>
+<p>type key:查看当前key的类型</p>
+<h3 id="toc_h3_18">redis单线程为什么还是这么快</h3>
+<p>核心：redis是将所有的数据全部放在内存中的，多线程（CPU上下文切换：耗时的操作！！！）,对于内存系统来说，如果没有上下文的切换效率就是最高的</p>
+<p><strong>redis从6.0开始已经开始支持多线程了，在redis.conf文件中io-threads配置可以开启</strong></p>
+<p><a href="https://zhuanlan.zhihu.com/p/395223534" target="_blank">这回终于把Redis多线程讲清楚了！ - 知乎 (zhihu.com)</a></p>
+<p>(Another Redis Desktop Managerr)redis图形界面工具</p>
+<h2 id="toc_h2_19">5、Redis五种类型</h2>
+<h3 id="toc_h3_20">1、String类型</h3>
+<pre><code class="language-nginx">127.0.0.1:6379&gt; set name zl  #
+OK
+127.0.0.1:6379&gt; get name
+"zl"
+127.0.0.1:6379&gt; append name "hello" #在指定key的value上追加字符串，如果key不存在的话就等于 set的功能
+(integer) 7
+127.0.0.1:6379&gt; get name
+"zlhello"
+127.0.0.1:6379&gt; strlen name #获取字符串的长度
+(integer) 7
+127.0.0.1:6379&gt;
+127.0.0.1:6379&gt;
+##############################################################################################
+设置浏览量views
+127.0.0.1:6379&gt; set views 0  
+OK
+127.0.0.1:6379&gt; get views
+"0"
+127.0.0.1:6379&gt; incr views   #对浏览量进行+1
+(integer) 1
+127.0.0.1:6379&gt;
+127.0.0.1:6379&gt; incr views
+(integer) 2
+127.0.0.1:6379&gt; get views
+"2"
+127.0.0.1:6379&gt; decr viewa  
+(integer) -1
+127.0.0.1:6379&gt; decr views   #对浏览量进行-1
+(integer) 1
+127.0.0.1:6379&gt; key *
+(error) ERR unknown command 'key'
+127.0.0.1:6379&gt; keys *
+2) "viewa"
+4) "views"
+5) "name"
+127.0.0.1:6379&gt;
+同时也可以设置步长 指定相应长度
+##############################################################################################
+127.0.0.1:6379&gt; set name "zhou,hello"
+OK
+127.0.0.1:6379&gt; get name
+"zhou,hello"
+127.0.0.1:6379&gt; getrange name 1 3   #截取字符串 从下标0开始 相当于java subString()
+"hou"
+127.0.0.1:6379&gt; getrange name 1 -1   #想到于get key
+"hou,hello"
+127.0.0.1:6379&gt; setrange name 1 xx   #字符串替换 指定位置 和相应字符相当于java replace ()
+(integer) 10
+127.0.0.1:6379&gt; get name
+"zxxu,hello"
+127.0.0.1:6379&gt;
+#####################################################################################
+#setex (set with expire) 设置时间
+#setnx (set if not exist) 不存在设置，存在就不会设置
+setex key3 30 123   # 设置30秒后自动过期
+setnx  mykey  hello  # key不存在创建，存在则创建失败
+####################################################################################
+批量设置
+mset key1 v1 key2 v2 key3 v3  #批量创建key
+mget key1 key2 key3
+msetnx key1 v1 key4 v4   # msetnx 原子性操作，要么一起成功，要么一起失败
+######################################################################################
+①
+set user:1 {name:dy,age:18}   # 创建一个对象
+get user:1    # "{name:dy,age:3}"
+② 巧妙的设计key值
+mset user:{id}:{filed} value 
+使用mget user:{id}:{filed} 
+####################################################################################
+getset #先获取值再设置值
+</code></pre>
+<p>String类似的使用场景：value除了是我们的字符串还可以是我们的数字</p>
+<ul>
+<li>计数器</li>
+<li>统计多个单位的数量</li>
+<li>粉丝数</li>
+<li>对象缓存存储</li>
+</ul>
+<h3 id="toc_h3_21">2、List类型</h3>
+<pre><code class="language-nginx">del names
+
+lpush hy # 创建list添加数据
+
+lpush hy1 hy2 hy3 hy3
+
+lrange names 0 4 # 查看list列表names的0-4条记录
+lpush list 1   #从左侧存值
+lpush list 2
+lpush list 3
+rpush list 4   #从右侧存值
+
+===============================
+lrange list  0 2  #获取值 倒着取值
+lrange list  0 -1 #取所有的值
+lindex list 1     #从左边 下标取值  没有rindex
+===============================
+lpop list  #从左边移除值
+rpop list  #从右边移除值
+
+=====================
+Llen   # 获取长度
+lrem list 1 1  #移除指定的值  第一个参数是数量  第二个是移除的元素
+=====================
+ltirm key  start end #通过下标来截取key 
+=====================
+rpopLpush  key1 key2 #移除末尾的一个元素，将这个值又添加到开头 ，其中这两个key值可以相同
+===========================
+lset key index  value #lset可以通过指定key的指定下标位更新为value的值，当然他会先判断key是否存在
+=========================================================
+linsert key before|after  value1 value2#将value2的值插入到指定key中value1的前面或后面，当出现有重复的value值时，会插入到第一个value1的指定位置
+</code></pre>
+<blockquote>
+<p>小结</p>
+</blockquote>
+<ul>
+<li>list实际上是一个链表，before Node   after ,     left,right都可以插入值</li>
+<li>如果key不存在，创建新的链表</li>
+<li>如果key存在,新增内容</li>
+<li>如果移除了所有的值，空链表，页代表不存在！</li>
+<li>在两边插入或者改动值，效率最高！中间元素，相对来说效率会低一点~</li>
+</ul>
+<p>消息排队！消息队列（Lpush Rpop）,栈（Lpush Lpop）</p>
+<h3 id="toc_h3_22">3、set集合</h3>
+<p>Redis的Set是string类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据。</p>
+<p>Redis 中 集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。</p>
+<p>集合中最大的成员数为 2^32 - 1 (4294967295, 每个集合可存储40多亿个成员)。</p>
+<pre><code class="language-nginx">sadd set "hello" #将set集合里面添加元素
+smembers set #显示出set集合里面所有的元素
+sismember set value #判断value里面的值是否存在set中
+SREM key member1 [member2] 移除集合中一个或多个成员
+SRANDMEMBER key [count] 返回集合中一个或多个随机数 随机抽选一个元素
+SMOVE source destination member 将 member 元素从 source 集合移动到 destination 集合
+===============================================================================
+求共同关注
+SDIFF key1 [key2] 返回给定所有集合的差集  key1-key2
+SINTER key1 [key2] 返回给定所有集合的交集  key1交key2
+SUNION key1 [key2] 返回所有给定集合的并集  key1并key2
+</code></pre>
+<h3 id="toc_h3_23">4、Hash(哈希) Map集合</h3>
+<p>这个时候的value就是一个map集合了</p>
+<pre><code class="language-nginx">HSET key field value 将哈希表 key 中的字段 field 的值设为 value 。
+
+HMGET key field1 [field2] 获取所有给定字段的值
+
+HMSET key field1 value1 [field2 value2 ] 同时将多个 field-value (域-值)对设置到哈希表 key 中。
+
+hgetall key #获得所有的值 
+获取格式
+mapkey1 
+mapvalue1
+mapkey2
+mapvalue2
+
+hdel key filed删除指定的值 
+
+HEXISTS key field 查看哈希表 key 中，指定的字段是否存在。
+</code></pre>
+<h3 id="toc_h3_24">5、zset(有序列表)</h3>
+<p>Redis 有序集合和集合一样也是string类型元素的集合,且不允许重复的成员。</p>
+<p>不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。</p>
+<p>有序集合的成员是唯一的,但分数(score)却可以重复。</p>
+<p>集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。 集合中最大的成员数为 232 - 1 (4294967295, 每个集合可存储40多亿个成员)。</p>
+<pre><code class="language-nginx">ZADD key score1 member1 [score2 member2] 向有序集合添加一个或多个成员，或者更新已存在成员的分数
+ZRANGEBYSCORE key -inf +inf 通过分数返回有序集合指定区间内的成员 可以实现排序
+ZRANGEBYSCORE key min max [WITHSCORES]  通过分数返回有序集合指定区间内的成员并显示scores值
+ZCARD key 获取有序集合的成员数
+</code></pre>
+<h2 id="toc_h2_25">6、三种特殊数据类型</h2>
+<h3 id="toc_h3_26">1、gesopatial地理位置</h3>
+<p><a href="https://blog.csdn.net/weixin_43409994/article/details/117418143?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.no_search_link&amp;spm=1001.2101.3001.4242.2" target="_blank">geospatial操作</a></p>
+<h3 id="toc_h3_27">2、Hyperloglog基础</h3>
+<p>作用可以用来统计不重复的数（一个网站的访问量）</p>
+<blockquote>
+<p>基数？</p>
+</blockquote>
+<p>A={1,3,5,7,7,8 }</p>
+<p>B={1,3,5,7,8}</p>
+<p>基数:不重复的数，可以接受误差</p>
+<p>**适用场景:**统计一个网站的访问量，一个ID多次访问只能算作是一次访问，当然可以使用set无序列表来统计，当统计的数量庞大时</p>
+<p>使用set列表会非常的占用内存空间。</p>
+<p>HyperLogLog 数据结构可用于仅使用少量恒定内存对集合中<strong>的唯一</strong>元素进行计数，特别是每个 HyperLogLog 的 12k 字节（加上键本身的几个字节）。观测集的返回基数不精确，但近似标准误差为 0.81%,</p>
+<p>基本命令</p>
+<pre><code class="language-nginx">=================================
+pfadd key element... #添加一个或多个元素到hyperloglog集合中
+pfcount key #查看key的元素个数
+pfmerge destkey [sourcekey [sourcekey ...]] #将多个 HyperLogLog 值合并为一个近似的唯一值 源 HyperLogLog 的观察到的集合的并集的基数 结构。计算合并的 HyperLogLog 设置为目标变量，即 如果不存在，则创建（默认为空的HyperLogLog）。
+</code></pre>
+<h3 id="toc_h3_28">3、BitMaps位图场景</h3>
+<blockquote>
+<p>位存储</p>
+</blockquote>
+<p><strong>位存储的应用场景</strong>：位示图来统计地址快的使用情况，可以表示用户在线与不在线，打卡</p>
+<pre><code class="language-nginx">setbit sign 1 0 #表示第一天没有打卡
+getbit sign 1  #获得第一天的打卡情况
+bitcount sign  [start,end]#可以统计在某个范围内的sign情况
+</code></pre>
+<h2 id="toc_h2_29">7、新增redis类型</h2>
+<h3 id="toc_h3_30">1、stream流</h3>
+<p><a href="https://www.runoob.com/redis/redis-stream.html" target="_blank">Redis Stream | 菜鸟教程 (runoob.com)</a></p>
+<p>stream流就是redis中的mp</p>
+<p><strong>官方介绍</strong></p>
+<p>Redis 流是一种数据结构，其作用类似于仅追加日志，但也实现了多个操作来克服典型仅追加日志的一些限制。其中包括O（1）时间的随机访问和复杂的消费策略，如消费者群体。 您可以使用流实时记录和同时联合事件。 Redis 流用例的示例包括：</p>
+<ul>
+<li>事件溯源（例如，跟踪用户操作、点击等）</li>
+<li>传感器监控（例如，现场设备的读数）</li>
+<li>通知（例如，将每个用户的通知记录存储在单独的流中）</li>
+</ul>
+<p>Redis 为每个流条目<strong>生成一个唯一的 ID</strong>。 您可以在以后<strong>使用这些 ID 检索其关联的条目</strong>，或读取和处理流中的所有后续条目。</p>
+<h2 id="toc_h2_31">实训 模拟手机验证发送</h2>
+<p>实现功能：</p>
+<ol>
+<li>输入手机号，点击发送后随机生成六位数字码，2分钟有效</li>
+<li>输入验证码，点击验证，返回成功或者失败</li>
+<li>每个手机号每天只能输入3次</li>
+</ol>
+<p>实现步骤：</p>
+<ol>
+<li>生成随机六位数字验证码</li>
+<li>把验证码放在redis里面，设置过期时间120秒</li>
+<li>判断验证码是否一致   只需要去除相应的key的value值与输入的值进行比较</li>
+<li>使用incr每次发送加一</li>
+</ol>
+<pre><code class="language-java">package com.zl.note.controller;
+
+import com.zl.note.uitls.RedisCache;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Calendar;
+import java.util.Objects;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+
+@RestController
+public class sendPhoneMsg {
+    @Autowired
+    @Qualifier("redis")
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisCache redisCache;
+    @RequestMapping("/sendmsg")
+    public void SendPhone(){
+        String code = getCode();
+        sendmsg("111",code);
+    }
+    //生成验证码
+    public String getCode(){
+        Random random = new Random();
+        String code="";
+        for (int i  = 0; i  &lt; 6; i ++) {
+             code+= random.nextInt(10);
+        }
+        return code;
+    }
+    //发送验证码
+    public void sendmsg(String phone,String code){
+        String count=phone+"count";
+        String msg=phone+"msg";
+        Integer o = (Integer) redisTemplate.opsForValue().get(count);
+        //需要获取当前时间
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        long todayZero = calendar.getTimeInMillis();
+        long currentTime = System.currentTimeMillis();
+        long scondely=todayZero+86400000;
+        long delay=(scondely-currentTime)/1000;
+        if(Objects.isNull(o)){
+            //表示用户还没有发送过验证码
+            redisTemplate.opsForValue().setIfAbsent(count,0,delay, TimeUnit.SECONDS);
+        }else if(o&gt;2){
+            System.out.println("你今天的次数已经用完");
+            return ;
+        }
+        redisTemplate.opsForValue().set(msg,code);
+        redisTemplate.opsForValue().increment(count);
+        String o1 = (String) redisTemplate.opsForValue().get(msg);
+        System.out.println("你发送的验证码为"+o1);
+    }
+}
+</code></pre>
+<h2 id="toc_h2_32">8、redis事务操作</h2>
+<p>redis的本质：一组命令的集合</p>
+<p>一个事务中的所有的命令都会被序列化，在事务执行过程中。会按照顺序执行！</p>
+<p>一次性、顺序性，排他性！执行一系列的命令！</p>
+<pre><code class="language-nginx">-----
+命令1
+命令2
+命令3
+-----
+</code></pre>
+<p>==redis事务没有隔离级别的概念==！就不会出现脏读</p>
+<p>==**注意：**redis单条命令式保护原子性的，但是redis事务不保证原子性!==</p>
+<p>redis的事务：</p>
+<ul>
+<li>开启事务（multi）</li>
+<li>命令入队（.......）</li>
+<li>执行事务（exec）</li>
+</ul>
+<blockquote>
+<p>执行事务</p>
+</blockquote>
+<pre><code class="language-nginx">127.0.0.1:6379&gt; multi #开启事务
+OK
+--------------- #命令入队
+127.0.0.1:6379(TX)&gt; set k1 v1  
+QUEUED
+127.0.0.1:6379(TX)&gt; set k2 v2
+QUEUED
+127.0.0.1:6379(TX)&gt; get key2
+QUEUED
+127.0.0.1:6379(TX)&gt; set k3 v3
+QUEUED
+------------------- #执行事务
+127.0.0.1:6379(TX)&gt; exec
+1) OK
+2) OK
+3) (nil)
+4) OK
+127.0.0.1:6379&gt; 
+
+</code></pre>
+<blockquote>
+<p>取消事务</p>
+</blockquote>
+<pre><code class="language-nginx">discard #取消事务
+</code></pre>
+<blockquote>
+<p>编译时异常（代码出现错误，队列中如果一个命令出现错误），执行事务时会显示错误其他没有出现错误的命令也会无法执行</p>
+</blockquote>
+<pre><code class="language-nginx">127.0.0.1:6379(TX)&gt; set k1 "hello"
+QUEUED
+127.0.0.1:6379(TX)&gt; incr k1  #运行错误地方，字符串是不可以进行加1操作的
+QUEUED
+127.0.0.1:6379(TX)&gt; set k2 v2
+QUEUED
+127.0.0.1:6379(TX)&gt; get k2
+QUEUED
+127.0.0.1:6379(TX)&gt; exec   #执行事务时，其他的命令还是正常的执行，没有出现错误
+1) OK
+2) (error) ERR value is not an integer or out of range
+3) OK
+4) "v2"
+127.0.0.1:6379&gt; 
+</code></pre>
+<h2 id="toc_h2_33">9、redis实现乐观锁</h2>
+<p>乐观锁：展现出很乐观，认为不会出现任何问题，在操作之前会检查元素是否发生改变</p>
+<pre><code>使用watch进行检测上锁
+在watch上锁之后，在其他操作之前unwatch进行一个解锁操作
+</code></pre>
+<p>redis乐观锁在秒杀上有应用</p>
+<h2 id="toc_h2_34">10、通过Jedis操作Redis</h2>
+<blockquote>
+<p>什么是Jedis？</p>
+<p>官方指定的java操作redis,</p>
+</blockquote>
+<p>导入依赖</p>
+<pre><code class="language-xml">&lt;!-- https://mvnrepository.com/artifact/redis.clients/jedis --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;redis.clients&lt;/groupId&gt;
+    &lt;artifactId&gt;jedis&lt;/artifactId&gt;
+    &lt;version&gt;3.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+</code></pre>
+<p>jedis里面的操作时使用jedis对象操作原生命令</p>
+<h2 id="toc_h2_35">11、SpringBoot-redis整合</h2>
+<p>导入依赖</p>
+<pre><code class="language-XML">&lt;!--redis--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="toc_h3_36">1、redis的底层实现</h3>
+<p>在SpringBoot2.X之后 使用的底层默认是lettuce，而不是jedis</p>
+<blockquote>
+<p>lettuce和jedis之间的区别</p>
+<p>jedis:采用的直连，多个线程操作的话，是不安全的，如果想要避免不安全的，使用jedis pool连接池！ BIO</p>
+<p>lettce :采用netty,实列可以再多个线程中进行共享，不存在线程不安全的情况！可以减少线程数据，更像NIO模式</p>
+</blockquote>
+<p><img src="https://b3logfile.com/file/2023/08/image-5zC2Hys.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png">](<a href="https://b3logfile.com/file/2023/08/image-5zC2Hys.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" target="_blank">https://b3logfile.com/file/2023/08/image-5zC2Hys.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100</a>)</p>
+<h3 id="toc_h3_37">2、SpringBoot整合redis源码解析</h3>
+<p>==SpringBoot所有的配置类，都会有一个自动配置类XXXAutoConfiguration,自动配置类都会绑定一个properties配置文件XXXProperties，根据配置文件可以知道配置类有什么属性可以进行配置==</p>
+<p>在SpringBoot-configure的文件的/META-INF/spring.factories 里面搜索redis找到redis相关的依赖</p>
+<p><img src="https://b3logfile.com/file/2023/08/image-rPAks2G.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png">](<a href="https://b3logfile.com/file/2023/08/image-rPAks2G.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" target="_blank">https://b3logfile.com/file/2023/08/image-rPAks2G.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100</a>)</p>
+<p>发现redis的配置类RedisAutoConfiguration</p>
+<pre><code class="language-java">@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass(RedisOperations.class)
+@EnableConfigurationProperties(RedisProperties.class)
+@Import({ LettuceConnectionConfiguration.class, JedisConnectionConfiguration.class })
+public class RedisAutoConfiguration {
+  
+
+   @Bean
+   @ConditionalOnMissingBean(name = "redisTemplate")  //表示在SpringBoot里面没有redisTemplate改方法会生效，以为这我们可以自己重新redisTemplate方法代替代给方法
+   @ConditionalOnSingleCandidate(RedisConnectionFactory.class)
+   public RedisTemplate&lt;Object, Object&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+      RedisTemplate&lt;Object, Object&gt; template = new RedisTemplate&lt;&gt;();
+      template.setConnectionFactory(redisConnectionFactory);
+      return template;
+   }
+
+   @Bean
+   @ConditionalOnMissingBean
+   @ConditionalOnSingleCandidate(RedisConnectionFactory.class)
+   public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+      StringRedisTemplate template = new StringRedisTemplate();
+      template.setConnectionFactory(redisConnectionFactory);
+      return template;
+   }
+}
+</code></pre>
+<p>引用RedisCemplate</p>
+<pre><code class="language-java">@Autowirde
+private RedisTemplate redisTemplate 
+
+RedisTemplate里面的Filed
+private final ValueOperations&lt;K, V&gt; valueOps = new DefaultValueOperations(this);  //相当于String类型，操作String类型
+private final ListOperations&lt;K, V&gt; listOps = new DefaultListOperations(this);    //list类型
+private final SetOperations&lt;K, V&gt; setOps = new DefaultSetOperations(this);         //set类型
+private final StreamOperations&lt;K, ?, ?&gt; streamOps = new DefaultStreamOperations(this,  ObjectHashMapper.getSharedInstance()); //stream流类型
+private final ZSetOperations&lt;K, V&gt; zSetOps = new DefaultZSetOperations(this); //zset类型
+private final GeoOperations&lt;K, V&gt; geoOps = new DefaultGeoOperations(this);  //geospatial类型
+private final HyperLogLogOperations&lt;K, V&gt; hllOps = new DefaultHyperLogLogOperations(this); //hyperloglog类型
+private final ClusterOperations&lt;K, V&gt; clusterOps = new DefaultClusterOperations(this);
+</code></pre>
+<p>有相应的opsForXXX()去获得redis十大基本类型的实列对象</p>
+<p><img src="https://b3logfile.com/file/2023/08/image-mHnXtGA.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png">](<a href="https://b3logfile.com/file/2023/08/image-mHnXtGA.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" target="_blank">https://b3logfile.com/file/2023/08/image-mHnXtGA.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100</a>)</p>
+<p>这样使用原生的指令太繁琐了，建议是将redis的相关操作封装称为一个redisUitls工具类</p>
+<h4 id="toc_h4_38">解决中文乱码问题</h4>
+<p>默认的是jdk序列化</p>
+<p><img src="https://b3logfile.com/file/2023/08/image-XzsEpY2.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png">](<a href="https://b3logfile.com/file/2023/08/image-XzsEpY2.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" target="_blank">https://b3logfile.com/file/2023/08/image-XzsEpY2.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100</a>)</p>
+<p>解决方案：</p>
+<p>①可以使得对象类去实现Serializable接口</p>
+<p>②将RedisTemplate的默认序列化改成json序列化</p>
+<pre><code class="language-java">package com.zl.note.configuration;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+public class RedisConfig {
+    @Bean
+    @ConditionalOnSingleCandidate(RedisConnectionFactory.class)
+    public RedisTemplate&lt;Object, Object&gt; redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        RedisTemplate&lt;Object, Object&gt; template = new RedisTemplate&lt;&gt;();
+        template.setConnectionFactory(redisConnectionFactory);
+        //Json序列化配置
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om=new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        //String的序列化
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
+        //key采用String的序列化方式
+        template.setKeySerializer(stringRedisSerializer);
+        //hash的key采用String的序列化方式
+        template.setHashKeySerializer(stringRedisSerializer);
+        //value采用jackson的序列化方式
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        //hash value采用jackson的序列化方式
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+        return template;
+    }
+}
+
+</code></pre>
+<p>redis工具类</p>
+<pre><code class="language-java">package com.zl.note.uitls;
+
+import org.springframework.data.redis.core.BoundSetOperations;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+@SuppressWarnings(value = {"unchecked", "rawtypes"})
+@Component
+public class RedisCache {
+    @Resource
+    public RedisTemplate redisTemplate;
+
+    /**
+     * 缓存基本的对象，Integer、String、实体类等
+     *
+     * @param key   缓存的键值
+     * @param value 缓存的值
+     */
+    public &lt;T&gt; void setCacheObject(final String key, final T value) {
+        redisTemplate.opsForValue().set(key, value);
+    }
+
+    /**
+     * 缓存基本的对象，Integer、String、实体类等
+     *
+     * @param key      缓存的键值
+     * @param value    缓存的值
+     * @param timeout  时间
+     * @param timeUnit 时间颗粒度
+     */
+    public &lt;T&gt; void setCacheObject(final String key, final T value, final Integer timeout, final TimeUnit timeUnit) {
+        redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
+    }
+
+    /**
+     * 设置有效时间
+     *
+     * @param key     Redis键
+     * @param timeout 超时时间
+     * @return true=设置成功；false=设置失败
+     */
+    public boolean expire(final String key, final long timeout) {
+        return expire(key, timeout, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 设置有效时间
+     *
+     * @param key     Redis键
+     * @param timeout 超时时间
+     * @param unit    时间单位
+     * @return true=设置成功；false=设置失败
+     */
+    public boolean expire(final String key, final long timeout, final TimeUnit unit) {
+        return redisTemplate.expire(key, timeout, unit);
+    }
+
+    /**
+     * 获得缓存的基本对象。
+     *
+     * @param key 缓存键值
+     * @return 缓存键值对应的数据
+     */
+    public &lt;T&gt; T getCacheObject(final String key) {
+        ValueOperations&lt;String, T&gt; operation = redisTemplate.opsForValue();
+        return operation.get(key);
+    }
+
+    /**
+     * 删除单个对象
+     *
+     * @param key
+     */
+    public boolean deleteObject(final String key) {
+        return redisTemplate.delete(key);
+    }
+
+    /**
+     * 删除集合对象
+     *
+     * @param collection 多个对象
+     * @return
+     */
+    public long deleteObject(final Collection collection) {
+        return redisTemplate.delete(collection);
+    }
+
+    /**
+     * 缓存List数据
+     *
+     * @param key      缓存的键值
+     * @param dataList 待缓存的List数据
+     * @return 缓存的对象
+     */
+    public &lt;T&gt; long setCacheList(final String key, final List&lt;T&gt; dataList) {
+        Long count = redisTemplate.opsForList().rightPushAll(key, dataList);
+        return count == null ? 0 : count;
+    }
+
+    /**
+     * 获得缓存的list对象
+     *
+     * @param key 缓存的键值
+     * @return 缓存键值对应的数据
+     */
+    public &lt;T&gt; List&lt;T&gt; getCacheList(final String key) {
+        return redisTemplate.opsForList().range(key, 0, -1);
+    }
+
+    /**
+     * 缓存Set
+     *
+     * @param key     缓存键值
+     * @param dataSet 缓存的数据
+     * @return 缓存数据的对象
+     */
+    public &lt;T&gt; BoundSetOperations&lt;String, T&gt; setCacheSet(final String key, final Set&lt;T&gt; dataSet) {
+        BoundSetOperations&lt;String, T&gt; setOperation = redisTemplate.boundSetOps(key);
+        Iterator&lt;T&gt; it = dataSet.iterator();
+        while (it.hasNext()) {
+            setOperation.add(it.next());
+        }
+        return setOperation;
+    }
+
+    /**
+     * 获得缓存的set
+     *
+     * @param key
+     * @return
+     */
+    public &lt;T&gt; Set&lt;T&gt; getCacheSet(final String key) {
+        return redisTemplate.opsForSet().members(key);
+    }
+
+    /**
+     * 缓存Map
+     *
+     * @param key
+     * @param dataMap
+     */
+    public &lt;T&gt; void setCacheMap(final String key, final Map&lt;String, T&gt; dataMap) {
+        if (dataMap != null) {
+            redisTemplate.opsForHash().putAll(key, dataMap);
+        }
+    }
+
+    /**
+     * 获得缓存的Map
+     *
+     * @param key
+     * @return
+     */
+    public &lt;T&gt; Map&lt;String, T&gt; getCacheMap(final String key) {
+        return redisTemplate.opsForHash().entries(key);
+    }
+
+    /**
+     * 往Hash中存入数据
+     *
+     * @param key   Redis键
+     * @param hKey  Hash键
+     * @param value 值
+     */
+    public &lt;T&gt; void setCacheMapValue(final String key, final String hKey, final T value) {
+        redisTemplate.opsForHash().put(key, hKey, value);
+    }
+
+    /**
+     * 获取Hash中的数据
+     *
+     * @param key  Redis键
+     * @param hKey Hash键
+     * @return Hash中的对象
+     */
+    public &lt;T&gt; T getCacheMapValue(final String key, final String hKey) {
+        HashOperations&lt;String, String, T&gt; opsForHash = redisTemplate.opsForHash();
+        return opsForHash.get(key, hKey);
+    }
+
+    /**
+     * 删除Hash中的数据
+     *
+     * @param key
+     * @param hkey
+     */
+    public void delCacheMapValue(final String key, final String hkey) {
+        HashOperations hashOperations = redisTemplate.opsForHash();
+        hashOperations.delete(key, hkey);
+    }
+
+    /**
+     * 获取多个Hash中的数据
+     *
+     * @param key   Redis键
+     * @param hKeys Hash键集合
+     * @return Hash对象集合
+     */
+    public &lt;T&gt; List&lt;T&gt; getMultiCacheMapValue(final String key, final Collection&lt;Object&gt; hKeys) {
+        return redisTemplate.opsForHash().multiGet(key, hKeys);
+    }
+
+    /**
+     * 获得缓存的基本对象列表
+     *
+     * @param pattern 字符串前缀
+     * @return 对象列表
+     */
+    public Collection&lt;String&gt; keys(final String pattern) {
+        return redisTemplate.keys(pattern);
+    }
+}
+
+</code></pre>
+<h2 id="toc_h2_39">实列 秒杀案例</h2>
+<pre><code class="language-java">package com.zl.note.controller;
+
+import com.zl.note.pojo.ResponseResult;
+import com.zl.note.uitls.RedisCache;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Objects;
+import java.util.UUID;
+
+
+@RestController
+public class sendPhoneMsg {
+    @Autowired
+    @Qualifier("redis")
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private RedisCache redisCache;
+    @RequestMapping("/sendmsg")
+    public ResponseResult SendPhone(){
+     //生成用户ID和商品ID
+        String userid= "38595296-27c2-4a43-bdb4-1dd294c514f1";
+        String produceId=UUID.randomUUID().toString();
+        if(miaosha(userid,produceId)){
+            return new ResponseResult(200,"秒杀成功",null);
+        }
+        return new ResponseResult(500,"秒杀失败",null);
+    }
+     public boolean miaosha(String userid,String produceId){
+
+        //判断用户ID和商品ID是否都存在
+         if(Objects.isNull(userid)||Objects.isNull(produceId)){
+             System.out.println("操作异常");
+             return false;
+         }
+         redisTemplate.watch("kc");
+         //获取商品库存量
+         Integer kc= (Integer) redisTemplate.opsForValue().get("kc");
+         if(Objects.isNull(kc)){
+             System.out.println("活动没有开始");
+             return false;
+         }
+         //判断用户ID是否已经抢到了
+         if(redisTemplate.opsForHash().hasKey("success:userid",userid)){
+             System.out.println("你已经成功抢到商品,不可以重复抢购");
+             return false;
+         }
+         //库存小于1时，表示已经抢完
+         if(kc&lt;1){
+             System.out.println("手慢了，没有抢到");
+             return false;
+         }
+         //秒杀过程
+         redisTemplate.opsForValue().decrement("kc");
+         redisTemplate.opsForHash().put("success:userid",userid,produceId);
+         return true;
+     }
+}
+
+</code></pre>
+<h3 id="toc_h3_40">模拟秒杀并发测试</h3>
+<p>1、安装ab(<a href="https://so.csdn.net/so/search?q=apache&amp;spm=1001.2101.3001.7020" target="_blank">apache</a> bench)是apache下的一个工具，主要用于做web站点的压力测试</p>
+<pre><code class="language-bash">yum install httpd-tools            #Centos安装
+sudo apt-get install apache2-utils   #ubuntu安装
+</code></pre>
+<p>参数详解<a href="https://blog.csdn.net/qq_28041113/article/details/121566326" target="_blank">ab工具使用详解_李硕硕的博客-CSDN博客</a></p>
+<table>
+<thead>
+<tr><th>-n（常用）</th><th>发出x个请求</th><th> </th><th> </th></tr>
+</thead>
+<tbody>
+<tr><td>-c（常用）</td><td>并发一次发出的多个请求数，也就是模拟x个并发</td><td> </td><td> </td></tr>
+<tr><td>-t（常用）</td><td>将花费在基准测试上的时间限制为最长秒，在x秒内发请求</td><td> </td><td> </td></tr>
+<tr><td>-s（常用）</td><td>等待每个响应的最大超时秒数，默认30秒</td><td> </td><td> </td></tr>
+<tr><td>-p</td><td>发送POST请求时需要上传的文件，此外还必须设置-T参数。</td><td> </td><td> </td></tr>
+<tr><td>-u</td><td>发送PUT请求时需要上传的文件，此外还必须设置-T参数。</td><td> </td><td> </td></tr>
+<tr><td>-T</td><td>内容类型用于POST/PUT数据的内容类型标题，默认值为text/plain。例如：application/x-www-form-urlencoded，</td><td> </td><td> </td></tr>
+<tr><td> </td><td> </td><td> </td><td> </td></tr>
+</tbody>
+</table>
+<p>操作格式 ： Usage: ab [options]    [http[s]://]hostname[:port]/path</p>
+<p>ab -n 1000[请求参数] -c 100[并发参数] -p 文件[提交参数]</p>
+<p>ab -n 1000 -c 100 -p  ~/postfile     -T application/x-www-form-urlencoded    <a href="http://192.168.2.128:88/sendmsg" target="_blank">http://192.168.2.128:88/sendmsg</a></p>
+<h3 id="toc_h3_41">问题出现</h3>
+<h4 id="toc_h4_42">1、连接超时问题(使用连接池可以解决) 超卖问题（使用乐观锁）</h4>
+<p><strong>原因是乐观锁导致很多请求都失败了</strong>。先点的没秒到，后点的秒杀到了</p>
+<p>每次连接redis服务带来的消耗，把连接好的实例反复利用</p>
+<p>Jedis 连接池工具类</p>
+<pre><code class="language-java">public class JedisPoolUtil {
+   private static volatile JedisPool jedisPool = null;
+
+   private JedisPoolUtil() {
+   }
+
+   public static JedisPool getJedisPoolInstance() {
+      if (null == jedisPool) {
+         synchronized (JedisPoolUtil.class) {
+            if (null == jedisPool) {
+               JedisPoolConfig poolConfig = new JedisPoolConfig();
+                //这些相应的配置项也可以在application配置文件中配置
+               poolConfig.setMaxTotal(200);
+               poolConfig.setMaxIdle(32);
+               poolConfig.setMaxWaitMillis(100*1000);
+               poolConfig.setBlockWhenExhausted(true);
+               poolConfig.setTestOnBorrow(true);  // ping  PONG
+                //建立连接
+               jedisPool = new JedisPool(poolConfig, "127.0.0.1", 6379, 60000 );
+            }
+         }
+      }
+      return jedisPool;
+   }
+
+   public static void release(JedisPool jedisPool, Jedis jedis) {
+      if (null != jedis) {
+         jedisPool.returnResource(jedis);
+      }
+   }
+
+}
+</code></pre>
+<p>volatile关键字的定义：<a href="https://blog.csdn.net/JMW1407/article/details/122302803" target="_blank">Java：java学习笔记之volatile关键字的简单理解和使用_JMW1407的博客-CSDN博客</a></p>
+<p>由于我使用的是lettuce</p>
+<pre><code class="language-java">package com.zhoulei.mybatis_plus01.controller;
+
+import com.sun.corba.se.impl.orbutil.concurrent.Sync;
+import com.zhoulei.mybatis_plus01.pojo.ResponseResult;
+import lombok.Synchronized;
+import org.apache.ibatis.transaction.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+@RestController
+public class sendPhoneMsg {
+    @Autowired
+    @Qualifier("redis")
+    private RedisTemplate redisTemplate;
+    @RequestMapping("/sendmsg")
+    public ResponseResult SendPhone(){
+     //生成用户ID和商品ID
+        String userid= UUID.randomUUID().toString();
+        String produceId=UUID.randomUUID().toString();
+        if(miaosha(userid,produceId)){
+            System.out.println("操作成功");
+        }
+        return new ResponseResult(500,"秒杀失败",null);
+    }
+    @Synchronized   //加锁
+     public  boolean miaosha(String userid,String produceId){
+             //判断用户ID和商品ID是否都存在
+             if (Objects.isNull(userid) || Objects.isNull(produceId)) {
+                 System.out.println("操作异常");
+                 return false;
+             }
+             redisTemplate.watch("kc");
+             //获取商品库存量
+             Integer kc = (Integer) redisTemplate.opsForValue().get("kc");
+             if (Objects.isNull(kc)) {
+                 System.out.println("活动没有开始");
+                 return false;
+             }
+             //判断用户ID是否已经抢到了
+             if (redisTemplate.opsForHash().hasKey("success:userid", userid)) {
+                 System.out.println("你已经成功抢到商品,不可以重复抢购");
+                 return false;
+             }
+             //库存小于1时，表示已经抢完
+             if (kc &lt; 1) {
+                 System.out.println("手慢了，没有抢到");
+                 return false;
+             }
+             //开启事务
+             redisTemplate.setEnableTransactionSupport(true);
+             RedisConnection connection = redisTemplate.getConnectionFactory().getConnection();
+             connection.multi(); // 开启事务
+             //秒杀过程
+             redisTemplate.opsForValue().decrement("kc");
+             redisTemplate.opsForHash().put("success:userid", userid, produceId);
+             connection.exec();
+             //断开连接，归还到连接池
+            RedisConnectionUtils.releaseConnection(connection, redisTemplate.getConnectionFactory());
+             return true;
+     }
+}
+
+</code></pre>
+<pre><code class="language-yaml">  #配置lettuce连接池
+  redis:
+    port: 6379
+    lettuce:
+      pool:
+        max-idle: 32 #连接池中最小的空闲连接
+        max-wait: 5000ms  #最大堵塞时间
+        max-active: 200 #最大连接数
+        time-between-eviction-runs: 1ms #eviction线程调用时间间隔
+    connect-timeout: 2000ms #连接超时时间
+</code></pre>
+<p>小白踩坑：出现 ERR EXEC without MULTI    显示错误表示执行前没有开启事务。我当时使用redisTemplate.multi()开启事务，出现错误。</p>
+<p><a href="https://blog.csdn.net/Yihchu/article/details/108481675" target="_blank">关于RedisTemplate的ERR EXEC without MULTI错误_0000Joker0000的博客-CSDN博客</a></p>
+<p>因为<code>RedisTemplate</code>默认是不开启事务支持的，而且在执行<code>exec</code>方法时，会重新创建一个连接对象(或者从当前线程的<code>ThreadLocal</code>中拿到上一次绑定的连接)。所以，我们在不开启事务的情况下，自己在外面执行的<code>multi</code>方法时完全不会生效的(因为连接对象都换了)~</p>
+<pre><code class="language-java">// 在事务中使用相同的Redis连接进行进一步的操作。线程绑定的对象将在事务完成时被同步删除。
+RedisConnectionHolder holderToUse = conHolder;
+if (holderToUse == null) {
+    //建立一个新的连接对象
+    holderToUse = new RedisConnectionHolder(connection);
+} else {
+    //中拿到上一次绑定的连接
+    holderToUse.setConnection(connection);
+}holderToUse = new RedisConnectionHolder(connection);
+</code></pre>
+<p>第二种方法有用对于redis7来说，使用setEnableTransactionSupport(true)没有作用了，源码已经做了修改</p>
+<p>同时也可以使用</p>
+<pre><code class="language-java">RedisConnection connection = redisTemplate.getConnectionFactory().getConnection();
+connection.multi(); // 开启事务
+</code></pre>
+<h3 id="toc_h3_43">2、库存遗留问题（使用lua脚本解决）</h3>
+<p>导致原因:乐观锁导致，当有许多的用户抢到同一个商品，当一个用户抢购成功，之后就会修改版本号，导致其他的用户无法购买</p>
+<h3 id="toc_h3_44">3.库存遗留问题</h3>
+<p>当我们固定请求量的时候，因为我们的乐观锁机制，会导致<strong>很多请求都被拒绝了</strong>。我们在模拟高并发的时候，会设定一个请求量。假设我库存为10，设置100个请求，乐观锁机制导致93个请求失效了，那么我就遗留下来3个库存，这就是库存遗留问题。库存遗留问题同样也是多请求失效问题，有效请求太少了，用户体验不好</p>
+<p>解决办法是<strong>悲观锁</strong>，将所有都加锁，但是因为redis不能实现悲观锁，所以我们使用lua来解决问题，lua脚本的本质是使用单线程队列，也能够实现悲观锁的效果</p>
+<p><strong>解决办法就是使用lua脚本</strong></p>
+<pre><code class="language-cmd">local userid=KEYS[1]; 
+local prodid=KEYS[2];
+local qtkey="sk:"..prodid..":qt";
+local usersKey="sk:"..prodid.":usr'; 
+local userExists=redis.call("sismember",usersKey,userid);
+if tonumber(userExists)==1 then 
+  return 2;
+end
+local num= redis.call("get" ,qtkey);
+if tonumber(num)&lt;=0 then 
+  return 0; 
+else 
+  redis.call("decr",qtkey);
+  redis.call("sadd",usersKey,userid);
+end
+return 1;
+/**
+ * 使用lua脚本解决库存遗留问题
+ */
+public class SecKill_redisByScript {
+   
+   private static final  org.slf4j.Logger logger =LoggerFactory.getLogger(SecKill_redisByScript.class) ;
+
+   public static void main(String[] args) {
+      JedisPool jedispool =  JedisPoolUtil.getJedisPoolInstance();
+ 
+      Jedis jedis=jedispool.getResource();
+      System.out.println(jedis.ping());
+  
+      Set&lt;HostAndPort&gt; set=new HashSet&lt;HostAndPort&gt;();
+
+   // doSecKill("201","sk:0101");
+   }
+   
+   static String secKillScript ="local userid=KEYS[1];\r\n" + 
+         "local prodid=KEYS[2];\r\n" + 
+         "local qtkey='sk:'..prodid..\":qt\";\r\n" + 
+         "local usersKey='sk:'..prodid..\":usr\";\r\n" + 
+         "local userExists=redis.call(\"sismember\",usersKey,userid);\r\n" + 
+         "if tonumber(userExists)==1 then \r\n" + 
+         "   return 2;\r\n" + 
+         "end\r\n" + 
+         "local num= redis.call(\"get\" ,qtkey);\r\n" + 
+         "if tonumber(num)&lt;=0 then \r\n" + 
+         "   return 0;\r\n" + 
+         "else \r\n" + 
+         "   redis.call(\"decr\",qtkey);\r\n" + 
+         "   redis.call(\"sadd\",usersKey,userid);\r\n" + 
+         "end\r\n" + 
+         "return 1" ;
+    
+   static String secKillScript2 = 
+         "local userExists=redis.call(\"sismember\",\"{sk}:0101:usr\",userid);\r\n" +
+         " return 1";
+
+   public static boolean doSecKill(String uid,String prodid) throws IOException {
+
+      JedisPool jedispool =  JedisPoolUtil.getJedisPoolInstance();
+      Jedis jedis=jedispool.getResource();
+
+       //String sha1=  .secKillScript;
+      String sha1=  jedis.scriptLoad(secKillScript);
+      Object result= jedis.evalsha(sha1, 2, uid,prodid);
+
+        String reString=String.valueOf(result);
+      if ("0".equals( reString )  ) {
+         System.err.println("已抢空！！");
+      }else if("1".equals( reString )  )  {
+         System.out.println("抢购成功！！！！");
+      }else if("2".equals( reString )  )  {
+         System.err.println("该用户已抢过！！");
+      }else{
+         System.err.println("抢购异常！！");
+      }
+      jedis.close();
+      return true;
+   }
+}
+</code></pre>
+<p><strong>原理</strong></p>
+<p>将复杂的或者多步的redis操作，写为一个脚本，一次提交给redis执行，减少反复连接redis的次数。提升性能。LUA脚本是类似redis事务，有一定的原子性，不会被其他命令插队，可以完成一些redis事务性的操作。</p>
+<p>但是注意redis的lua脚本功能，只有在Redis 2.6以上的版本才可以使用。</p>
+<p>利用lua脚本淘汰用户，解决超卖问题。</p>
+<p>redis 2.6版本以后，通过lua脚本解决<strong>争抢问题</strong>，实际上是<strong>redis</strong> <strong>利用其单线程的特性，用任务队列的方式解决多任务并发问题</strong>。</p>
+<h2 id="toc_h2_45">12、redis.conf配置</h2>
+<p><a href="https://www.cnblogs.com/nhdlb/p/14048083.html" target="_blank">Redis：redis.conf配置文件 - 及配置详解 - 怒吼的萝卜 - 博客园 (cnblogs.com)</a></p>
+<h3 id="toc_h3_46">1、units单位</h3>
+<ol>
+<li>配置大小单位，开头配置了一些基本的度量单位，支支持bytes，不支持bit</li>
+<li>他对大小写不敏感</li>
+</ol>
+<p><img src="https://b3logfile.com/file/2023/08/image-KO3lrp5.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png"></p>
+<h3 id="toc_h3_47">2、include包含</h3>
+<p><img src="https://b3logfile.com/file/2023/08/image-Q9UcYtD.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt=""></p>
+<p>好比improt可以导入其他的配置文件</p>
+<h3 id="toc_h3_48">3、network网络</h3>
+<pre><code class="language-bash">port 6379  #配置redis服务器的端口号
+bind=127.0.0.1 #绑定IP地址，默认是绑定本机的IP地址，表示只有本机可以访问,如果是远程的话，我们可以将其注释掉，可以接受所有的IP地址，也可以使用通配符 *来表示所有的IP地址，
+protected-mode yes #保护模式  
+
+#此参数确定了TCP连接中已完成队列(完成三次握手之后)的长度， 当然此值必须不大于Linux系统定义的/proc/sys/net/core/somaxconn值，默认是511，而Linux的默认参数值是128。
+#当系统并发量大并且客户端速度缓慢的时候，可以将这二个参数一起参考设定。该内核参数默认值一般是128，对于负载很大的服务程序来说大大的不够。一般会将它修改为2048或者更大。
+#在/etc/sysctl.conf中添加:net.core.somaxconn = 2048，然后在终端中执行sysctl -p
+#在高并发环境下你需要一个高backlog值来避免慢客户端连接问题
+tcp-backlog 511
+
+#此参数为设置客户端空闲超过timeout，服务端会断开连接，为0则服务端不会主动断开连接，不能小于0
+timeout 0
+</code></pre>
+<h3 id="toc_h3_49">4、general通用</h3>
+<pre><code class="language-bash">daemonize yes#守护进程运行会有后台形式进行
+pidfile /var/run/redis_6379.pid   #如果我们以后台的方式运行的话，我们需要指定一个pid文件。
+
+# debug (a lot of information, useful for development/testing)   在开发或测试环境
+# verbose (many rarely useful info, but not a mess like the debug level)   
+# notice (moderately verbose, what you want in production probably)   在生产环境
+# warning (only very important / critical messages are logged)
+loglevel notice   日志
+
+logfile "" #配置日志文件。空字符串的话，日志会打印到标准输出设备。后台运行的redis标准输出是/dev/null
+</code></pre>
+<h3 id="toc_h3_50">5、快照</h3>
+<blockquote>
+<p>认识一下快照，数据存储的某一时刻的状态记录，换句话来说就是将我们的数据进行一个监听，到了规定的时间点后就会将数据保存下来，使其完成持久化。</p>
+</blockquote>
+<p>redis中的快照，在规定时间内，执行了多少次操作，则会持久化到文件（.rdb  .aof）</p>
+<p>redis是内存数据库，如果没有持久化操作的话，就会断电即失的</p>
+<pre><code class="language-bash">save 3600 1  #在3600S内至少有一个key进行操作就会进行保存
+save 300 100  #在300S内至少有100个key进行操作就会进行操作
+save 60 10000  #如果在60S内有10000个key进行操作就会进行保存
+  
+#当RDB持久化出现错误后，是否依然进行继续进行工作，yes：不能进行工作，no：可以继续进行工作，可以通过info中的rdb_last_bgsave_status了解RDB持久化是否有错误
+stop-writes-on-bgsave-error yes
+
+
+#配置存储至本地数据库时是否压缩数据，默认为yes。Redis采用LZF压缩方式，但占用了一点CPU的时间。
+#若关闭该选项，但会导致数据库文件变的巨大。建议开启。
+rdbcompression yes
+
+#是否校验rdb文件;从rdb格式的第五个版本开始，在rdb文件的末尾会带上CRC64的校验和。
+#这跟有利于文件的容错性，但是在保存rdb文件的时候，会有大概10%的性能损耗，所以如果你追求高性能，可以关闭该配置
+rdbchecksum yes
+
+dir ./#rdb文件保存地址，默认是在本文件保存
+</code></pre>
+<h3 id="toc_h3_51">6、scurity安全</h3>
+<pre><code class="language-bash"># requirepass foobared  #设置密码，redis默认是没有密码，可以在配置文件中设置密码，也可以使用命名去设置密码。
+</code></pre>
+<h3 id="toc_h3_52">7、限制client</h3>
+<pre><code class="language-bash"># maxclients 10000  #最大客户端的数量
+# maxmemory &lt;bytes&gt; #最大的内存
+# maxmemory-policy noeviction  #当内存满时的策略
+volatile-lru：只对设置了过期时间的key进行LRU（默认值）
+allkeys-lru ： 是从所有key里 删除 不经常使用的key
+volatile-random：随机删除即将过期key
+allkeys-random：随机删除
+volatile-ttl ： 删除即将过期的
+noeviction ： 永不过期，返回错误
+</code></pre>
+<h3 id="toc_h3_53">8、APPEND ONLY MODE  aof模式</h3>
+<pre><code class="language-bash">appendonly no#默认是不开启aof模式，默认是使用rdb方式持久化，大部分所有的情况下，rdb完全够用！
+appendfilename  "appendonly.aof" #持久化的文件名字
+#appendfsync always #每次修改都会sync。消耗性能
+appendfsync everysec #每秒执行一次sync 可能会丢失1S的数据！
+#appendsync no   #不执行sync,这个时候操作系统自己同步数据，速度最快！
+</code></pre>
+<h2 id="toc_h2_54">13、持久化</h2>
+<p>Redis是内存数据库，如果不将内存中的数据库状态保存在磁盘上，那么一旦服务器进程退出，服务器中的数据库状态也会消失。所以Redis提供了持久化功能！主要分为两类①rdb ②aof</p>
+<h3 id="toc_h3_55">1、RDB</h3>
+<p><img src="https://b3logfile.com/file/2023/08/solo-fetchupload-5222386255729438741-U8lwYVh.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="img"></p>
+<p>RDB是在指定的<strong>时间间隔</strong>内将内存中的<strong>数据集快照</strong>写入磁盘，也就是行话讲的<strong>Snapshot快照</strong>，它恢复时是将快照文件直接读入内存当中的</p>
+<p><strong>备份是如何执行的</strong><br>
+Redis会单独创建（fork）一个子进程来进行持久化，会先将数据写入到一个临时文件中，待持久化过程结束，再用这个临时文件替换上次持久化好的文件。整个过程中，主进程是不进行任何io操作的，这就确保了极高的性能，如果需要进行大规模数据的恢复，且对于数据恢复完整性不那么敏感**，那RDB方式要比AOF方式更加的高效**。<strong>RDB的缺点是最后一次持久化后的数据可能丢失</strong></p>
+<p>注意：系统一般默认是rdb保存</p>
+<p>有时候在生产环境我们会将这个文件进行备份！</p>
+<p>==rdb默认文件时dump.rdb==</p>
+<p><strong>Fork</strong></p>
+<ul>
+<li>Fork的作用是复制一个与当前进程一样的进程。新进程的所有数据（变量、环境变量、程序计数器等） 数值都和原进程一致，但是是一个全新的进程，并作为原进程的子进程</li>
+<li>在Linux程序中，fork()会产生一个和父进程完全相同的子进程，但子进程在此后多会exec系统调用，出于效率考虑，Linux中引入了“<strong>写时复制技术</strong>”</li>
+<li><strong>一般情况父进程和子进程会共用同一段物理内存</strong>，只有进程空间的各段的内容要发生变化时，才会将父进程的内容复制一份给子进程</li>
+</ul>
+<blockquote>
+<p>触发机制</p>
+</blockquote>
+<p>1、save的规则满足的情况下，会自动的触发rdb规则</p>
+<p><strong>save特点</strong>：save时只管保存，其它不管，全部阻塞。手动保存。不建议使用。一般我们不设置save指令或者给他传空字符串 <code>save ""</code>，不使用它。</p>
+<p><strong>推荐使用bgsave：Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求。注意我们的bgsave是手动持久化的命令，这里的save是自动持久化</strong></p>
+<p>2、执行flushall命令，也会触发我们的rdb规则</p>
+<p>3、退出redis,也会产生rdb文件！</p>
+<p>当触发rdb机制之后就会自动的生成一个dump.rdb文件</p>
+<blockquote>
+<p>如何使用rdb文件恢复数据</p>
+</blockquote>
+<p>1、只需要将rdb文件放在我们的redis启动目录就可以，redis启动的时候会自动的检查dump.rdb恢复其中的数据！</p>
+<p>2、查看需要存在的位置</p>
+<p><img src="C:%5CUsers%5Cpc%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20230807101649719.png" alt="image-20230807101649719"></p>
+<p><strong>优点：</strong></p>
+<p>1、适合大规模的数据恢复！</p>
+<p>2、对数据的完整性要求不高！</p>
+<p><strong>缺点：</strong></p>
+<p>1、需要一定的时间间隔进程操作！如果redis意外宕机了，这个最后一次修改数据就没有了！</p>
+<p>2、fork进程的时候,会占用一定的内存空间！！</p>
+<h3 id="toc_h3_56">2、AOF</h3>
+<p>将我们所有的命令都记录下来，history,恢复的时候就打这个文件全部执行一遍！</p>
+<p>aop（append only file）他是以日志的形式来记录每个写操作（增量保存），将Redis执行过的所有写指令记录下来(<strong>读操作不记录</strong>)， <strong>只许追加文件但不可以改写文件</strong>，redis启动之初会读取该文件重新构建数据，换言之，redis 重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作</p>
+<h4 id="toc_h4_57">1.AOF配置</h4>
+<p>aof默认是不开启的，可以再开redis.conf中配置文件名称，默认为不开启</p>
+<pre><code>appendonly no # 是否开启aof，默认不开启aop
+
+appendfilename "appendonly.aof" # aof生成文件名，默认持久化文件名
+</code></pre>
+<p><strong>aof文件的保存路径，同rdb路径一致</strong></p>
+<p><strong>aof与rdb同时开启，系统默认读取aof</strong></p>
+<h4 id="toc_h4_58">2.AOF启动、修复、恢复</h4>
+<p>AOF的备份机制和性能虽然和RDB不同, 但是备份和恢复的操作同RDB一样，都是拷贝备份文件，需要恢复时再拷贝到Redis工作目录下，启动系统即加载。</p>
+<p><strong>正常恢复</strong></p>
+<ol>
+<li>修改默认的appendonly no，改为yes</li>
+<li>将有数据的aof文件复制一份保存到对应目录(查看目录：config get dir)</li>
+<li>恢复：重启redis然后重新加载</li>
+</ol>
+<p><strong>异常恢复</strong></p>
+<p>当aof文件损坏时，我们可以修复损坏的aof文件</p>
+<ol>
+<li>修改默认的appendonly no，改为yes</li>
+<li>备份被写坏的aof文件</li>
+<li>如遇到<strong>AOF</strong>文件损坏，通过<code>/usr/local/bin/redis-check-aof --fix appendonly.aof</code>进行恢复</li>
+<li>重启redis，重新加载</li>
+</ol>
+<h4 id="toc_h4_59">3.AOF同步频率</h4>
+<p>在配置文件中的 <code>appendsync</code>有三个模式</p>
+<ul>
+<li>always，始终同步，每次Redis的写入都会立刻记录日志，性能差但完整性好</li>
+<li>everysec，每秒进行一次同步，如果宕机，本秒数据可能丢失</li>
+<li>no，不主动进行同步，把同步时机交给操作系统</li>
+</ul>
+<h4 id="toc_h4_60">4、AOF的重写机制</h4>
+<h4 id="toc_h4_61">1、rewirte机制</h4>
+<blockquote>
+<p>为什么AOF需要有重写机制？</p>
+</blockquote>
+<ol>
+<li>
+<p>AOF可以无限的追加命令，这会使得我们AOF文件越来越大，并却在这些命令中有许多的冗余命令，</p>
+<p>①比如我们执行incr key 一直执行100下，其实就可以使用步长（incrby key 100）或者是直接赋值大key中(set key 100)</p>
+<p>②多条写命令可以合并为一个，如lpush list a、lpush list b、 lpush list c 可以转化为：lpush list a b c。</p>
+<p>③一些过期的数据</p>
+</li>
+</ol>
+<blockquote>
+<p>AOF的重写原理</p>
+</blockquote>
+<p><strong>AOF的工作原理是将写操作追加到文件中，文件的冗余内容会越来越多。所以聪明的 Redis 新增了重写机制。当AOF文件的大小超过所设定的阈值时，Redis就会对AOF文件的内容压缩。</strong><br>
+<strong>Redis 会fork出一条新进程，读取内存中的数据，并重新写到一个临时文件中。==并没有读取旧文件。最后替换旧的aof文件。==</strong></p>
+<hr>
+<p>为了合并重写AOF的持久化文件，Redis提供了bgrewriteaof命令。收到此命令后，Redis将使用与快照类似的方式将内存中的数据<strong>以命令的方式保存到临时文件中</strong>==（并不是只是简单的去读取，而是会执行，将其结果保存）==，最后替换原来的文件，以此来实现控制AOF文件的合并重写（会将重写过程中接收的的新的指令和生成新的重写后AOF文件中的指令进行合并）。</p>
+<h5 id="toc_h5_62"><strong>2.核心配置no-appendfsync-on-rewrite</strong></h5>
+<p>这个配置，表示是否将重写写入aof文件</p>
+<pre><code class="language-bash">- 如果`no-appendfsync-on-rewrite yes` ,#不写入aof文件，只写入缓存，用户请求不会阻塞，但是在这段时间如果宕机会丢失这段时间的缓存数据。（降低数据安全性，提高性能）
+- 如果`no-appendfsync-on-rewrite no`，# 还是会把数据往磁盘里刷，但是遇到重写操作，可能会发生阻塞。（数据安全，但是性能降低）
+</code></pre>
+<h5 id="toc_h5_63">5.写操作配置</h5>
+<p>当我们达到写操作阈值的时候，我们会将缓冲区内的数据持久化</p>
+<pre><code class="language-cmd">auto-aof-rewrite-percentage：100 # 设置重写的基准值，文件达到100%时开始重写（文件是原来重写后文件的2倍时触发）
+auto-aof-rewrite-min-size # 设置重写的基准值，最小文件64MB。达到这个值开始重写
+</code></pre>
+<p>例：</p>
+<p>文件达到70MB开始重写，降到50MB，下次什么时候开始重写？100MB</p>
+<p>系统载入时或者上次重写完毕时，Redis会记录此时AOF大小，设为base_size,</p>
+<p>如果Redis的AOF当前大小&gt;= base_size +base_size*100% (默认)且当前大小&gt;=64mb(默认)的情况下，Redis会对AOF进行重写。</p>
+<h4 id="toc_h4_64">6、混合持久化</h4>
+<p>配置</p>
+<pre><code class="language-bash">aof-use-rdb-preamble yes#开启混合持久化配置
+</code></pre>
+<p>aof 按照文本的方式写入文件，但是文本写入成本是比较高的，redis 就引入了 “混合持久化” 的方式，结合了 rdb 和 aof 的特点~在开启混合持久化的情况下， aof 重写时会把 redis 的持久化数据，以 RDB 的格式写入到新的 AOF 文件的开头，之后的数据再以 AOF 的格式化追加的文件的末尾，这样做，既可以避免因 aof 文件较大影响 redis 启动速度，又能防止 rdb 导致的一段时间内的数据丢失.</p>
+<h2 id="toc_h2_65">14、主从复制</h2>
+<blockquote>
+<p>什么是主从复制？</p>
+</blockquote>
+<p>主从复制，是指将一台Redis服务器的数据，复制到其他的Redis服务器。前者称为主节点(master)，后者称为从节点(slave)；</p>
+<p>==数据的复制是单向的，只能由主节点到从节点。==</p>
+<p><strong>默认情况下，每台Redis服务器都是主节点，且一个主节点可以有多个从节点(或没有从节点)，但一个从节点只能有一个主节点。</strong></p>
+<p>目前很多中小企业都没有使用到 Redis 的集群，但是至少都做了主从。有了主从，当 master 挂掉的时候，运维让从库过来接管，服务就可以继续，否则 master 需要经过数据恢复和重启的过程，这就可能会拖很长的时间，影响线上业务的持续服务。</p>
+<blockquote>
+<p>主从复制的作用主要包括：</p>
+</blockquote>
+<ul>
+<li><strong>数据冗余</strong>：主从复制实现了数据的热备份，是持久化之外的一种数据冗余方式。</li>
+<li><strong>故障恢复</strong>：当主节点出现问题时，可以由从节点提供服务，实现快速的故障恢复；实际上是一种服务的冗余。</li>
+<li><strong>负载均衡</strong>：在主从复制的基础上，配合读写分离，可以由主节点提供写服务，由从节点提供读服务（即写Redis数据时应用连接主节点，读Redis数据时应用连接从节点），分担服务器负载；尤其是在写少读多的场景下，通过多个从节点分担读负载，可以大大提高Redis服务器的并发量。</li>
+<li><strong>高可用基石</strong>：主从复制还是哨兵和集群能够实施的基础，因此说主从复制是Redis高可用的基础。</li>
+</ul>
+<h3 id="toc_h3_66">搭建redis集群</h3>
+<ol>
+<li>创建/myredis文件夹</li>
+<li>复制redis.conf配置文件到文件夹中</li>
+<li>配置一主两从，创建三个配置文件
+<ol>
+<li>redis_6379.conf</li>
+<li>redis_6380.conf</li>
+<li>redis_6381.conf</li>
+</ol>
+</li>
+</ol>
+<p>实现是我们将redis.conf作为公共配置文件，在其他redis中include（引入）公共配置文件，在做自己单独的配置</p>
+<p>公共配置文件</p>
+<pre><code>daemonize yes # 开启守护进程
+appendonly no # 关闭aof
+</code></pre>
+<p>redis_6379.conf</p>
+<pre><code>include /myredis/redis.conf
+pidfile /var/run/redis_6379.pid
+port 6379
+dbfilename dump6379.rdb
+</code></pre>
+<p>redis_6380.conf</p>
+<pre><code>include /myredis/redis.conf
+pidfile /var/run/redis_6380.pid
+port 6380
+dbfilename dump6380.rdb
+</code></pre>
+<p>redis_6380.conf</p>
+<pre><code>include /myredis/redis.conf
+pidfile /var/run/redis_6381.pid
+port 6381
+dbfilename dump6381.rdb
+</code></pre>
+<ol>
+<li>
+<p>启动redis</p>
+<pre><code class="language-bash">1. redis-serve redis6379.conf
+2. redis-serve redis6380.conf
+3. redis-serve redis6381.conf
+</code></pre>
+</li>
+<li>
+<p>查看redis情况</p>
+<pre><code class="language-bash">ps -ef|grep redis #查看进程
+info replication #redis客户端中输入命令，查看本机信息(其中包括主机或者是从机的相关信息)
+</code></pre>
+</li>
+<li>
+<p>从机加入主机</p>
+<pre><code class="language-bash">1. slaveof 主机ip 端口号 #在从机执行这个命令可以将自己作为从机加入主机
+2. 在6380与6381上面执行`slaveof 127.0.0.1 6379`
+</code></pre>
+</li>
+<li>
+<p>测试主写从读</p>
+</li>
+<li>
+<p>配置文件 <code>salveof 主机ip 端口号</code>可持久化配置</p>
+</li>
+</ol>
+<p>资料来源（<a href="https://lmlx66.top/articles/2022/04/25/1650872904555.html#toc_h2_61" target="_blank">王富贵 (lmlx66.top)</a>）</p>
+<p>**注意：**我们刚刚所使用的是命令行使用命令来配置主从，这种方式不具有持久性（在从机shutdown之后重启，需要再次任<code>大哥</code>（主机），）想要从机重新启动之后不需要配置主机就要在相应的从机配置文件中配置主机的IP和端口</p>
+<pre><code class="language-bash"># replicaof &lt;masterip&gt; &lt;masterport&gt;
+</code></pre>
+<p><strong>我们测试几个问题</strong></p>
+<p><strong>1.当我们从机挂掉之后，重启还能加载之前的数据么？</strong></p>
+<p>可以</p>
+<p><strong>2.从机是否可以写操作？</strong></p>
+<p>不可以</p>
+<p><strong>3.主机挂掉了，从机是上位还是原地待命？</strong></p>
+<p>在默认模式下，从机是原地待命的</p>
+<p><strong>4.主机挂掉又回来了，从机是否还能顺利复制？</strong></p>
+<p>只要主机的数据还在，从机就可以进行之后的操作</p>
+<p><strong>5.其中一台从机挂掉之后，依照原有它能跟上大部队么？</strong></p>
+<p>可以，从机加入之后，会将主机所有数据加载进来</p>
+<h3 id="toc_h3_67">主从复制原理</h3>
+<ol>
+<li>从服务器（slave）启动成功连接到主服务器（master）后，从服务器（slave）会发送一个sync命令给主服务器（master）master接收到命令，启动后台的存盘进程，用时收集所有接收到的用于修改数据集命令，==在后台进程执行完毕之后，master将传送的整个文件到slave，并完成一次完全同步==</li>
+<li>主服务器接到从服务器发送过来同步消息，把主服务器数据进行持久化，rdb文件，把rdb文件发送到从服务器，从服务器拿到rbd文件之后进行读取（这个过程我们叫<strong>全量复制</strong>）</li>
+<li>主服务器进行写操作之后，他会将所有收集到的命令传给从服务器，完成同步（这个过程我们叫<strong>增量复制</strong>）</li>
+<li>注意只要重新连接主服务器，我们就会进行一次全量复制</li>
+</ol>
+<h4 id="toc_h4_68">第二个模型</h4>
+<p><img src="https://b3logfile.com/file/2023/08/image-1q7xR9t.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png"></p>
+<p>将79号作为主机，80作为79的从机，81又作为80的从机</p>
+<p>注意的：这个80这个中间的还是只能==充当一个从机的身份，不可以有写的操作==，（奴隶的奴隶还是我的奴隶）</p>
+<p>上一个从服务器（slave）可以是下一个从服务器（slave）的主服务器（master），从服务器（slave）同样可以接收其他从服务器（slave）的连接和同步请求，那么该从服务器（slave）作为了链条中下一个的主服务器（master）, 可以有效减轻主服务器（master）的写压力,去中心化降低风险</p>
+<h4 id="toc_h4_69">谋朝篡位</h4>
+<p>当79主机发生了宕机下线之后，就会出现一个群龙为首的场面，没有办法写入数据，这是就要在从机当中选出一个从机变成主机，</p>
+<p>从机变成主机需要执行 <code>slaveof no one</code>指令将该从机变成主机。==这是需要手动去需要配置==</p>
+<p><strong>思考：</strong></p>
+<ol>
+<li>
+<p>当原来的主机（leader）恢复之后，会不会回到原来的模型？</p>
+<p>不会回到原来的模型，80任然是主机，要想恢复之前的模型，==需要重新手动配置，将80机变成79的从机==</p>
+</li>
+</ol>
+<h2 id="toc_h2_70">15、哨兵模式（重点）</h2>
+<p>哨兵模式为了解决上面出现主机宕机之后需要手动配置主机的情况。哨兵模式将帮助我们自动的配置主机。</p>
+<p>==哨兵也是一个单独的进程==，用于检测master主机是否发生了宕机，在工作中一般使用哨兵集群，因为只使用一个哨兵的话，这个哨兵可能也会发生意外出现宕机，导致无法配置出新的主机。</p>
+<p><img src="https://b3logfile.com/file/2023/08/solo-fetchupload-10605395564451773783-nD2QXNS.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="img"></p>
+<blockquote>
+<p>哨兵是如何进行监控和自动选择下一代主机的呢？</p>
+<p>哨兵集群认为主节点宕机的依据：<br>
+根据quorum的值决定，比如默认是2，这意味着如果2个哨兵认为该主节点宕机了，就会选举从节点作为主节点（故障转移），quorum的值是 {哨兵集群的数量}/2 + 1，即超过集群数量半数，比如现在哨兵集群有5台节点，这quorum的值应该为3，刚好超过半数，防止脑裂</p>
+<p>如果master服务器发生了宕机，哨兵会通过给master发送消息如果mater没有做出回应就哨兵就会主观的认为master宕机了称为<strong>主观下线</strong>这时候系统不会马上进行failover过程。当后面哨兵也检测到master宕机，并且达到一定的数量之后，哨兵就会进行一次投票（使用投票算法），进行failover【故障转移】操作，切换成功后，就会发布订阅模式，让各个哨兵把自己监控的从服务器实现切换主机，称为<strong>客观下线</strong></p>
+</blockquote>
+<h3 id="toc_h3_71">1.如何使用</h3>
+<ol>
+<li>先调整成一主（6379）二从（6380、6381）模式</li>
+<li>在自定义的/myredis目录下新建sentinel.conf文件，名字不能错</li>
+</ol>
+<p>sentinel.conf</p>
+<pre><code class="language-cmd"># sentinel monitor 起名 被监视主机ip number（数字表示有几个哨兵同意才切换）
+# 样例
+sentinel monitor mymaster 127.0.0.1  1
+</code></pre>
+<ol>
+<li>同时，我们的哨兵是一个服务，单独启动他</li>
+</ol>
+<pre><code class="language-cmd"># 启动哨兵服务，通过后面这个配置文件
+redis-sentinel  /myredis/sentinel.conf 
+</code></pre>
+<p>当我们的主机（6379）下线，哨兵会从从机中选取一个从机（6380）当主机</p>
+<p><strong>同时原主机（6379）会保留信息，当他再次上线，就只能当新主机（6380）的从机</strong></p>
+<h3 id="toc_h3_72">2、从机选取主机规则</h3>
+<p>从节点集群中选择slave-priority配置最小的值那台从节点作为主节点，如果不存在slave-priority配置，这选择从节点集群中同步数据最多，偏移量最大的从节点作为主节点，如果还不存在，这选择runid最小的值作为主节点（即最新启动的从节点）</p>
+<p><strong>注意：在redis6中，slave-priority的名字叫 <code>replica-priority 100</code></strong>  这个值为 0 表示 replica 节点永远不能被提升为 master 节</p>
+<p>偏移量是指获得原主机数据最全的</p>
+<p>每个redis实例启动后都会随机生成一个40位的runid</p>
+<h2 id="toc_h2_73">16、Redis应用问题解决</h2>
+<h3 id="toc_h3_74">1、缓存穿透</h3>
+<p><strong>访问不存在的某一个值，redis以为没有缓存，给到数据库去查，大量访问造成数据库崩溃。</strong></p>
+<p>key对应的数据在数据源并不存在，每次针对此key的请求从缓存获取不到，请求都会压到数据源，从而可能压垮数据源。比如用一个不存在的用户id获取用户信息，不论缓存还是数据库都没有，若黑客利用此漏洞进行攻击可能压垮数据库</p>
+<p><img src="https://b3logfile.com/file/2023/08/image-ws7W4qa.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png"></p>
+<p><strong>解决办法</strong></p>
+<ol>
+<li><strong>对空值缓存：</strong> 如果一个查询返回的数据为空（不管是数据是否不存在），我们仍然把这个空结果（null）进行缓存，设置空结果的过期时间会很短，最长不超过五分钟
+<ul>
+<li>缺点是只能作为临时解决穿透的方案</li>
+</ul>
+</li>
+<li><strong>设置可访问的名单（白名单）：</strong> 使用bitmaps类型定义一个可以访问的名单，名单id作为bitmaps的偏移量，每次访问和bitmap里面的id进行比较，如果访问id不在bitmaps里面，进行拦截，不允许访问
+<ul>
+<li>效率不高，占用也比较大</li>
+</ul>
+</li>
+<li><strong>采用布隆过滤器：</strong>(布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量(位图)和一系列随机映射函数（哈希函数）。布隆过滤器可以用于检索一个元素是否在一个集合中
+<ul>
+<li>它的优点是空间效率和查询时间都远远超过一般的算法，缺点是有一定的误识别率和删除困难</li>
+</ul>
+</li>
+<li><strong>进行实时监控：</strong> 当发现Redis的命中率开始急速降低，需要排查访问对象和访问的数据，和运维人员配合，可以设置黑名单限制服务（一般都是被黑才会穿透）</li>
+</ol>
+<h3 id="toc_h3_75">2、缓存击穿</h3>
+<p><strong>访问存在的某一个值，访问量大，缓存过期的瞬间，会去数据库访问，数据库崩溃。一般是热点数据key过期</strong></p>
+<p>key对应的数据存在，但在redis中过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端DB压垮</p>
+<ol>
+<li>数据库访问压力瞬时增大</li>
+<li>redis里面没有出现大量的key过期</li>
+<li>redis正常运行</li>
+</ol>
+<p>例：redis某个key存在但过期了，大量访问这个key，因为key过期了，于是转向查数据库，照成数据库崩溃</p>
+<p><strong>解决办法</strong></p>
+<p>key可能会在某些时间点被超高并发地访问，是一种非常“热点”的数据。这个时候，需要考虑一个问题：缓存被“击穿”的问题</p>
+<ol>
+<li>
+<p><strong>预先设置热门数据：</strong> 在redis高峰访问之前，把一些热门数据提前存入到redis里面，加大这些热门数据key的时长</p>
+</li>
+<li>
+<p><strong>实时调整：</strong> 现场监控哪些数据热门，实时调整key的过期时长</p>
+</li>
+<li>
+<p>使用锁：</p>
+<p>(能解决，但是效率低)</p>
+<ol>
+<li>就是在缓存失效的时候（判断拿出来的值为空），不是立即去load db</li>
+<li>先使用缓存工具的某些带成功操作返回值的操作（比如Redis的SETNX）去set一个mutex key</li>
+<li>当操作返回成功时，再进行load db的操作，并回设缓存,最后删除mutex key</li>
+<li>当操作返回失败，证明有线程在load db，当前线程睡眠一段时间再重试整个get缓存的方法</li>
+</ol>
+</li>
+</ol>
+<pre><code>4.加互斥锁
+</code></pre>
+<p>分布式锁：使用分布式锁，保证对于每一个key，同时只有一个线程去查询后端服务，其他线程没有获得分布式锁的权限，因此只需要等待即可。这种方法将高并发的压力转移到了分布式锁，因此对分布式锁的考验很大。</p>
+<h3 id="toc_h3_76">3、缓存雪崩</h3>
+<p><strong>在特定时间内，大量的key过期，虽然每一个访问量不多，但是加起来去访问数据库，照成数据库崩溃</strong></p>
+<p>key对应的数据存在，但在redis中过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端DB压垮</p>
+<p><strong>解决办法</strong></p>
+<ol>
+<li><strong>构建多级缓存架构：</strong> nginx缓存 + redis缓存 +其他缓存（ehcache等）</li>
+<li><strong>使用锁或队列：</strong> 用加锁或者队列的方式保证来保证不会有大量的线程对数据库一次性进行读写，从而避免失效时大量的并发请求落到底层存储系统上。<strong>不适用高并发情况</strong></li>
+<li><strong>设置过期标志更新缓存：</strong> 记录缓存数据是否过期（设置提前量），如果过期会触发通知另外的线程在后台去更新实际key的缓存</li>
+<li><strong>将缓存失效时间分散开：</strong> 比如我们可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件</li>
+</ol>
+<h2 id="toc_h2_77">17、分布式锁</h2>
+<h3 id="toc_h3_78">1、什么是分布式锁</h3>
+<p>在传统单机部署的情况下，可以使用Java并发处理相关的API(如ReentrantLcok或synchronized)进行互斥控制。</p>
+<p>但是在分布式系统后，由于分布式系统多线程、多进程并且分布在不同机器上，这将使原单机并发控制锁策略失效，为了解决这个问题就需要一种跨JVM的互斥机制来控制共享资源的访问，这就是分布式锁的由来。</p>
+<p>当多个进程不在同一个系统中，就需要用分布式锁控制多个进程对资源的访问。</p>
+<blockquote>
+<p>实现分布式锁的常见方法</p>
+</blockquote>
+<ol>
+<li>==数据库乐观锁；==</li>
+<li>==基于ZooKeeper的分布式锁;==</li>
+<li>==基于Redis的分布式锁：==</li>
+</ol>
+<h3 id="toc_h3_79">2、基于redis实现分布式锁</h3>
+<p>基于Redis命令：SET key value NX EX max-lock-time</p>
+<blockquote>
+<p>指令演变</p>
+</blockquote>
+<p><code>setnx key value</code>用锁的方式设置，如果没有释放，是不能操作他的</p>
+<p><code>del key</code>删除这个key，就可以解锁了</p>
+<p><code>set key value ex second</code>用锁的方式设置,ex代表设置过期时间，单位秒（防止死锁）</p>
+<p><code>set key px millisecond</code>用锁的方式设置,px代表设置过期时间，单位毫秒（防止死锁）</p>
+<p><code>setnx key value</code>如果不存在才设置，效果等同于 <code>set key value nx</code>相当于再次加锁</p>
+<p><code>setxx key value</code>如果不存在才设置，效果等同于 <code>set key value xx</code>相当于反向加锁</p>
+<p>实现既上锁有设置过期时间的原子性操作</p>
+<p>SET key value NX EX max-lock-time 设置nx锁，同时实现了设置过期时间。</p>
+<p>setex  key  Thread1   expireTime 设置锁和过期时间</p>
+<h3 id="toc_h3_80">3、lettuce操作分布式锁</h3>
+<pre><code class="language-java">@GetMapping("testLock")
+public void testLock(){
+    //1.获取锁，或者叫设置锁，相当于set ne
+    Boolean lock = redisTemplate.opsForValue().setIfAbsent("lock", "111",3,TimeUnit.SECONDS);
+    //2.获取锁成功、查询num的值
+    if(lock){
+        Object value = redisTemplate.opsForValue().get("num");
+        //2.1判断num为空return
+        if(StringUtils.isEmpty(value)){
+            return;
+        }
+        //2.2有值就转成int
+        int num = Integer.parseInt(value+"");
+        //2.3把redis的num加1
+        redisTemplate.opsForValue().set("num", ++num);
+        //2.4释放锁，del
+        redisTemplate.delete("lock");
+
+    }else{
+        //3获取锁失败、每隔0.1秒再获取
+        try {
+            Thread.sleep(100);
+            testLock();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<h4 id="toc_h4_81">解决误删操作</h4>
+<blockquote>
+<p>误删产生的原因</p>
+</blockquote>
+<p>当线程A首先抢到了锁并且上了锁设置了过期时间，当A线程在执行具体操作的时候，出现了服务器卡顿现象，导致A线程的锁过期时间已经到了，自动的删除了A线程的锁，这时B线程就会抢到这把锁，重新进行上锁操作，在B线程锁没有过期之前，A线程执行完毕需要手动的删除锁，由于A自己的锁已经自动的删除了，所以A线程就会手动的把B线程上的锁删除掉。</p>
+<p><img src="https://b3logfile.com/file/2023/08/image-piJXz9n.png?imageView2/2/w/1280/format/jpg/interlace/1/q/100" alt="image.png"></p>
+<blockquote>
+<p>解决方案</p>
+</blockquote>
+<p>使用UUID来作为value充当唯一标识，在手动删除所之前，通过判断value值是否是本线程的UUID值，如果是就会删除锁，不是就不会删除锁。</p>
+<pre><code class="language-java">@GetMapping("testLock")
+public void testLock(){
+    String uuid = UUID.randomUUID().toString();
+    //1.获取锁，或者叫设置锁，相当于set ne
+    Boolean lock = redisTemplate.opsForValue().setIfAbsent("lock", uuid,3,TimeUnit.SECONDS);
+    //2.获取锁成功、查询num的值
+    if(lock){
+        Object value = redisTemplate.opsForValue().get("num");
+        //2.1判断num为空return
+        if(StringUtils.isEmpty(value)){
+            return;
+        }
+        //2.2有值就转成int
+        int num = Integer.parseInt(value+"");
+        //2.3把redis的num加1
+        redisTemplate.opsForValue().set("num", ++num);
+        //2.4释放锁，del
+        if(uuid.equals((String)redisTemplate.opsForValue().get("lock"))){
+            redisTemplate.delete("lock");
+        }
+
+    }else{
+        //3获取锁失败、每隔0.1秒再获取
+        try {
+            Thread.sleep(100);
+            testLock();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+</code></pre>
+<h2 id="toc_h2_82">18、Redisson</h2>
+<p>基于setnx实现的分布式锁存在一些问题：</p>
+<p>1、不可重入：同一个线程无法多次的获取同一把锁</p>
+<pre><code>可能产生问题：当方法A去调用方法B但是方法B也要上锁，并且这是B和A的锁key值相同，即b也要获得这把锁，这时由于方法A无法执行下面的程序，导致死锁现象的产生。
+</code></pre>
+<p>2、不可重试：获取锁只尝试一次就返回false,没有重试机制。</p>
+<p>3、超时释放：锁超时释放虽然可以避免死锁，但如果是业务时间比较长，也会导致锁释放，存在安全隐患。</p>
+                    <div>
+                        <hr>
+
+标题：Redis<br>
+作者：<a href="https://wzl66.github.io" target="_blank">zhoulei</a><br>
+地址：<a href="https://wzl66.github.io/articles/2023/08/10/1691653234717.html" target="_blank">https://wzl66.github.io/articles/2023/08/10/1691653234717.html</a><br>
+
+<!-- 签名档内可使用 HTML、JavaScript -->
+<br>
+                    </div>
+            </section>
+        </div>
+
+    </div>
+        <div class="post__toc">
+<ul class="article__toc">
+        <li class="toc__h1">
+            <a href="#toc_h1_0">Redis</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_1">1.redis概念</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_2">2、windows上下载redis</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_3">3、Linux安装redis</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_4">1、首先我们需要将下载的redis.tar.gz文件保存到linux上</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_5">2、将redis.tar.gz文件移到/opt中</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_6">3、将文件进行解压</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_7">4、进入到解压之后的文件目录</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_8">5、安装需要编译的命名</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_9">6、进入到redis的默认安装路径 usr/local/bin</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_10">7、将redis.conf文件拷贝到当前文件</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_11">8、将redis改为后台运行</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_12">9、启动redis服务</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_13">10、启动redis-cli客户端测试连接</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_14">11、11.查看redis进程是否开启</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_15">12.退出redis</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_16">4、redis的基本知识</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_17">redis常见命令：</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_18">redis单线程为什么还是这么快</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_19">5、Redis五种类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_20">1、String类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_21">2、List类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_22">3、set集合</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_23">4、Hash(哈希) Map集合</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_24">5、zset(有序列表)</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_25">6、三种特殊数据类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_26">1、gesopatial地理位置</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_27">2、Hyperloglog基础</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_28">3、BitMaps位图场景</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_29">7、新增redis类型</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_30">1、stream流</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_31">实训 模拟手机验证发送</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_32">8、redis事务操作</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_33">9、redis实现乐观锁</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_34">10、通过Jedis操作Redis</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_35">11、SpringBoot-redis整合</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_36">1、redis的底层实现</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_37">2、SpringBoot整合redis源码解析</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_38">解决中文乱码问题</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_39">实列 秒杀案例</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_40">模拟秒杀并发测试</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_41">问题出现</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_42">1、连接超时问题(使用连接池可以解决) 超卖问题（使用乐观锁）</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_43">2、库存遗留问题（使用lua脚本解决）</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_44">3.库存遗留问题</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_45">12、redis.conf配置</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_46">1、units单位</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_47">2、include包含</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_48">3、network网络</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_49">4、general通用</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_50">5、快照</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_51">6、scurity安全</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_52">7、限制client</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_53">8、APPEND ONLY MODE aof模式</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_54">13、持久化</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_55">1、RDB</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_56">2、AOF</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_57">1.AOF配置</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_58">2.AOF启动、修复、恢复</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_59">3.AOF同步频率</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_60">4、AOF的重写机制</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_61">1、rewirte机制</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_62">2.核心配置no-appendfsync-on-rewrite</a>
+        </li>
+        <li class="toc__h5">
+            <a href="#toc_h5_63">5.写操作配置</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_64">6、混合持久化</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_65">14、主从复制</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_66">搭建redis集群</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_67">主从复制原理</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_68">第二个模型</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_69">谋朝篡位</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_70">15、哨兵模式（重点）</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_71">1.如何使用</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_72">2、从机选取主机规则</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_73">16、Redis应用问题解决</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_74">1、缓存穿透</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_75">2、缓存击穿</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_76">3、缓存雪崩</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_77">17、分布式锁</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_78">1、什么是分布式锁</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_79">2、基于redis实现分布式锁</a>
+        </li>
+        <li class="toc__h3">
+            <a href="#toc_h3_80">3、lettuce操作分布式锁</a>
+        </li>
+        <li class="toc__h4">
+            <a href="#toc_h4_81">解决误删操作</a>
+        </li>
+        <li class="toc__h2">
+            <a href="#toc_h2_82">18、Redisson</a>
+        </li>
+</ul>        </div>
+        <div class="wrapper">
+            <div id="gitalk-container"></div>
+            <div id="vcomment"
+                 style="    margin-bottom: 40px; margin-top: 80px;
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 5px;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        padding: 20px;"
+                 data-name="zhoulei" data-postId="1691653234717"></div>
+            <div id="b3logsolocomments"></div>
+        </div>
+    <div class="article__bottom">
+        <div class="wrapper">
+            <div class="fn__flex">
+                <div class="item" id="randomArticles"></div>
+                <div class="item" id="relevantArticles"></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/TweenMax.min.js?1702824557362"
+        charset="utf-8"></script>
+<footer class="footer">
+    <div class="wrapper">
+            <a href="https://ld246.com/member/zhoulei"
+       title="https://ld246.com/member/zhoulei"
+       class="user__site"
+       target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 32 32" width="100%" height="100%">
+            <path fill="#d23f31" style="fill: var(--color1, #d23f31)" d="M5.787 17.226h17.033l5.954 9.528c0.47 0.752 0.003 1.361-1.042 1.361h-15.141z"></path>
+            <path d="M10.74 3.927h17.033c1.045 0 1.512 0.609 1.042 1.361l-5.954 9.528h-19.872l6.379-10.209c0.235-0.376 0.849-0.681 1.372-0.681z"></path>
+            <path d="M2.953 17.226h2.839l6.804 10.889h-1.892c-0.523 0-1.137-0.305-1.372-0.681z"></path>
+        </svg>
+    </a>
+
+
+ <br>
+        &copy; 2023
+        <a href="https://wzl66.github.io">L的个人博客</a>
+        
+        <span class="footer__heart">❤️</span>
+    </div>
+</footer>
+<svg class="side__top" id="sideTop" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <path d="M26.562 13.958c0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303v0c0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303v0zM23.305 10.7c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM20.022 7.417c0 0 0 0 0 0 0 0.72 0.583 1.303 1.303 1.303s1.303-0.583 1.303-1.303c0-0 0-0 0-0v0c0-0 0-0 0-0 0-0.72-0.583-1.303-1.303-1.303s-1.303 0.583-1.303 1.303c0 0 0 0 0 0v0zM29.67 0h-27.339c-0.677 0-1.228 0.551-1.228 1.228s0.551 1.228 1.228 1.228h11.151l-10.725 10.725c-0.476 0.476-0.476 1.253 0 1.729 0.226 0.226 0.551 0.351 0.852 0.351s0.626-0.125 0.852-0.351l10.074-10.074v25.936c0 0.677 0.551 1.228 1.228 1.228s1.228-0.551 1.228-1.228v-26.011c0.476 0.426 1.203 0.426 1.679-0.050s0.476-1.253 0-1.729l-0.576-0.576h11.577c0.677 0 1.228-0.551 1.228-1.228 0-0.626-0.551-1.178-1.228-1.178z"></path>
+</svg>
+<script>
+  var Label = {
+    speech: true,
+    servePath: "https://wzl66.github.io",
+    staticServePath: "https://wzl66.github.io",
+    luteAvailable: false,
+    hljsStyle: 'github',
+    langLabel: "zh_CN",
+    version: "4.4.0",
+    staticSite: true,
+    showCodeBlockLn: false,
+    articleId: "1691653234717",
+  }
+</script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/common.min.js?1702824557362"
+        charset="utf-8"></script>
+<script type="text/javascript"
+        src="https://wzl66.github.io/skins/Bubble/js/circleMagic.min.js?1702824557362"
+        charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.css"/>
+<script async src="https://cdn.jsdelivr.net/npm/kanbanniang@0.2.10/index.js"></script>
+<div class="solo-kanbanniang">
+    <div class="solo-kanbanniang__tip"></div>
+    <canvas id="soloKanbanniang" width="280" height="250"></canvas>
+    <div class="solo-kanbanniang__tool">
+        <svg id="soloKanbanniangHome" viewBox="0 0 32 32" width="100%" height="100%">
+            <path d="M32 18.967l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18.516v12h-8v-8h-8v8h-8v-12l12-9z"></path>
+        </svg>
+        <svg id="soloKanbanniangRSS" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M320.364 768q0 45.728-32 77.728t-77.728 32-77.728-32-32-77.728 32-77.728 77.728-32 77.728 32 32 77.728zM612.94 838.272q1.152 16-9.728 27.424-10.272 12-26.848 12h-77.152q-14.272 0-24.576-9.44t-11.424-23.712q-12.576-130.848-105.44-223.712t-223.712-105.44q-14.272-1.152-23.712-11.424t-9.44-24.576V402.24q0-16.576 12-26.848 9.728-9.728 24.576-9.728h2.848q91.424 7.424 174.848 46.016t148 103.712q65.152 64.576 103.712 148t46.016 174.848z m292.576 1.152q1.152 15.424-10.272 26.848-10.272 11.424-26.272 11.424h-81.728q-14.848 0-25.44-10.016t-11.136-24.288q-6.848-122.848-57.728-233.44t-132.288-192-192-132.288-233.44-58.272q-14.272-0.576-24.288-11.136t-10.016-24.864V109.664q0-16 11.424-26.272 10.272-10.272 25.152-10.272h1.728q149.728 7.424 286.56 68.576t243.136 168q106.848 106.272 168 243.136t68.576 286.56z"></path>
+        </svg>
+        <svg id="soloKanbanniangChat" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M802.42709 96.163153H219.476155c-84.48109 0-154.896836 71.746044-154.896836 157.840888v393.119449c0 86.072331 70.415746 157.819398 154.896836 157.819399h214.038818V925.470963s22.526039 40.168862 64.767096 5.734608c30.965246-25.819039 126.721123-91.828428 171.775248-123.385145h132.369773c84.502579 0 154.896836-83.21526 154.896836-157.839865V251.125481c0-86.094844-70.394257-154.962328-154.896836-154.962328zM301.144176 518.002714c-39.427988 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044 39.426965 0 70.393233 31.577183 70.393234 71.746044 0 40.169885-30.966269 71.746044-70.393234 71.746044z m208.411657 0c-39.450501 0-70.415746-31.576159-70.415746-71.746044 0-40.168862 30.965246-71.746044 70.415746-71.746044 39.405475 0 70.394257 31.577183 70.394257 71.746044 0 40.169885-30.988782 71.746044-70.394257 71.746044z m211.203236 0c-39.426965 0-70.416769-31.576159-70.416769-71.746044 0-40.168862 30.988782-71.746044 70.416769-71.746044s70.415746 31.577183 70.415746 71.746044c-0.001023 40.169885-30.988782 71.746044-70.415746 71.746044z"></path>
+        </svg>
+        <svg id="soloKanbanniangChange" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M936.672 193.216l-226.88-64c-8.704-2.528-18.112-1.12-25.824 3.776-7.68 4.864-12.896 12.736-14.432 21.728C655.712 236.928 595.328 288 512 288c-71.424 0-142.464-103.296-163.776-143.104-7.136-13.28-22.528-19.84-37.024-15.68l-224 64C73.472 197.152 64 209.728 64 224v256a31.93 31.93 0 0 0 11.712 24.736c7.392 6.08 17.152 8.512 26.56 6.624L224 487.04V832c0 52.928 43.072 96 96 96h384c52.928 0 96-43.072 96-96V519.04l121.728 24.352c9.44 1.92 19.2-0.544 26.56-6.624C955.68 530.656 960 521.6 960 512V224c0-14.336-9.536-26.912-23.328-30.784zM672 800H352c-17.664 0-32-14.304-32-32s14.336-32 32-32h320c17.696 0 32 14.304 32 32s-14.304 32-32 32z"></path>
+        </svg>
+        <svg id="soloKanbanniangPhoto" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M898.048 258.048q23.552-1.024 46.592 9.216t40.96 27.136 28.672 39.424 10.752 46.08l0 390.144q0 24.576-10.752 47.104t-28.672 40.448-40.96 28.16-47.616 10.24l-697.344 0q-24.576 0-48.64-10.24t-42.496-27.648-29.696-40.448-11.264-48.64l0-381.952q0-22.528 10.752-45.568t28.672-41.472 39.936-30.208 44.544-11.776l63.488 0 13.312-83.968q3.072-20.48 18.432-32.768t34.816-12.288l456.704 0q19.456 0 34.304 10.752t16.896 34.304l14.336 83.968 54.272 0zM548.864 712.704q40.96 0 77.824-15.872t63.488-42.496 42.496-62.976 15.872-77.312-15.872-77.312-42.496-62.976-63.488-42.496-77.824-15.872-77.312 15.872-63.488 42.496-43.008 62.976-15.872 77.312 15.872 77.312 43.008 62.976 63.488 42.496 77.312 15.872z"></path>
+        </svg>
+        <svg id="soloKanbanniangGithub" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M1024 524.8c0 114.346667-32.554667 217.216-97.706667 308.565333-65.066667 91.306667-149.162667 154.538667-252.288 189.610667-11.989333 2.304-20.778667 0.682667-26.325333-4.778667a27.605333 27.605333 0 0 1-8.362667-20.48v-144.213333c0-44.16-11.52-76.501333-34.645333-97.024 25.344-2.730667 48.085333-6.826667 68.309333-12.288a268.629333 268.629333 0 0 0 62.72-26.666667 187.434667 187.434667 0 0 0 53.973334-45.44c14.421333-18.005333 26.197333-41.898667 35.328-71.765333 9.088-29.824 13.653333-64.128 13.653333-102.826667 0-55.125333-17.536-102.058667-52.650667-140.8 16.426667-41.429333 14.677333-87.893333-5.333333-139.392-12.458667-4.096-30.464-1.578667-54.016 7.509334a355.328 355.328 0 0 0-61.312 30.08L640 271.274667a462.336 462.336 0 0 0-128-17.749334c-43.989333 0-86.656 5.930667-128 17.749334a589.824 589.824 0 0 0-28.330667-18.432c-11.776-7.253333-30.336-16.042667-55.68-26.325334-25.344-10.24-44.416-13.312-57.301333-9.216-19.584 51.498667-21.12 97.962667-4.693333 139.434667-35.114667 38.698667-52.650667 85.632-52.650667 140.757333 0 38.698667 4.565333 72.874667 13.653333 102.485334 9.130667 29.610667 20.778667 53.546667 34.986667 71.765333 14.250667 18.218667 32.128 33.493333 53.674667 45.781333 21.546667 12.288 42.453333 21.205333 62.677333 26.666667 20.224 5.461333 43.008 9.557333 68.309333 12.288-17.749333 16.384-28.629333 39.850667-32.64 70.4a130.005333 130.005333 0 0 1-29.994666 10.24c-10.666667 2.261333-23.338667 3.413333-37.973334 3.413333-14.72 0-29.269333-4.906667-43.690666-14.677333-14.464-9.813333-26.794667-24.064-36.992-42.709333a109.226667 109.226667 0 0 0-32.341334-35.541334c-13.141333-9.130667-24.106667-14.592-33.024-16.426666l-13.312-2.048c-9.344 0-15.786667 1.024-19.328 3.072-3.584 2.090667-4.693333 4.693333-3.328 7.893333 1.28 3.157333 3.328 6.4 5.973334 9.557333 2.688 3.2 5.546667 5.930667 8.661333 8.192l4.693333 3.413334c9.770667 4.565333 19.413333 13.226667 29.013334 25.984 9.514667 12.757333 16.512 24.362667 20.992 34.858666l6.656 15.701334c5.76 17.322667 15.530667 31.317333 29.312 42.026666 13.781333 10.666667 28.672 17.536 44.672 20.48 16 2.986667 31.445333 4.565333 46.336 4.821334 14.890667 0.213333 27.221333-0.597333 36.992-2.389334l15.36-2.730666c0 17.28 0.085333 37.546667 0.298666 60.8l0.341334 36.906666a27.050667 27.050667 0 0 1-8.661334 20.48c-5.76 5.461333-14.677333 7.082667-26.666666 4.778667-103.125333-35.072-187.221333-98.261333-252.330667-189.610667C32.554667 742.058667 0 639.146667 0 524.8c0-95.232 22.869333-183.04 68.693333-263.466667A516.266667 516.266667 0 0 1 254.976 70.4C333.44 23.466667 419.114667 0 512 0c92.885333 0 178.56 23.466667 256.981333 70.4a516.266667 516.266667 0 0 1 186.368 190.976C1001.130667 341.802667 1024 429.653333 1024 524.842667z"></path>
+        </svg>
+        <svg id="soloKanbanniangClose" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M517.572566143763 1018.6748601482986C238.26554897656422 1018.6748601482986 11.897910175114305 792.2714997690043 11.897910175114305 513.0002041796496c0-279.3070171671984 226.36763880144977-505.71037754649296 505.6746559686481-505.71037754649296 279.2712955893538 0 505.6746559686481 226.40336037929444 505.6746559686481 505.71037754649296C1023.2472221124112 792.2714997690043 796.8795833109612 1018.6748601482986 517.572566143763 1018.6748601482986zM754.7281214542927 339.25044954334646c13.752807470184345-13.752807470184345 9.680547595895998-40.186775075214015-9.073280772537204-58.94060344364717l-2.143294670678079-2.1075730928334457c-18.7538283684332-18.7538283684332-45.15207439561819-22.861809820566194-58.90488186580257-9.073280772537204l-168.21291007038468 168.24863164822932-180.42968969324974-180.46541127109438c-13.967136937252159-13.967136937252159-40.72259874288353-9.823433907274534-59.72647815622916 9.216167083915742l-2.143294670678079 2.143294670678079c-19.039600991190277 19.003879413345654-23.111860865478626 45.75934121897699-9.180445506071107 59.655035000539876l180.42968969324974 180.46541127109438-176.07165719620428 176.03593561835962c-13.788529048028984 13.824250625873615-9.716269173740633 40.151053497369375 9.073280772537204 58.94060344364717l2.1075730928334457 2.1075730928334457c18.7538283684332 18.7538283684332 45.15207439561819 22.897531398410823 58.90488186580257 9.073280772537204l176.10737877404887-176.10737877404887 170.39192631890742 170.42764789675192c13.967136937252159 13.931415359407513 40.686877165038865 9.85915548511917 59.690756578384516-9.180445506071107l2.1790162485227142-2.1790162485227142c19.039600991190277-18.968157835501014 23.147582443323273-45.72361964113239 9.180445506071107-59.690756578384516l-170.39192631890742-170.42764789675192L754.7281214542927 339.25044954334646z"></path>
+        </svg>
+    </div>
+</div>
+
+    <svg viewBox="0 0 32 32" width="100%" height="100%" class="side__top side__top--toc">
+        <path d="M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z"></path>
+    </svg>
+
+<script type="text/javascript">
+    Util.addScript('https://wzl66.github.io/js/page.min.js?1702824557362', 'soloPageScript')
+    var page = new Page({
+        "commentContentCannotEmptyLabel": "评论不能为空",
+        "oId": "1691653234717",
+        "blogHost": "https://wzl66.github.io",
+        "randomArticles1Label": "随机阅读：",
+        "externalRelevantArticles1Label": "站外相关阅读："
+    });
+    $(document).ready(function () {
+        page.load();
+    page.tips.externalRelevantArticlesDisplayCount = "0";
+        page.loadRandomArticles('<h3>随机阅读</h3>');
+        page.loadRelevantArticles('1691653234717', '<h3>相关阅读</h3>');
+    Skin.initArticle()
+    });
+</script>
+
+</body>
+</html>
+
+<!-- Generated by Latke (https://github.com/88250/latke) in 94ms, 2023/12/17 22:49:44 -->
